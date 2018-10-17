@@ -1,0 +1,34 @@
+<div class='accordion' id='sva_list-mobile'>
+    <div class='card'>
+        <div class='card-header' id='{svaSkus[i]}-heading'>
+            <a class='btn btn-link' data-toggle='collapse' data-target='#{svaSkus[i]}-card' aria-expanded='false'
+                aria-controls='{svaSkus[i]}-card'>
+                <img class='lazy' alt='' data-src='{urlImagem[i]}'>
+                <h3 class='oi-sectionDesc-text oi-color-normal'>{svas[i]}</h3>
+            </a>
+        </div>
+
+        <div id='{svaSkus[i]}-card' class='collapse' aria-labelledby='{svaSkus[i]}-heading' data-parent='#sva_list-mobile'>
+            <div class='card-body oi-desc-text'>
+                <div class='sva-CardBody'>
+                    {desc}
+                </div>
+                
+                <div class='sva-download'>
+                    <p>Baixe o App!</p>
+                    <div class='sva-stores'>
+                        <a href='{urlAppStore[i]}' target="_blank">
+                            <img class='lazy' alt='' data-src='$BASE_PATH$/oi_imagens/logoAppStore.png'>
+                        </a>
+                        <a href='{urlGoogle[i]}' target="_blank">
+                            <img class='lazy' alt='' data-src='$BASE_PATH$/oi_imagens/logoGooglePlay.png'>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+</div>

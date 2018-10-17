@@ -1,0 +1,135 @@
+<!-- mobile -->
+<div class='accordion' id='addon_list-mobile'>
+
+    <!-- each addon -->
+    <!-- selectable addon -->
+    <div class='card'>
+
+        <!-- optional -->
+        <div class='card-header' id='{addonSKUs[i]}-heading'>
+            <h3 class='mb-0'>
+                <a class='btn btn-link addon-selected oi-sectionDesc-text oi-color-normal' data-toggle='collapse' data-target='#{addonSKUs[i]}-card'
+                    aria-expanded='true' aria-controls='{addonSKUs[i]}-card'>
+                    <!--selected-->
+                    <span class='oi-item-big oi-color-light'>{addon}</span>
+                    <p class='addon-included oi-sub-text-small oi-color-light'>Adicionado por {addonPricesInteger[i]},{addonPricesDecimal[i]}/mês</p>
+
+                    <!--unselected-->
+                    <span class='oi-item-big oi-color-light'>{addon}</span>
+                    <p class='addon-included oi-sub-text-small oi-color-light'>&nbsp;</p>
+                </a>
+            </h3>
+        </div>
+
+         <!--included addon -->
+        <div class='card-header' id='{addonSKUsIncluded[i]}-heading'>
+            <h3 class='mb-0'>
+                <input type='checkbox' id='{addonSKUsIncluded[i]}-header' name='{addonSKUsIncluded[i]}' value='{addonSKUsIncluded[i]}' class='addon-checkbox'
+                    checked disabled/>
+                <span class='addon-checkmark'></span>
+
+                <a class='btn btn-link oi-sectionDesc-text oi-color-normal' data-toggle='collapse' data-target='#{addonSKUsIncluded[i]}-card'
+                    aria-expanded='true' aria-controls='{addonSKUsIncluded[i]}-card'>
+                    <span class='oi-item-big oi-color-light'>{addon}</span>
+                    <p class='addon-included oi-sub-text-small oi-color-light'>Incluído no plano</p>
+                </a>
+            </h3>
+        </div>
+
+        <div id='{addonSKUs[i]}-card' class='collapse show' aria-labelledby='{addonSKUs[i]}-heading' data-parent='#addon_list-mobile'>
+            <div class='card-body oi-desc-text'>
+                <div class='card-inner'>
+                    <!-- if dont have pic,  addon-CardBody-noPic-->
+                    <div class='addon-CardBody'>
+                        <div class='addon-desc-col'>
+
+                            <img class='addon-logo lazy' alt='' data-src='{urlLogo[i]}'>
+
+                            <p class="addon-desc oi-sub-text oi-color-light">{descs[i]}</p>
+                            <!--if has channels-->
+                            <span class="addon-channels oi-sub-text-small oi-color-light" addon='{addonSKUs[i]}'>Pacote com {channelCount} canais</span>
+
+                            <!--prices-->
+                            <div class='addonPriceSection'>
+                                <div class='addonpriceText'>
+                                    <div class='addonPriceBigLabel'>
+                                        <p class='addonPriceLabel priceReais oi-section-text-head oi-color-normal'>R$</p>
+                                        <p class='addonPriceLabel priceInteger oi-section-text-head oi-color-normal'>{addonPricesInteger[i]}</p>
+                                    </div>
+                                    <div class='addonPriceSmallLabel'>
+                                        <p class='addonPriceLabel priceDecimal oi-section-text-head oi-color-normal'>{addonPricesDecimal[i]}</p>
+                                        <p class='addonPriceLabel priceMonth oi-section-text-head oi-color-normal'>/MÊS</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- if has pic -->
+                        <div class='addon-desc-pic'>
+                            <picture>
+                            <source media='(min-width: 768px)' data-srcset='{imgDestaqDesktop[i]}' /> <!--desktop-->
+                            <img class='lazy' title='{imgDestaqTitle[i]}' alt='{imgDestaqAlt[i]}' data-src='{imgDestaq[i]}'> <!--mobile-->
+                            </picture>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+
+<!-- download oiPlay-->
+<div class='addon-oiPlay'>
+    <p class='oi-sub-text oi-color-normal'>{ get(uiValues, "descricaoOiPlay")}</p>
+    <div class='addon-appStores'>
+        <div class='addon-store'>
+            <img class='lazy' alt='' data-src='{ get(uiValues, "logoGooglePlay")}'>
+            <p class='oi-sub-text-small oi-color-light'>Disponível na Play Store</p>
+        </div>
+        <div class='addon-store'>
+            <img class='lazy' alt='' data-src='{ get(uiValues, "logoAppStore")}'>
+            <p class='oi-sub-text-small oi-color-light'>Disponível na App Store</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- ================= Overlay ================= -->
+<!-- for each addon -->
+<div id="addon-{sku}-Overlay" class="addon-Overlay">
+
+    <div class="overlayMask">
+    </div>
+
+
+
+    <div class="addonDialog-Container">
+        <div class="addonDialog-inner">
+
+            <button class="addon-OverlayX addon-CloseOverlay oi-section-text oi-color-light" parent-overlay='addon-{sku}-Overlay' type='button'></button>
+
+            <div class="addonDialog-Text">
+                <img class='lazy addonDialog-logo' data-src='{urlLogo[i]}'>
+                <h4 class="oi-sub-text-big oi-color-normal">{descsCanaisIncluded[i]}</h4>
+                <ul class="addonDialog-channels">
+                    <!-- for each channel img -->
+                    <li>
+                        <img class='lazy' data-src="{get(channelLogos, channelName)}">
+                    </li>
+                </ul>
+            </div>
+
+            <div class="addonDialog-ButtonContainer">
+                <div class="addonDialog-Button">
+                    <button class="addon-CloseOverlay oi-desc-text oi-color-background-gradient" parent-overlay='addon-{sku}-Overlay' type='button'>
+                        Voltar para a oferta
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+addons = util.pos_calcularAddons(pl_addons);
+
+retArray = string[0];
+
+for item in addons {
+
+	append(retArray, item);
+}
+
+return join(retArray,"|^|");
+

@@ -1,0 +1,16 @@
+_start meta data
+_update_action,Titulo,Ordem,Descricao,Descricao2,Logo
+String,String,Integer,String,String,String
+,,,,,
+_end meta data
+modify,Fixo ilimitado,0,R$ {Preco_Fixo} /mês especificado na sua conta.,,https://ccstore-stage-z6sa.oracleoutsourcing.com/file/general/icon-fixo.svg
+modify,Conteúdo online,2,"Assinantes de Combos Oi Total Play a partir de 5 Mega podem assistir Coleção Oi, Noggin, Fox+, CRACKLE, Discovery Kids ON, WatchESPN, Fox Premium e HBO GO.",,https://ccstore-stage-z6sa.oracleoutsourcing.com/file/general/icon-play.svg
+modify,"Antivírus, Oi Cloud e Educa na fatura",4,"Os valores dos serviços não influenciam na oferta contratada. Caso queira remover os SVAs, é necessário entrar em contato com a Oi,",,https://ccstore-stage-z6sa.oracleoutsourcing.com/file/general/icon-fatura.svg
+modify,Taxa de instalação,6,12x de R$ 16 (fixo) e 12x de R$ 9 (banda larga) na conta.,,https://ccstore-stage-z6sa.oracleoutsourcing.com/file/general/icon-taxa.svg
+modify,1 ano de fidelidade,8,"Caso cancele antes, haverá uma multa rescisória proporcional ao restante do período. Conheça as","<a target=""_blank""  href='{regulamento}'>  ofertas sem fidelidade.</a>",https://ccstore-stage-z6sa.oracleoutsourcing.com/file/general/icon-calendario.svg
+modify,Regulamento da oferta,10,"<a target=""_blank""  href='{regulamento}'>Consulte todas as regras.</a>",,https://ccstore-stage-z6sa.oracleoutsourcing.com/file/general/icon-regulamento%20copy.svg
+modify,Velocidade dos Planos,1,"15 Mega de internet: Até 15 Mbps de download, até 1 Mbps de upload.                                                   Essas são as velocidades máximas nominais. A velocidade pode variar devido a fatores externos. Promocionalmente, a franquia é ilimitada.",Velocidade contratada é a taxa de transmissão ou velocidade da conexão. É o quão rápido um pacote de dados do seu dispositivo vai ser levado até sua operadora e vice-versa.,https://ccstore-stage-z6sa.oracleoutsourcing.com/file/general/icon-velocidade.svg
+modify,Débito Automático,3,Desconto especial de R$ 5 por 3 meses pros clientes que ativarem o Débito Automático em conta corrente.,,https://ccstore-stage-z6sa.oracleoutsourcing.com/file/general/icon-pagamento.svg
+modify,Prazo de instalação,5,"São até 7 dias pra instalar a partir da aprovação do seu pedido. De segunda a sábado, das 8h às 20h.",,https://ccstore-stage-z6sa.oracleoutsourcing.com/file/general/icon-calendario-vencimento.svg
+modify,Validade da oferta,7,Precisamos do texto sobre a validade de cada oferta.,,https://ccstore-stage-z6sa.oracleoutsourcing.com/file/general/icon-regulamento%20copy.svg
+modify,Outras informações sobre a banda larga,9,Volume de tráfego é o volume de dados gerados pelo serviço utilizado desde o servidor até o usuário e vice-versa.,,https://ccstore-stage-z6sa.oracleoutsourcing.com/file/general/icon-informacoes.svg

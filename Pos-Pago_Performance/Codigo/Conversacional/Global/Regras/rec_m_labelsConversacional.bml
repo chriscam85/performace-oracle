@@ -1,0 +1,15 @@
+records = bmql("SELECT Valor from pos_conv_ui WHERE Chave='labelDependentes'");
+
+labelText = "";
+
+for record in records{
+	labelText = get(record,"Valor");
+}
+
+html = stringbuilder();
+
+sbappend(html, "<div class='oiSectionHeader'>");
+sbappend(html, "<h2 class='oi-section-text-head-gradient oi-color-background-gradient'>", labelText, "</h2>");
+sbappend(html, "</div>");
+
+return sbtostring(html);

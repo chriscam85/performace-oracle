@@ -1,0 +1,10 @@
+_start meta data,,,,
+_update_action,Titulo,Ordem,Descricao,Logo
+String,String,Integer,String,String
+,,,,
+_end meta data,,,,
+modify,Ligações ilimitadas,0,Fale pra fixo e celular de qualquer operadora.,https://ofertas.oi.com.br/file/general/icon-celular.png
+modify,Oi WiFi na rua,1,Mais de 2 milhões de pontos pra navegar.,https://ofertas.oi.com.br/file/general/icon-wi-fi.png
+modify,SMS ilimitados,2,Use à vontade pra qualquer operadora.,https://ofertas.oi.com.br/file/general/icon-sms.png
+modify,Chip grátis,3,Enviado pelo Correios sem custo adicional.,https://ofertas.oi.com.br/file/general/icon-chip.png
+modify,Oi Play,4,"Mais de 20 mil filmes, séries e desenhos.",https://ofertas.oi.com.br/file/general/icon-oi-play.png

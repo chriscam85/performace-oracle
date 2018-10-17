@@ -1,0 +1,11 @@
+_start meta data,,
+_update_action,Grupo_SVA,SKU_Conteudo
+String,String,String
+,,
+_end meta data,,
+modify,grupo1,fixo_identificador_de_chamadas
+modify,grupo1,fixo_chamada_em_espera
+modify,grupo1,bl_oi_antivirus
+modify,grupo1,bl_oi_backup_cloud_50gb
+modify,grupo1,bl_oi_Educa
+modify,grupo1,bl_modem_wifi

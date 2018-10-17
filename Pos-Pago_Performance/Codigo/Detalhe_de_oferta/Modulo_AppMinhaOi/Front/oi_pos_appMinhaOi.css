@@ -1,0 +1,384 @@
+/*================================================
+* App Minha Oi HTML
+* ================================================
+*/
+
+#appMinhaOi-container {
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+#appMinhaOi-nav {
+    list-style: none;
+    margin: 0px;
+  }
+  
+#appMinhaOi-nav a:before {
+    content: '✓';
+    margin-right: 10px;
+  }
+
+ul#appMinhaOi-nav .nav-link {
+    color: black;
+    padding: 0px;
+    margin-bottom: 10px;
+}
+
+ul#appMinhaOi-nav .nav-link:hover {
+    font-weight: bold;
+}
+
+ul#appMinhaOi-nav .nav-link.active {
+    font-weight: bold;
+}
+
+#appMinhaOi-TabContent img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.appMinhaOi-download p {
+    display: inline-block;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.appMinhaOi-stores {
+    display: block;
+}
+
+.appMinhaOi-stores img {
+    display: block;
+    width: 100px;
+}
+
+.appMinhaOi-stores a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.appMinhaOi-download {
+    margin-top: 20px;
+    padding: 0;
+}
+
+#pl_labelAppMinhaOiHMTL .oiSectionHeader {
+    padding-bottom: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/*---------------------------
+* mobile
+* ---------------------------
+*/
+
+#appMinhaOi-navMobile{
+    margin: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    display: flex;
+    align-items: center;
+    border: none;
+}
+
+#appMinhaOi-navMobile .nav-item{
+    margin: 0;
+    display: flex;
+    margin-left: 15px;
+    align-items: center;
+}
+
+#appMinhaOi-navMobile .nav-item:first-child {
+    margin: 0;
+}
+
+#appMinhaOi-navMobile .nav-link{
+    width: 6px;
+    height: 6px;
+    background-color: #dbdbdb;
+    border-radius: 100%;
+    padding: 0;
+    display: inline-block;
+    transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+
+#appMinhaOi-navMobile .nav-link:hover{
+    border: none;
+    color: #909090;
+}
+
+#appMinhaOi-navMobile .nav-link.active {
+    border: none;
+    background-color: #f8562c;
+    width: 8px;
+    height: 8px;
+}
+
+video.divisorVideo {
+    width: 100%;
+}
+
+/*
+#appMinhaOi-video1 .divisorVideo{
+    margin-left: -31px;
+}
+*/
+
+#appMinhaOi-TabContent {
+    padding: 0;
+}
+
+#appMinhaOi-TabContent .appMinhaOi-text {
+    padding: 0;
+}
+
+#appMinhaOi-container .col-12 {
+    padding: 0;
+}
+
+#appMinhaOi-container .appMinhaOi-text {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    height: 10px;
+}
+
+#pl_appMinhaOiHTML .row {
+    margin: 0;
+    text-align: center;
+}
+
+#pl_appMinhaOiHTML .appMinhaOi-videoTitle {
+    font-size: 18px;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: normal;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+/*---------------------------
+* responsive
+* ---------------------------
+*/
+
+#appMinhaOi-nav{
+    display: none;
+}
+
+
+@media (min-width: 768px) { 
+
+    #pl_labelAppMinhaOiHMTL .oiSectionHeader {
+        border-top: 1px;
+        border-style: solid;
+        border-color: #dbdbdb;
+    }
+
+    .appMinhaOi-stores img {
+        display: block;
+        width: 104px;
+        height: 32px;
+    }
+
+    #pl_appMinhaOiHTML .appMinhaOi-videoTitle{
+        font-size: 20px;
+    }
+
+    #appMinhaOi-container .appMinhaOi-text {
+        margin-right: 1px;
+    }
+
+    #appMinhaOi-TabContent .tab-pane{
+        text-align: center;
+    }
+
+    #Section-Header-Download{
+        position: absolute;
+        z-index: 1;
+        width: auto;
+        height: 636.531px;
+        margin-left: 60%;
+        max-width: 330px;
+        max-height: 583px;
+    }
+
+    #Section-Header-Download .oiSectionHeader{
+        border-top: none;
+    }
+
+    #Section-Header-Download .oiSectionHeader-Title{
+        margin-bottom: 12px;
+        line-height: 1.25;
+        max-width: 88%;
+    }
+
+    #Section-Header-Download .oiSectionHeader-SubTitle{
+        margin-bottom: -11px;
+        line-height: 1.6;
+        max-width: 230px;
+    }
+
+    #Section-Header-Download .appMinhaOi-download .oi-desc-text{
+        text-align: left;
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+    
+    #Section-Header-Download .appMinhaOi-download{
+        padding-left: 20px;
+    }
+
+    #appMinhaOi-container{
+        margin: 0px;
+    }
+
+    
+    /* Grilla del video */
+    .appMinha{
+        border-top: 1px solid #dbdbdb;
+    }
+
+    #pl_appMinhaOiHTML .row {
+        margin: 0;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        max-width: 50%;
+        max-height: 50%;
+    }
+
+    #Section-Header-Download-child{
+        margin-top: 25%;
+    }
+
+    #pl_labelAppMinhaOiHMTL:after{
+        right: -102px;
+        content: "";
+        background-image: url(../oi_imagens/ameba-detalhe-produto-2.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        width: 151px;
+        height: 131px;
+        position: absolute;
+        top: 155px;
+        transform: rotate(-73deg);
+        z-index:1;
+    }
+
+    #appMinhaOi-navMobile .nav-item{
+        margin-left: 0px;
+    }
+
+    #appMinhaOi-navMobile .nav-item:last-child .nav-link{
+        margin-right: 0;
+    }
+
+    #appMinhaOi-navMobile .nav-link{
+        margin-right: 20px;
+    }
+
+    /*
+    #appMinhaOi-video1 .divisorVideo{
+        margin-left: -34px;
+    }
+    */
+
+    /*
+    #appMinhaOi-container .appMinhaOi-text{
+        margin-left: 27px;
+    }
+    */
+
+}
+
+@media (min-width: 992px) { 
+
+    #pl_appMinhaOiHTML .row {
+        max-width: 100%;
+        max-height: 100%;
+        margin-left: 62px;
+    }
+
+    #Section-Header-Download .oiSectionHeader-Title{
+        max-width: 100%;
+        margin-bottom: -5px;
+    }
+
+    #Section-Header-Download .oiSectionHeader-SubTitle{
+        margin-bottom: -10px;
+        line-height: 1.6;
+        max-width: 300px;
+    }
+
+    #Section-Header-Download .appMinhaOi-download .oi-desc-text {
+        margin-bottom: 15px;
+    }
+
+    #pl_labelAppMinhaOiHMTL:after{
+        right: -168px;
+        width: 228px;
+        height: 200px;
+        top: 172px;
+        transform: rotate(-72deg);
+    }
+
+    /*
+    #appMinhaOi-video1 .divisorVideo{
+        margin-left: -47px;
+    }
+    */
+
+    /*
+    #appMinhaOi-container .appMinhaOi-text{
+        margin-left: 12px;
+    }
+    */
+
+}
+
+
+@media (min-width: 1366px) { 
+
+    #pl_appMinhaOiHTML .row {
+        margin-left: 120px;
+    }
+
+    #Section-Header-Download .oiSectionHeader-Title{
+        max-width: 100%;
+        margin-bottom: 27px;
+    }    
+
+    #Section-Header-Download .oiSectionHeader-SubTitle{
+        margin-bottom: 0px;
+    }
+
+    #Section-Header-Download .appMinhaOi-download .oi-desc-text {
+        margin-bottom: 20px;
+    }
+
+    #pl_labelAppMinhaOiHMTL:after{
+        right: -194px;
+        width: 258px;
+        height: 245px;
+        top: 167px;
+        transform: rotate(-69deg);
+    }
+
+    /*
+    #appMinhaOi-video1 .divisorVideo{
+        margin-left: -53px;
+    }
+    */
+
+}

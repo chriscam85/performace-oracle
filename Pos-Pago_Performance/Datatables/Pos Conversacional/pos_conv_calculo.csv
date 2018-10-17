@@ -1,0 +1,9 @@
+_start meta data,,
+_update_action,SKU,PontosMinimos
+String,String,Integer
+,,
+_end meta data,,
+modify,pos-pago_basico_fid_brasil,0
+modify,pos-pago_intermediario_fid_brasil,21
+modify,pos-pago_top_fid_brasil,45
+modify,pos-pago_master_fid_brasil,105

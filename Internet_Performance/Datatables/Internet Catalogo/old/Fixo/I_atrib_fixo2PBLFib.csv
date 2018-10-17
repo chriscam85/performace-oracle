@@ -1,0 +1,6 @@
+_start meta data,,,,,,,,,,,,,,
+_update_action,SKU,Regiao,Nome_comecial,Lig_local_fixo,Lig_ddd_fixo,Lig_celular,Taxa_adesao,Desc_debito_auto,Preco,Multa,Preco_multa,Validade_adesao,Mostrar_Selecao,ID_Imagem
+String,String,String,String,String,String,String,Float,String,Float,String,Float,String,String,String
+,,,,,,,,,,,,,,
+_end meta data,,,,,,,,,,,,,,
+modify,fixo_allnet_fibra_combos_nvend_fid,Brasil,Oi Fixo,Ilimitado pra qualquer celular e fixo de todo Brasil,Ilimitado pra qualquer celular e fixo de todo Brasil,Ilimitado pra qualquer celular e fixo de todo Brasil,0,N/A,10,Não,N/A,31/07/2018,S,

@@ -1,0 +1,13 @@
+_start meta data
+_update_action,SKU,SKU_Oferta,Nome_comercial,Preco,Preco_posterior,Descricao,URL_Imagem,Caracteristicas
+String,String,String,String,Float,Float,String,String,String
+,,,,,,,,
+_end meta data
+modify,pos-pago_basico_dependente_fid,pos-pago_basico_fid_brasil,Dependente,49.9,39.9,Lorem Ipsum,[imagem],Lorem Ipsum
+modify,pos-pago_intermediario_dependente_fid,pos-pago_intermediario_fid_brasil,Dependente,39.9,39.9,Lorem Ipsum,[imagem],Lorem Ipsum
+modify,pos-pago_top_dependente_fid,pos-pago_top_fid_brasil,Dependente,29.9,39.9,Lorem Ipsum,[imagem],Lorem Ipsum
+modify,pos-pago_master_dependente_fid,pos-pago_master_fid_brasil,Dependente,29.9,39.9,Lorem Ipsum,[imagem],Lorem Ipsum
+modify,pos-pago_basico_dependente_nfid,pos-pago_basico_nfid_brasil,Dependente,99.9,89.9,Lorem Ipsum,[imagem],Lorem Ipsum
+modify,pos-pago_intermediario_dependente_nfid,pos-pago_intermediario_nfid_brasil,Dependente,89.9,89.9,Lorem Ipsum,[imagem],Lorem Ipsum
+modify,pos-pago_top_dependente_nfid,pos-pago_top_nfid_brasil,Dependente,79.9,89.9,Lorem Ipsum,[imagem],Lorem Ipsum
+modify,pos-pago_master_dependente_nfid,pos-pago_master_nfid_brasil,Dependente,79.9,89.9,Lorem Ipsum,[imagem],Lorem Ipsum

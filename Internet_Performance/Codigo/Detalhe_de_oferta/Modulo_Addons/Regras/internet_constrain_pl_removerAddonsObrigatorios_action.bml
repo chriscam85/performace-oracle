@@ -1,0 +1,19 @@
+records = bmql("SELECT Grupo_Conteudo FROM I_atrib_2PBL WHERE SKU_Combo=$f_ofertaSelecionada");
+
+grupoConteudo = "";
+
+for record in records{
+	grupoConteudo = get(record,"Grupo_Conteudo");
+}
+
+
+records = bmql("SELECT SKU_Conteudo FROM I_relContOferta where Grupo_Conteudo = $grupoConteudo AND Incluso = 'N' AND Disp_Pos_Venda = 'N'");
+
+retArray = string[1];
+retArray[0] = "";
+
+for item in records{
+	append(retArray, get(item,"SKU_Conteudo"));
+}
+
+return join(retArray,"|^|");

@@ -1,0 +1,30 @@
+retArray = string[0];
+
+records = bmql("SELECT Grupo_SVA FROM I_atrib_2PBL WHERE SKU_Combo=$oferta");
+
+grupoConteudo = "";
+
+for record in records{
+	grupoConteudo = get(record,"Grupo_SVA");
+}
+
+
+records = bmql("SELECT I_relSVAOferta.SKU_Conteudo, I_atrib_conteudo.Preco FROM I_relSVAOferta INNER JOIN I_atrib_conteudo ON I_relSVAOferta.SKU_Conteudo=I_atrib_conteudo.SKU WHERE I_relSVAOferta.Grupo_SVA=$grupoConteudo");
+
+print(records);
+
+for record in records{
+	sku = get(record,"SKU_Conteudo");
+	price = getFloat(record,"Preco");
+
+	addonArray = string[0];
+	append(addonArray , sku);
+	append(addonArray , "1");
+	append(addonArray , "");
+	append(addonArray , string(price));
+	
+	append(retArray , join(addonArray , "~"));
+}
+	
+
+return retArray ;

@@ -1,0 +1,9 @@
+_start meta data,,
+_update_action,Nivel,Texto
+String,Integer,String
+,,
+_end meta data,,
+modify,0,nunca [VERBO]
+modify,1,raramente [VERBO]
+modify,2,costuma [VERBO_INF]
+modify,3,[VERBO] o tempo todo

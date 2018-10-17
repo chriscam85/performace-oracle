@@ -1,0 +1,14 @@
+_start meta data,,,,
+_update_action,Titulo,Ordem,Descricao,Logo
+String,String,Integer,String,String
+,,,,
+_end meta data,,,,
+modify,Sua internet contratada,0,"O bônus mensal de internet está disponível a partir do Plano Pós-pago de {Dados} GB {Bonus_de_dados}. Ao ultrapassar a franquia contratada, a navegação é reduzida promocionalmente até 64 Kbps.",https://ofertas.oi.com.br/file/general/icon-celular_internet.png
+modify,Ligações ilimitadas pra todo o Brasil,2,Fale à vontade pra fixo e celular de qualquer operadora no Brasil (usando o código 31 ou 14).,https://ofertas.oi.com.br/file/general/icon-celular.png
+modify,Dependentes do plano,4,Você pode adicionar até 4 dependentes após escolher a sua oferta. Cada um custará R$ {preco}. A internet é compartilhada por todos e você pode distribuir e transferir como quiser entre os participantes.,https://ofertas.oi.com.br/file/general/icon-avatar.png
+modify,1 ano de fidelidade,6,"Caso cancele antes dos 12 meses iniciais, haverá uma multa rescisória proporcional ao restante do período. <a target=""_blank""  href='https://www.oi.com.br/celular/pos-pago/plano-sem-fidelizacao/'>Confira os planos sem fidelização.</a>",https://ofertas.oi.com.br/file/general/icon-calendario.png
+modify,Formas de pagamento,1,"O titular e os dependentes têm uma única conta. Você pode pagar no Débito Automático ou boleto bancário. Os preços são promocionais e estão sujeitos a alterações, inclusive as decorrentes de alteração nos impostos incidentes.",https://ofertas.oi.com.br/file/general/icon-pagamento.png
+modify,Internet 4G,8,"São necessários chip e aparelho de celular compatíveis, além de estar em uma <a target=""_blank""  href='https://www.oi.com.br/oi/oi-pra-voce/planos-servicos/cobertura/'>área com cobertura 4G.</a>",https://ofertas.oi.com.br/file/general/icon-4g.png
+modify,Regulamento da oferta,3,"Consulte as <a target=""_blank""  href='{regulamento}'>regras do plano.</a>",https://ofertas.oi.com.br/file/general/icon-informacoes.png
+modify,Período de Adesão,5,O plano está com preço promocional com validade do dia {Validade_para_adesao}.,https://ofertas.oi.com.br/file/general/icon-calendario-vencimento.png
+modify,Oi Pontos,7,"O programa de relacionamento da Oi que troca seus pontos por ingressos, serviços e descontos em aparelhos. ​<a target=""_blank""  href='https://www.oi.com.br/oi/oi-pra-voce/planos-servicos/oi-pontos/'>Saiba mais​.</a>",https://ofertas.oi.com.br/file/general/icon-oi-pontos.png

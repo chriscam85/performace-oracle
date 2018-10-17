@@ -1,0 +1,56 @@
+/*================================================
+* Informações Legais Addons
+* ================================================
+*/
+
+/*
+.group-full-width.infoLegalAddon-container{
+    border-top: solid 1px #dbdbdb;
+}
+
+
+.group-full-width.infoLegalAddon-container .group-content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+*/
+
+.oi-infoLegalAddons .oi-sub-text-legal{
+    line-height: 16px;
+}
+
+/*
+@media (min-width: 1200px) {
+    .group-full-width.infoLegalAddon-container .group-content {
+        max-width: 1144px;
+        margin-left: 5.2%;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    .group-full-width.infoLegalAddon-container .group-content {
+        margin-left: 44px;
+        margin-right: 44px;
+    }
+}
+
+@media (min-width: 768px) {
+    .group-full-width.infoLegalAddon-container .group-content {
+        margin-left: 36px;
+        margin-right: 36px;
+    }
+}
+*/
+
+.oi-infoLegalAddons {
+    padding-bottom: 25px;
+    padding-top: 25px;
+}
+
+@media (min-width: 768px) {
+    .oi-infoLegalAddons {
+        padding-bottom: 40px;
+        padding-top: 40px;
+    }
+}

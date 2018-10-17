@@ -1,0 +1,34 @@
+records = bmql("SELECT chave, valor FROM pos_ui_appMinhaOi");
+
+videoDict = dict("string");
+
+for record in records{
+    put(videoDict, get(record,"chave"), get(record,"valor"));
+}
+
+urlAppStore = get(videoDict, "urlAppStore");
+urlGooglePlay = get(videoDict, "urlGooglePlay");
+
+html = stringbuilder();
+
+sbappend(html, "<div id='Section-Header-Download'>");
+sbappend(html, "	<div id='Section-Header-Download-child'>");
+sbappend(html, "		<div class='oiSectionHeader'>");
+sbappend(html, "			<h2 class='oiSectionHeader-Title oi-color-normal oi-section-text'>Você usa a internet como quiser na Oi</h2>");
+sbappend(html, "			<p class='oiSectionHeader-SubTitle oi-color-normal oi-desc-text oi-color-light'>Compartilhe internet, fale ilimitado, compre pacotes extras e ainda acompanhe seu saldo pela Minha Oi.</p>");
+sbappend(html, "		</div>");
+sbappend(html, "		<div class='appMinhaOi-download col-12 d-none d-md-block'>");
+sbappend(html, "			<p class='oi-desc-text'>Baixe o app Minha Oi!</p>");
+sbappend(html, "			<div class='appMinhaOi-stores'>");
+sbappend(html, "				<a href='", urlAppStore,"' target='_blank'>");
+sbappend(html, "					<img src='$BASE_PATH$/oi_imagens/bt-google-play.png'>");
+sbappend(html, "				</a>");
+sbappend(html, "				<a href='", urlGooglePlay,"' target='_blank'>");
+sbappend(html, "					<img src='$BASE_PATH$/oi_imagens/bt-app-store.png'>");
+sbappend(html, "				</a>");
+sbappend(html, "			</div>");
+sbappend(html, "		</div>		");
+sbappend(html, "	</div>");
+sbappend(html, "</div>");
+
+return sbtostring(html);

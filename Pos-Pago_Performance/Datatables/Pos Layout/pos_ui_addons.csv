@@ -1,0 +1,9 @@
+_start meta data
+_update_action,chave,valor
+String,String,String
+,,
+_end meta data
+modify,logoGooglePlay,$BASE_PATH$/oi_imagens/icon-play-store.png
+modify,descricaoOiPlay,Acesse pela plataforma ou app do Oi Play na.
+modify,logoAppStore,$BASE_PATH$/oi_imagens/icon-app-store.png
+modify,descricaoAssine,Assine no site oiplay.tv com sua conta da Minha Oi.

@@ -1,0 +1,9 @@
+_start meta data,,,,,
+_update_action,Midia,Peso,Verbo,Verbo_Inf,Substantivo
+String,String,Float,String,String,String
+,,,,,
+_end meta data,,,,,
+modify,Mensagem,0,troca ,trocar,mensagens
+modify,Musica,2,escuta  ,escutar ,música
+modify,Video,5,assiste ,assistir,vídeos
+modify,Jogo,0.5,joga ,jogar ,no celular

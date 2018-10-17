@@ -1,0 +1,87 @@
+
+<!-- desktop -->
+<div id='addon_list'>
+    <ul class='addon-nav'>
+
+        <!-- selectable addons-->
+        <li class='{ class }' addon-pane='{addonSKUs[i]}'>
+            <a id='{addonSKUs[i]}-header' class='addon-link'>{addon}</a>
+        </li>
+
+        <!-- included addons-->
+        <li class='addon-item' addon-pane='{addonSKUsIncluded[i]}'>
+            <input type='checkbox' id='{addonSKUsIncluded[i]}-header' name='{addonSKUsIncluded[i]}' value='{addonSKUsIncluded[i]}' class='addon-checkbox'
+                checked disabled/>
+            <span class='addon-checkmark'></span>
+            <label class='addon-link' for='{addonSKUsIncluded[i]}'>{addon}</label>
+            <p class='addon-included'>Incluso no plano!</p>
+        </li>
+
+
+        <!-- download oiPlay-->
+        <li class='addon-oiPlay'>
+            <img src='{ get(uiValues, "logoOiPlay")}'>
+            <p>{ get(uiValues, "descricaoOiPlay")}</p>
+        </li>
+
+    </ul>
+
+    <!-- addon panes-->
+    <ul class='addon-content' id='addon-TabContent'>
+
+        <!-- selectable addons-->
+        <li class='{ class }' id='{addonSKUs[i]}'>
+
+            <div class='addon-descContainer'>
+                <div class='addon-desc'>
+
+                    <img class='addon-logo' src='{urlLogo[i]}'>
+                    <p>{desc}</p>
+
+
+                    <div class='addonPriceSection'>
+                        <div class='addonPriceBigLabel'>
+                            <h1 class='addonPriceLabel priceInteger'>{addonPricesInteger[i]}</h1>
+                        </div>
+                        <ul class='addonPriceSmallLabel'>
+                            <li>
+                                <h2 class='addonPriceLabel priceDecimal'>,{addonPricesDecimal[i]}</h2>
+                            </li>
+                            <li>
+                                <p class='addonPriceLabel priceMonth'>/MÊS</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class='addon-img'>
+                <img src='{ get(uiValues, addonSKUs[i])}'>
+            </div>
+
+        </li>
+
+
+        <!-- included addons-->
+        <li class='addon-pane fade' id='{addonSKUsIncluded[i]}'>
+
+            <div class='addon-descContainer'>
+                <div class='addon-desc'>
+
+                    <img class='addon-logo' src='{urlLogoIncluded[i]}'>
+                    <p>{desc}</p>
+
+                </div>
+            </div>
+
+            <div class='addon-img'>
+                <img src='{get(uiValues, addonSKUsIncluded[i])}'>
+            </div>
+
+        </li>
+
+
+    </ul>
+
+</div>

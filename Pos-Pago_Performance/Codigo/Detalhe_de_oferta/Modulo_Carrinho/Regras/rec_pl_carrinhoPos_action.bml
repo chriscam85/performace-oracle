@@ -1,0 +1,364 @@
+// ================= Oferta =================
+
+records = bmql("SELECT Dados, Voz, Bonus_de_dados FROM pos_atributosOfert WHERE SKU=$f_ofertaSelecionada");
+//print(records );
+
+offerData = "";
+offerMinutes = "";
+offerBonus = "";
+
+for record in records{
+	offerData = get(record, "Dados");
+	offerMinutes = get(record, "Voz");
+	offerBonus = get(record, "Bonus_de_dados");
+	break;
+}
+
+// ================= Todas as Ofertas  =================
+
+records = bmql("SELECT SKU, Dados, Preco FROM pos_atributosOfert WHERE Mostrar_Selecao='S'");
+//print(records );
+
+allOffersSKU = string[0];
+allOffersData = string[0];
+allOffersPrice = string[0];
+
+for record in records{
+
+	append(allOffersSKU, get(record, "SKU"));
+	append(allOffersData, get(record, "Dados"));
+	offerPrice =  getFloat(record, "Preco");
+
+	offerPriceLabel = formatascurrency(offerPrice, "BRL");
+	offerPriceLabel = replace(offerPriceLabel,"R$","");
+
+	append(allOffersPrice, offerPriceLabel);
+}
+
+// ================= Dependentes =================
+
+depCount = 0;
+priceDep = 0.0;
+priceDepLabel = "";
+
+if (len(pl_dependentes)>0){
+
+	depCount = atoi(pl_dependentes);
+	depsArray= util.pos_calcularDependentes(f_ofertaSelecionada, depCount);
+
+	for dep in depsArray{
+		item = split(dep, "~");
+		priceDep = priceDep + atof(item[3]) * atoi(item[1]);
+	}
+}
+
+priceDepLabel = formatascurrency(priceDep, "BRL");
+priceDepLabel = replace(priceDepLabel,"R$","");
+
+// ================= Addons =================
+priceAddons = 0.0;
+addonNameArray = string[0];
+addonSKUArray  = string[0];
+addonPriceArray  = string[0];
+addonCount = 0;
+
+if (len(pl_addons)>0){
+
+	addonsArray = util.pos_calcularAddons(pl_addons);
+	//print(addonsArray);
+	
+	addonCount = sizeofarray(addonsArray);
+
+	addonToSearchArray = string[0];
+	
+	for addon in addonsArray{
+		addonSplitArray = split(addon, "~");
+		append(addonToSearchArray,addonSplitArray[0]);
+		priceAddons = priceAddons + atof(addonSplitArray[3]);
+	}
+	
+	records = bmql("SELECT SKU, Nome_comercial, Preco FROM pos_atribConteudo WHERE SKU in $addonToSearchArray");
+	
+	addonsListHTML = stringbuilder();
+	
+	for record in records{
+		addonName = get(record, "Nome_comercial");
+		addonSKU = get(record, "SKU");
+		addonPrice = getFloat(record, "Preco");
+
+		addonPriceLabel = formatascurrency(addonPrice, "BRL");
+		addonPriceLabel = replace(addonPriceLabel,"R$","");
+
+		append(addonNameArray, addonName);
+		append(addonSKUArray, addonSKU);
+		append(addonPriceArray, addonPriceLabel);
+		
+	}
+}
+
+// ================= Price =================
+selectedOfferPrice = util.pos_calcularPrecoOferta(f_ofertaSelecionada);
+totalPrice = selectedOfferPrice + priceDep + priceAddons;
+
+totalPriceInteger =  integer(totalPrice);
+totalPriceDecimal = (totalPrice - totalPriceInteger) * 100;
+totalPriceDecimalLabel = string(integer(totalPriceDecimal));
+
+if (totalPriceDecimal < 10){
+	totalPriceDecimalLabel = "0" + totalPriceDecimalLabel;
+}
+
+selectedOfferPriceLabel = formatascurrency(selectedOfferPrice, "BRL");
+selectedOfferPriceLabel = replace(selectedOfferPriceLabel,"R$","");
+
+
+
+
+
+
+
+// ================= Build HTML =================
+html = stringbuilder();
+
+
+sbappend(html , "<nav  id='modernCPQCart' class='navbar navbar-expand-lg'>");
+
+// menu button
+sbappend(html , "<button id='modernCPQCart-OpenButton' class='modernCPQCart-toggler' type='button'>");
+sbappend(html , "<div class='selectedPlanHeader'>");
+sbappend(html , "<h1 class='oi-section-text-head-gradient oi-color-background-gradient'>", offerData," GB</h1>");
+sbappend(html , "</div>");
+
+// desktop
+sbappend(html, "<div class='modernCPQCart-desktopBar'>");
+
+// ================= Dependentes =================
+sbappend(html, "<div class='modernCPQCart-desktopItem'>");
+sbappend(html, "<h2 class='sectionDesc oi-sub-text oi-color-light'>Compartilhe seu plano</h2>");
+
+if (depCount > 0){
+	addedDepLabel = "";
+
+	if (depCount == 1){
+		addedDepLabel = "1 Dependente";
+	}else{ 
+		addedDepLabel = string(depCount) + " Dependentes";
+	}
+	
+	sbappend(html, "<a class='sectionSubDesc oi-smoothScroll oi-sub-text-big oi-color-normal' href='#attribute-pl_tituloDependentesHTML'>",addedDepLabel,"</a>");
+}else{
+	sbappend(html, "<a class='addDepen sectionSubDesc oi-smoothScroll oi-sub-text-big oi-color-normal' href='#attribute-pl_tituloDependentesHTML'>Adicione dependentes</a>");
+}
+
+sbappend(html, "</div>");
+
+// ================= Addons =================
+sbappend(html, "<div class='modernCPQCart-desktopItem'>");
+sbappend(html, "<h2 class='sectionDesc oi-sub-text oi-color-light'>Conteúdo digital em vídeo</h2>");
+
+if (addonCount>0){
+
+	if (addonCount < 3){
+
+		addedAddonLabel = addonNameArray[0];
+
+		if (addonCount == 2){
+			addedAddonLabel = addonNameArray[0] + " e " + addonNameArray[1];
+		}
+
+		sbappend(html, "<a class='sectionSubDesc oi-smoothScroll oi-sub-text-big oi-color-normal' href='#attribute-pl_tituloAddonsHTML'>",addedAddonLabel,"</a>");
+	}else{
+		sbappend(html, "<a class='addCanais sectionSubDesc oi-smoothScroll oi-sub-text-big oi-color-normal' href='#attribute-pl_tituloAddonsHTML'>",string(addonCount)," Canais especiais</a>");
+	}
+}else{
+	sbappend(html, "<a class='addCanais sectionSubDesc oi-smoothScroll oi-sub-text-big oi-color-normal' href='#attribute-pl_tituloAddonsHTML'>Veja os canais incluídos</a>");
+}
+
+sbappend(html, "</div>");
+
+
+sbappend(html, "</div>");
+
+
+
+sbappend(html, "<div class='priceSection'>");
+sbappend(html, "<div class='priceText'>");
+sbappend(html, "<div class='cartPriceBigLabel'>");
+sbappend(html, "<p class='cartPriceLabel priceReais oi-section-text-head oi-color-normal'>R$</p>");
+sbappend(html, "<h1 class='cartPriceLabel priceInteger oi-section-text-head oi-color-normal'>",string(totalPriceInteger),"</h1>");
+sbappend(html, "</div>");
+sbappend(html, "<div class='cartPriceSmallLabel'>");
+sbappend(html, "<h2 class='cartPriceLabel priceDecimal oi-section-text-head oi-color-normal'>", "," ,totalPriceDecimalLabel,"</h2>");
+sbappend(html, "<p class='cartPriceLabel priceMonth oi-section-text-head oi-color-normal'>/MÊS</p>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+sbappend(html , "</button>");
+
+
+sbappend(html , "</nav>");
+
+
+// =====================OVERLAY==========================
+sbappend(html, "<div id='modernCPQCart-Overlay'>");
+
+
+// --------- header ---------
+sbappend(html, "<div class='overlayHeader'>");
+
+// close overlay button
+sbappend(html, "<button id='modernCPQCart-OverlayClose' type='button'>");
+sbappend(html, "<img class='lazy' alt='' data-src='$BASE_PATH$/oi_imagens/icon-fechar-cinza.png'>");
+sbappend(html, "</button>");
+
+// offer data button
+sbappend(html, "<button id='modernCPQCart-OverlayPlansButton' class='modernCPQCart-toggler plans-collapsed' type='button'>");
+sbappend(html, "<h1 class='oi-section-text-head-gradient oi-color-background-gradient'>",offerData," GB</h1>");
+//sbappend(html, "<p class='oi-sub-text-small oi-color-light'>",offerBonus,"</p>");
+sbappend(html, "</button>");
+
+sbappend(html, "<p class='selectedOfferPrice oi-sub-text-big oi-color-normal'>R$ ",selectedOfferPriceLabel,"/mês</p>");
+
+sbappend(html, "</div>");
+
+// --------- content ---------
+sbappend(html, "<div class='overlayContent'>");
+
+// --------- offers ---------
+sbappend(html, "<div class='plansSection plans-collapsed'>");
+sbappend(html, "<div class='plansList'>");
+
+i = 0;
+for offerSKU in allOffersSKU{
+
+	sbappend(html, "<div>");
+
+	if (offerSKU == f_ofertaSelecionada){
+		sbappend(html, "<button class='planButton offerSelected' offer='",offerSKU,"' type='button'>");
+	}else{
+		
+		sbappend(html, "<button class='planButton' offer='",offerSKU,"' type='button'>");
+	}
+	
+	sbappend(html, "<h1 class='priceReais sectionDesc oi-color-normal oi-section-text-head'>",allOffersData[i]," GB</h1>");
+	sbappend(html, "<p class='oi-sub-text-small sectionsubDesc oi-color-light oi-sub-text-small'>R$ ",allOffersPrice[i],"/mês</p>");
+	sbappend(html, "</button>");
+	sbappend(html, "</div>");
+
+	i = i + 1;
+}
+
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+// --------- extras ---------
+sbappend(html, "<div class='overlaySection'>");
+
+// --------- dependentes ---------
+sbappend(html, "<div class='overlayContentSection'>");
+sbappend(html, "<h1 class='sectionDesc oi-sub-text-small oi-color-light'>Compartilhamento do plano</h1>");
+sbappend(html, "<div class='sectionListItem'>");
+
+if (depCount>0){	
+	sbappend(html, "<a href='#pl_tituloDependentesHTML' class='sectionsubItem oi-smoothScroll oi-sub-text-big oi-color-normal'>",string(depCount)," Dependentes</a>");
+	sbappend(html, "<p class='sectionsubPrice oi-sub-text-big oi-color-normal'>R$ ",priceDepLabel,"/mês</p>");
+
+}else{
+	sbappend(html, "<a href='#pl_tituloDependentesHTML' class='addDepen sectionsubItem oi-smoothScroll sectionLink oi-sub-text-big oi-color-normal'>Adicione dependentes</a>");
+}
+
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+// --------- addons ---------
+sbappend(html, "<div class='overlayContentSection'>");
+
+sbappend(html, "<h1 class='sectionDesc oi-sub-text-small oi-color-light'>Apps de vídeo adicionais</h1>");
+sbappend(html, "<ul class='sectionList'>");
+
+if (sizeofarray(addonNameArray)>0){
+
+	i = 0;
+	for addonName in addonNameArray{
+
+		sbappend(html, "<li class='sectionListItem'>");
+		sbappend(html, "<a href='#pl_addons_",addonSKUArray[i],"' class='sectionsubItem oi-smoothScroll oi-sub-text-big oi-color-normal'>",addonName,"</a>");
+		sbappend(html, "<p class='sectionsubPrice oi-sub-text-big oi-color-normal'>R$ ",addonPriceArray[i],"/mês</p>");
+		sbappend(html, "</li>");
+
+		i = i + 1;
+	}
+
+}else{
+	sbappend(html, "<li class='sectionListItem'>");
+	sbappend(html, "<a href='#pl_tituloAddonsHTML' class='addCanais sectionsubItem oi-smoothScroll oi-sub-text-big oi-color-normal'>Veja os canais incluídos</a>");
+	sbappend(html, "</li>");
+}
+
+sbappend(html, "</ul>");
+sbappend(html, "</div>");
+
+
+sbappend(html, "</div>");
+
+sbappend(html, "</div>");
+
+// --------- footer ---------
+sbappend(html, "<div class='overlayFooter'>");
+
+// --------- price label ---------
+sbappend(html, "<div class='footerPriceSection'>");
+sbappend(html, "<div class='priceSectionLabel oi-sub-text-big oi-color-normal'>");
+sbappend(html, "Total");
+sbappend(html, "</div>");
+
+// --------- price ---------
+sbappend(html, "<div class='priceSection'>");
+sbappend(html, "<div class='priceText'>");
+sbappend(html, "<div class='cartPriceBigLabel'>");
+sbappend(html, "<p class='cartPriceLabel priceReais oi-section-text-head oi-color-normal'>R$</p>");
+sbappend(html, "<h1 class='cartPriceLabel priceInteger oi-section-text-head oi-color-normal'>",string(totalPriceInteger),"</h1>");
+sbappend(html, "</div>");
+sbappend(html, "<div class='cartPriceSmallLabel'>");
+sbappend(html, "<h2 class='cartPriceLabel priceDecimal oi-section-text-head oi-color-normal'>",totalPriceDecimalLabel,"</h2>");
+sbappend(html, "<p class='cartPriceLabel priceMonth oi-section-text-head oi-color-normal'>/MÊS</p>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+sbappend(html, "</div>");
+
+
+sbappend(html, "</div>");
+
+// ---------  change plan dialog ---------
+sbappend(html, "<div class='offerDialog-overlayMask'>");
+sbappend(html, "</div>");
+
+sbappend(html, "<div class='offerDialog-Container'>");
+sbappend(html, "<div id='offerDialog'>");
+sbappend(html, "<div class='offerDialog-Text'>");
+sbappend(html, "<h1 class='oi-sub-text-big oi-color-normal'>Deseja mesmo trocar de plano?</h1>");
+sbappend(html, "<p class='oi-sub-text oi-color-light'>Você vai precisar configurar suas preferências novamente.</p>");
+sbappend(html, "</div>");
+
+sbappend(html, "<div class='offerDialog-ButtonContainer'>");
+
+sbappend(html, "<div class='offerDialog-Button'>");
+sbappend(html, "<button id='offerDialog-Close' class='oi-desc-text oi-color-background-gradient' type='button'>");
+sbappend(html, "Cancelar");
+sbappend(html, "</button>");
+sbappend(html, "</div>");
+sbappend(html, "<div class='offerDialog-Button'>");
+sbappend(html, "<button id='offerDialog-Change' class='oi-desc-text oi-color-background-gradient' type='button'>");
+sbappend(html, "Trocar de plano");
+sbappend(html, "</button>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+sbappend(html, "</div>");
+
+sbappend(html, "</div>");
+
+return sbtostring(html);

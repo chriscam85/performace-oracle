@@ -1,0 +1,43 @@
+<div id='lucros-container-mobile' class=''>
+    <div class='glide'>
+        <div class='glide__track' data-glide-el='track'>
+            <ul class='glide__slides glideList'>
+                <li class='glide__slide'>
+                    <div class='lucros-card'>
+                        <div class='img-lucrosPos'>
+                            <img class='' title='{ title }' alt='{ alt }' src='{logo}'>
+                        </div>
+                        <span class='vant-title'><h3 class='oi-section-text oi-color-normal'>{cardTitle}</h3></span>
+                        <p class='desc-lucrosPos oi-desc-text oi-color-light'>{ desc}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class='glide__bullets' data-glide-el='controls[nav]'>
+            <button class='glide__bullet' data-glide-dir='={ string(i)}'></button>
+        </div>
+    </div>
+</div>
+
+<div id='vant-{cardSKU[i]}-Overlay' class='vant-Overlay'>
+    <div class='overlayMask'>
+    </div>
+    <div class='vantDialog-Container'>
+        <div class='vantDialog-inner'>
+            <button class='vant-OverlayX vant-CloseOverlay oi-section-text oi-color-light' parent-overlay='vant-{cardSKU[i]}-Overlay'
+                type='button'></button>
+            <div class='vantDialog-Text'>
+                <h4 class='oi-sub-text-med oi-color-normal'>{title}</h4>
+                <p class='oi-desc-text oi-color-normal'>{cardDescExtra[i]}</p>
+            </div>
+            <div class='vantDialog-ButtonContainer'>
+                <div class='vantDialog-Button'>
+                    <button class='vant-CloseOverlay oi-desc-text oi-color-background-gradient' parent-overlay='vant-{cardSKU[i]}-Overlay'
+                        type='button'>
+                        Voltar para a oferta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

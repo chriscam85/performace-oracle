@@ -1,0 +1,26 @@
+included = "N";
+
+if (mandatory){
+	included = "S";
+}
+
+records = bmql("SELECT pos_atribConteudo.SKU, pos_atribConteudo.Preco FROM pos_atribConteudo INNER JOIN pos_relContOferta ON pos_atribConteudo.SKU=pos_relContOferta.SKU_Conteudo WHERE pos_relContOferta.SKU_Oferta=$offering AND pos_relContOferta.Incluso=$included");
+
+//print(records);
+
+retArray = string[0];
+
+for record in records{
+	sku = get(record,"SKU");
+	price=getFloat(record,"Preco");
+
+	addonArray = string[0];
+	append(addonArray , sku);
+	append(addonArray , "1");
+	append(addonArray , "");
+	append(addonArray , string(price));
+	
+	append(retArray , join(addonArray , "~"));
+}
+
+return retArray ;

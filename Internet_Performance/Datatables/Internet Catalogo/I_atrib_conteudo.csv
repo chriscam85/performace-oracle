@@ -1,0 +1,21 @@
+_start meta data,,,,,,,,,,,,
+_update_action,SKU,Ordem,Nome_comercial,Descricao,Descricao_Extra,Preco,ID_Img_Logo_Peq,ID_Img_Logo_Grande,ID_Imagem,Caracteristicas,Texto_Legal,Mostrar_Selecao
+String,String,Integer,String,String,String,Float,String,String,String,String,String,String
+,,,,,,,,,,,,
+_end meta data,,,,,,,,,,,,
+modify,bl_modem_wifi,4,Modem Wifi,Perfeito para conectar seus aparelhos  dentro de casa.,"Em regime de comodato, cedemos um modem de internet WiFi. Você consegue se conectar sem precisar de fios em todos os aparelhos da sua residência: computadores, tablets, celulares, videogames, smart TVs e mais.",0,bl_modem_wifi_logoPeq,bl_modem_wifi_logoGrande,bl_modem_wifi_logoImg,Lorem Ipsum,,S
+modify,fixo_identificador_de_chamadas,0,Identificador de Chamadas,Lorem Ipsum,Lorem Ipsum,0,fixo_identificador_de_chamadas_logoPeq,fixo_identificador_de_chamadas_logoGrande,fixo_identificador_de_chamadas_img,Lorem Ipsum,,S
+modify,fixo_chamada_em_espera,1,Chamada em Espera,Lorem Ipsum,Lorem Ipsum,0,fixo_chamada_em_espera_logoPeq,fixo_chamada_em_espera_logoGrande,fixo_chamada_em_espera_img,Lorem Ipsum,,S
+modify,bl_oi_antivirus,2,Oi Antivírus,Lorem Ipsum,Lorem Ipsum,0,bl_oi_antivirus_logoPeq,bl_oi_antivirus_logoGrande,bl_oi_antivirus_img,Lorem Ipsum,,S
+modify,bl_oi_Educa,3,Oi Educa,Lorem Ipsum,Lorem Ipsum,0,bl_oi_Educa_logoPeq,bl_oi_Educa_logoGrande,bl_oi_Educa_img,Lorem Ipsum,,S
+modify,bl_oi_backup_cloud_50gb,5,Oi Backup Cloud de 50GB,Lorem Ipsum,Lorem Ipsum,0,bl_oi_backup_cloud_50gb_logoPeq,bl_oi_backup_cloud_50gb_logoGrande,bl_oi_backup_cloud_50gb_img,Lorem Ipsum,,S
+modify,bl_conteudo_colecao_oi,6,Coleção Oi,Lorem Ipsum,Lorem Ipsum,12.9,bl_conteudo_colecao_oi_logoPeq,bl_conteudo_colecao_oi_logoGrande,bl_conteudo_colecao_oi_img,Lorem Ipsum,,S
+modify,bl_conteudo_noggin,7,Noggin,Lorem Ipsum,Lorem Ipsum,12.9,bl_conteudo_noggin_logoPeq,bl_conteudo_noggin_logoGrande,bl_conteudo_noggin_img,Lorem Ipsum,,S
+modify,bl_conteudo_crackle,8,Crackle,Lorem Ipsum,Lorem Ipsum,34.9,bl_conteudo_crackle_logoPeq,bl_conteudo_crackle_logoGrande,bl_conteudo_crackle_img,Lorem Ipsum,,S
+modify,bl_conteudo_discovery_kids_on,9,Discovery Kids On,Lorem Ipsum,Lorem Ipsum,12.9,bl_conteudo_discovery_kids_on_logoPeq,bl_conteudo_discovery_kids_on_logoGrande,bl_conteudo_discovery_kids_on_img,Lorem Ipsum,,S
+modify,bl_conteudo_hbo_go,10,HBO GO,Lorem Ipsum,Lorem Ipsum,34.9,bl_conteudo_hbo_go_logoPeq,bl_conteudo_hbo_go_logoGrande,bl_conteudo_hbo_go_img,Lorem Ipsum,,S
+modify,bl_conteudo_watch_espn,11,Watch ESPN,Lorem Ipsum,Lorem Ipsum,12.9,bl_conteudo_watch_espn_logoPeq,bl_conteudo_watch_espn_logoGrande,bl_conteudo_watch_espn_img,Lorem Ipsum,,S
+modify,bl_conteudo_fox_basicos,12,Fox Básicos,Lorem Ipsum,Lorem Ipsum,24.9,bl_conteudo_fox_basicos_logoPeq,bl_conteudo_fox_basicos_logoGrande,bl_conteudo_fox_basicos_img,Lorem Ipsum,,S
+modify,bl_conteudo_fox_premium,13,Fox Premium,Lorem Ipsum,Lorem Ipsum,24.9,bl_conteudo_fox_premium_logoPeq,bl_conteudo_fox_premium_logoGrande,bl_conteudo_fox_premium_img,Lorem Ipsum,,S
+modify,bl_conteudo_fox_mais,14,FOX+,Lorem Ipsum,Lorem Ipsum,37.9,bl_conteudo_fox_mais_logoPeq,bl_conteudo_fox_mais_logoGrande,bl_conteudo_fox_mais_img,Lorem Ipsum,,S
+modify,bl_conteudo_telecine_play,15,Telecine Play,Lorem Ipsum,Lorem Ipsum,34.9,bl_conteudo_telecine_play_logoPeq,bl_conteudo_telecine_play_logoGrande,bl_conteudo_telecine_play_img,Lorem Ipsum,,S

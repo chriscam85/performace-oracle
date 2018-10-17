@@ -1,0 +1,20 @@
+_start meta data,,,
+SKU,Ordem,Nome_Canal,Logo
+String,Integer,String,String
+,,,
+_end meta data,,,
+movel_conteudo_oi_play_fox_plus,1,Fox Sports,https://ofertas.oi.com.br/file/general/fox-sports.png
+movel_conteudo_oi_play_fox_plus,2,Fox Sports 2,https://ofertas.oi.com.br/file/general/fox-sports-2.png
+movel_conteudo_oi_play_fox_plus,3,FOX,https://ofertas.oi.com.br/file/general/icon-fox.png
+movel_conteudo_oi_play_fox_plus,4,FX,https://ofertas.oi.com.br/file/general/fx.png
+movel_conteudo_oi_play_fox_plus,5,Foxlife,https://ofertas.oi.com.br/file/general/foxLife.png
+movel_conteudo_oi_play_fox_plus,6,Babytv,https://ofertas.oi.com.br/file/general/icon-baby-tv.png
+movel_conteudo_oi_play_fox_plus,7,Fox Premium 1,https://ofertas.oi.com.br/file/general/fox-premium-1.png
+movel_conteudo_oi_play_fox_plus,8,Fox Premium 2,https://ofertas.oi.com.br/file/general/fox-premium-2.png
+movel_conteudo_oi_play_fox_plus,9,National Geographic,https://ofertas.oi.com.br/file/general/natGeo.png
+movel_conteudo_oi_play_fox_plus,10,Nat Geo Wild,https://ofertas.oi.com.br/file/general/natGeoWild.png
+movel_conteudo_oi_play_espn,12,ESPN,https://ofertas.oi.com.br/file/general/icon-espn.png
+movel_conteudo_oi_play_espn,13,ESPN Brasil,https://ofertas.oi.com.br/file/general/icon-espn-brasil.png
+movel_conteudo_oi_play_espn,14,ESPN2,https://ofertas.oi.com.br/file/general/icon-espn2.png
+movel_conteudo_oi_play_espn,15,ESPN Extra,https://ofertas.oi.com.br/file/general/icon-espn-extra.png
+movel_conteudo_oi_play_fox_plus,11,Nag Geo KiDS,https://ofertas.oi.com.br/file/general/natGeoKids.png

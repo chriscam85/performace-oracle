@@ -1,0 +1,143 @@
+/*================================================
+* Pacote conteudo HTML
+* ================================================
+*/
+#pacoteConteudoField {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pacoteConteudo-container .group-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+#pacoteConteudoField .pacoteConteudo-Option {
+    float: left;
+    margin-right: 20px;
+}
+
+#pacoteConteudoField .pacoteConteudo-Option:last-of-type {
+    margin-right: 0;
+}
+
+#pacoteConteudoField .pacoteConteudo-Option input {
+    display: none;
+}
+
+#pl_pacoteConteudo {
+    display: none;
+}
+
+#pacoteConteudoField {
+    display: block;
+}
+
+#pacoteConteudoField .pacoteConteudo-Option {
+    width: 100%;
+}
+
+#pacoteConteudoField .pacoteConteudo-Option label {
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    border: solid 1px #bbbbbb;
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    padding: 15px;
+    display: flex;
+    justify-content: unset;
+    flex-direction: unset;
+}
+
+
+#pacoteConteudoField .pacoteConteudo-Selected label,
+#pacoteConteudoField .pacoteConteudo-Option label:hover {
+    border-color: #f8562c;
+    color: #f8562c;
+}
+
+#pacoteConteudoField .pacoteConteudo-Selected p,
+#pacoteConteudoField .pacoteConteudo-Selected h3,
+#pacoteConteudoField .pacoteConteudo-Option label:hover p,
+#pacoteConteudoField .pacoteConteudo-Option label:hover h3 {
+    border-color: #f8562c;
+    color: #f8562c;
+}
+
+.pacoteConteudo-Option h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.pacoteConteudo-Option p {
+    font-family: simplon_bpregular;
+    font-size: 16px;
+    margin: 0;
+    margin-left: auto;
+}
+
+#pl_pacoteConteudoHTML {
+    margin-bottom: 27px;
+}
+
+
+
+/* ----- 768 ----- */
+@media (min-width: 768px) {
+
+    #pacoteConteudoField .pacoteConteudo-Option label {
+        width: 170px;
+        height: 105px;
+        margin-bottom: 0;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #pacoteConteudoField .pacoteConteudo-Option {
+        width: auto;
+    }
+
+    .pacoteConteudo-Option p {
+        margin: 0;
+    }
+
+    .pacoteConteudo-Option h3 {
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .pacoteConteudo-container .group-content {
+        margin-left: 0;
+        margin-right: 44px;
+    }
+
+    .addonLabel-container .group-content {
+        margin-right: 0;
+        margin-left: 44px;
+    }
+
+    .addonLabel-container .group-content {
+        padding-right: 20px;
+    }
+}
+
+/* ----- 1366px ----- */
+@media (min-width: 1366px) {
+    .pacoteConteudo-container .group-content {
+        max-width: 612px;
+        margin-right: auto;
+    }
+
+    .addonLabel-container .group-content {
+        max-width: 612px;
+        margin-left: auto;
+    }
+}

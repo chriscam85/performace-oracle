@@ -1,0 +1,1063 @@
+/* -----------------------------------------------
+* CPQ Modern Cart
+*  -----------------------------------------------
+*/
+
+/* cart body */
+
+#pipeline-viewer-opener {
+  display: none;
+}
+
+#modernCPQCart {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  min-height: 65px;
+  z-index: 4;
+  padding: 0px;
+  background-color: #ffffff;
+  box-shadow: 0 3px 15px 0 rgba(2, 2, 2, 0.15);
+  border: 0px;
+  border-top: 1px;
+  border-bottom: 1px;
+  border-color: #dbdbdb;
+  border-style: solid;
+}
+
+/* sections */
+
+nav#modernCPQCart .navbar-nav {
+  list-style: none;
+  margin: 0px;
+  width: 100%;
+}
+
+nav#modernCPQCart .nav-item {
+  width: 33%;
+}
+
+.descSection {
+  float: left;
+}
+
+h1.sectionDesc {
+  font-size: 20px;
+  margin: 0px;
+}
+
+p.sectionSubDesc {
+  margin: 0px;
+}
+
+/* addons section */
+
+#addonSection .dropdown-menu {
+  width: 100%;
+  visibility: hidden;
+  margin-top: 0px;
+  display: block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#addonSection:hover .dropdown-menu {
+  visibility: visible;
+}
+
+#addonSection i {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+#addonSection:hover i {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+/* arrows */
+
+i.cartArrowDown {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+i.cartArrowUp {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+i.cartArrowLeft {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+i.cartArrow {
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+/* left label */
+
+.navbar-brand a {
+  text-decoration: none;
+  float: left;
+}
+
+.navbar-brand i.cartArrow {
+  margin-left: 15px;
+  margin-top: 10px;
+  padding: 8px;
+}
+
+.navbar-brand img {
+  margin-left: 1rem;
+  float: left;
+}
+
+/* price label */
+
+.priceSection {
+  margin-right: 110px;
+  height: 100%;
+  display: table;
+}
+
+.priceText {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+h1.cartPriceLabel.priceInteger {
+  font-size: 32px;
+  margin: 0px;
+  vertical-align: bottom;
+  display: inline-block;
+  font-weight: normal;
+  height: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+h2.cartPriceLabel.priceDecimal {
+  font-size: 16px;
+  margin: 0px;
+  height: 50%;
+  font-weight: normal;
+  padding-top: 2px;
+}
+
+p.priceMonth {
+  font-size: 8px;
+  margin: 0px;
+  font-weight: normal;
+  height: 50%;
+  font-family: simplon_oiheadline;
+}
+
+p.priceReais {
+  margin: 0px;
+  vertical-align: bottom;
+  display: inline-block;
+  margin-bottom: 3px;
+}
+
+.cartPriceBigLabel {
+  float: left;
+  height: 50%;
+}
+
+.cartPriceSmallLabel {
+  float: left;
+  height: 50%;
+}
+
+h1.selectedPlanHeader {
+  font-weight: normal;
+  font-size: 24px;
+  margin-left: 0.5em;
+}
+
+/* -----------------------------------------------
+* Buttons CPQ
+*  -----------------------------------------------
+*/
+
+#sticky-actions td.button-middle {
+  width: 90px;
+  height: 48px;
+  border-radius: 4px;
+  background-image: linear-gradient(#ffd700, #ffd700), linear-gradient(to top, #e7ad21, #ffd700);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  pointer-events: unset;
+}
+
+#sticky-actions td.button-middle:active,
+#sticky-actions td.button-middle:hover {
+  background-color: #ffe93d !important;
+  background-image: none;
+  border-color: #ffe93d !important;
+}
+
+#sticky-actions td.button-middle:active a,
+#sticky-actions td.button-middle:hover a {
+  margin: 0px !important;
+  color: #000000 !important;
+}
+
+#sticky-actions td.button-middle div {
+  height: 48px;
+}
+
+#sticky-actions td.button-middle a {
+  vertical-align: middle;
+  line-height: 48px;
+  display: inline;
+  font-family: simplon_bpmedium;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #222222;
+}
+
+/* -----------------------------------------------
+* MOBILE
+*  -----------------------------------------------
+*/
+
+#modernCPQCart .modernCPQCart-toggler {
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 63px;
+  display: flex;
+  vertical-align: middle;
+}
+
+#modernCPQCart .modernCPQCart-toggler .selectedPlanHeader h1 {
+  font-size: 24px;
+  font-weight: normal;
+  display: inline-block;
+  margin-left: 0;
+}
+
+#modernCPQCart .modernCPQCart-toggler .priceSection {
+  font-size: 24px;
+  font-weight: normal;
+  display: inline-block;
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: 98px;
+  font-family: simplon_oiheadline;
+}
+
+.modernCPQCart-toggler.togglerExpanded h1:after {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+
+/* -----------------------------------------------
+* Overlay
+*  -----------------------------------------------
+*/
+
+#modernCPQCart-Overlay {
+  height: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 0;
+  background-color: #ffffff;
+  overflow: hidden;
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  -webkit-transition: height 0.5s ease 0s;
+    -moz-transition: height 0.5s ease 0s;
+    transition: height 0.5s ease 0s;
+}
+
+#modernCPQCart-Overlay.cartOverlayOpened{
+  height: 100%;
+}
+
+/* --- header --- */
+
+#modernCPQCart-Overlay .overlayHeader {
+  position: relative;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+#modernCPQCart-Overlay button.modernCPQCart-toggler {
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  pointer-events: auto;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#modernCPQCart-Overlay button.modernCPQCart-toggler p {
+  margin: 0px;
+}
+
+#modernCPQCart-Overlay button.modernCPQCart-toggler h1 {
+  margin: 0;
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 32px;
+  font-weight: normal;
+}
+
+button#modernCPQCart-OverlayClose {
+  display: block;
+  border: none;
+  background: none;
+  padding: 0;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+button#modernCPQCart-OverlayClose img {
+  width: 14px;
+  height: 14px;
+}
+
+#modernCPQCart-Overlay .modernCPQCart-toggler:after {
+  content: "";
+  background-image: url(../oi_imagens/icon-seta-expandir-laranja.png);
+  background-size: 12px 8px;
+  background-repeat: no-repeat;
+  height: 8px;
+  width: 12px;
+  margin-left: 10px;
+  transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  display: inline-block;
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+
+#modernCPQCart-Overlay .modernCPQCart-toggler.plans-collapsed:after {
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+}
+
+#modernCPQCart-Overlay p.selectedOfferPrice {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+}
+
+/* --- sections --- */
+
+#modernCPQCart-Overlay .overlayContent {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+#modernCPQCart-Overlay .overlayContentSection {
+  border-top: 1px solid #f5f5f5;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+#modernCPQCart-Overlay .overlayContentSection h1 {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+#modernCPQCart-Overlay .overlayContentSection p {
+  margin: 0;
+  float: right;
+}
+
+#modernCPQCart-Overlay .overlayContentSection .sectionsubItem {
+  border-bottom: 1px solid #dbdbdb;
+  display: inline-block;
+}
+
+#modernCPQCart-Overlay .overlayContentSection .sectionsubItem:hover {
+  color: unset;
+  text-decoration: none;
+}
+
+#modernCPQCart-Overlay .sectionsubPrice {
+  text-align: right;
+}
+
+#modernCPQCart-Overlay .overlaySection {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* dependents */
+
+#modernCPQCart-Overlay ul.sectionList {
+  list-style: none;
+  margin: 0;
+}
+
+/* plans */
+
+#modernCPQCart-Overlay .plansSection {
+  height: 100%;
+  transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  background: #f5f5f5;
+  overflow: hidden;
+}
+
+#modernCPQCart-Overlay .plansSection.plans-collapsed {
+  height: 0;
+}
+
+#modernCPQCart-Overlay .plansList {
+  padding: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 100%;
+  display: block;
+  pointer-events: auto;
+}
+
+#modernCPQCart-Overlay button.planButton h1 {
+  margin: 0;
+  display: inline-block;
+  width: 50%;
+  text-align: left;
+  padding: 0.5em;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+#modernCPQCart-Overlay button.planButton p {
+  margin: 0;
+  display: inline-block;
+  width: 50%;
+  text-align: right;
+  padding-right: 15px;
+}
+
+#modernCPQCart-Overlay button.planButton {
+  border: 1px solid #dbdbdb;
+  background: transparent;
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 0.5em;
+  padding: 0;
+  cursor: pointer;
+}
+
+#modernCPQCart-Overlay button.planButton.offerSelected {
+  border: solid 1px transparent;
+  background-image: linear-gradient(#f5f5f5, #f5f5f5), linear-gradient(279deg, #fe6b03, #e33465);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+#modernCPQCart-Overlay button.planButton.offerSelected h1,
+#modernCPQCart-Overlay button.planButton.offerSelected p {
+  background-image: linear-gradient(289deg, #fe6b03, #e33465);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- footer --- */
+
+#modernCPQCart-Overlay .overlayFooter {
+  width: 100%;
+  padding-bottom: 80px;
+  padding-top: 15px;
+  border-top: 1px solid #dbdbdb;
+  background: #ffffff;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-grow: 0;
+}
+
+#modernCPQCart-Overlay .overlayFooter .priceSectionLabel {
+  display: inline-block;
+  width: 50%;
+}
+
+#modernCPQCart-Overlay .overlayFooter .priceSection {
+  display: inline-block;
+  width: 50%;
+  margin: 0;
+  text-align: right;
+}
+
+#modernCPQCart-Overlay .overlayFooter .priceText {
+  display: inline-block;
+}
+
+#modernCPQCart-Overlay .footerPriceSection {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* --- CPQ Buttons --- */
+
+.button-bar.stickBottom {
+  bottom: 0;
+  top: auto;
+  left: 0;
+  width: 100%;
+  margin: 0 !important;
+  z-index: 6;
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+}
+
+.button-bar.stickBottom .button-middle {
+  bottom: 0;
+  top: auto;
+}
+
+.button-bar.stickBottom div#sticky-actions {
+  padding: 0;
+  display: inline-block;
+  width: 100%;
+}
+
+.button-bar.stickBottom #sticky-actions .plain-button {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.button-bar.stickBottom #sticky-actions .button-middle {
+  width: auto;
+  height: 48px;
+}
+
+.button-bar.stickBottom #sticky-actions .buttons {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 20px;
+}
+
+/* --- OverlayMask --- */
+
+#pl_carrinhoPosPago .offerDialog-overlayMask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.6;
+  background-color: #000000;
+  z-index: 7;
+  display: none;
+}
+
+#pl_carrinhoPosPago .offerDialog-Container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 8;
+  display: none;
+  align-items: center;
+}
+
+div#offerDialog {
+  background: #fff;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 4px;
+}
+
+#pl_carrinhoPosPago .offerDialog-Text {
+  padding: 2em;
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+#pl_carrinhoPosPago .offerDialog-ButtonContainer {
+  height: 5em;
+  display: inline-block;
+  width: 100%;
+  border: 1px solid #dbdbdb;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+#pl_carrinhoPosPago .offerDialog-Button {
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+}
+
+#pl_carrinhoPosPago .offerDialog-Button button {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: #f8562c;
+  /*-webkit-text-fill-color: transparent;*/
+}
+
+#pl_carrinhoPosPago .offerDialog-Button:first-child {
+  border-right: 1px solid #dbdbdb;
+}
+
+#pl_carrinhoPosPago .offerDialog-Text h1 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+#pl_carrinhoPosPago .offerDialog-Text p {
+  font-size: 14px;
+  margin: 0;
+  margin-top: 0.5em;
+}
+
+#pl_carrinhoPosPago .offerDialog-Text:after {
+  background-image: url(../oi_imagens/oi_bolha.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 106px;
+  height: 150px;
+  content: "";
+  position: absolute;
+  top: -110px;
+  left: 50%;
+  -webkit-transform: rotate(300deg);
+  transform: rotate(300deg);
+}
+
+/* -----------------------------------------------
+* RESPONSIVE
+*  -----------------------------------------------
+*/
+
+nav#modernCPQCart .modernCPQCart-desktopBar {
+  display: none;
+}
+
+/* -------- desktop section ---------- */
+
+.modernCPQCart-desktopBar {
+  height: 100%;
+  margin: auto;
+  width: 41%;
+}
+
+.modernCPQCart-desktopItem {
+  display: inline-block;
+  width: 40%;
+}
+
+.modernCPQCart-desktopItem:first-child {
+  margin-right: 20%;
+  margin-left: -6%;
+}
+
+h2.sectionDesc {
+  font-weight: normal;
+  margin: 0;
+  font-size: 14px;
+  display: inline-block;
+}
+
+a.sectionSubDesc {
+  display: inline-block;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+a.sectionSubDesc:hover {
+  display: inline-block;
+  color: #f8562c;
+  text-decoration: none;
+  border-bottom: 1px solid #f8562c;
+}
+
+.plansSection.plansSection-expanded {
+  display: none;
+}
+
+#modernCPQCart-Overlay .plansList div button.planButton:hover {
+  border: solid 1px transparent;
+  background-image: linear-gradient(#ffff, #ffff), linear-gradient(279deg, #fe6b03, #e33465);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+/* ----- 768 ----- */
+
+@media (min-width: 768px) {
+
+  #modernCPQCart-Overlay button.planButton.offerSelected {
+    background-image: linear-gradient(#fff, #fff), linear-gradient(279deg, #fe6b03, #e33465);
+  }
+
+  #modernCPQCart .modernCPQCart-toggler {
+    padding-left: 36px;
+    padding-right: 36px;
+    height: 80px;
+  }
+
+  nav#modernCPQCart .modernCPQCart-desktopBar {
+    display: inline-block;
+  }
+
+  .button-bar {
+    right: 36px;
+    height: 80px !important;
+  }
+
+  #sticky-actions td.button-middle {
+    width: 96px;
+  }
+
+  div#sticky-actions {
+    padding: 0;
+  }
+
+  #modernCPQCart {
+    min-height: 80px;
+  }
+
+  #modernCPQCart .modernCPQCart-toggler div.priceSection {
+    margin-right: 118px;
+    margin-left: 0;
+  }
+
+  #modernCPQCart .modernCPQCart-toggler .selectedPlanHeader h1 {
+    font-size: 32px;
+    width: 90px;
+  }
+
+  #modernCPQCart .modernCPQCart-toggler .selectedPlanHeader:after {
+    display: inline-block;
+    content: "";
+    background-image: url(../oi_imagens/icon-seta-expandir-laranja.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 8px;
+    width: 12px;
+    transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+
+  .selectedPlanHeader {
+    display: flex;
+    align-items: center;
+    opacity: 0;
+  }
+
+  /* ---- overlay ---- */
+  #modernCPQCart-Overlay {
+    min-height: 80px;
+    height: auto;
+    padding-left: 36px;
+    padding-right: 36px;
+    background: transparent;
+    left: 0;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  #modernCPQCart-Overlay .overlayHeader {
+    margin: auto;
+    margin-left: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+  }
+
+  #modernCPQCart-Overlay button.modernCPQCart-toggler h1 {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  #modernCPQCart-Overlay .overlayContent {
+    position: absolute;
+    top: 80px;
+    padding: 0;
+    margin-top: 1px;
+    border: none;
+    left: 0;
+    margin-left: 36px;
+  }
+
+  #modernCPQCart-Overlay .plansSection {
+    min-width: 230px;
+    background-color: #ffffff;
+    box-shadow: 0 6px 15px 0 rgba(2, 2, 2, 0.15);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    width: 20%;
+  }
+
+  #modernCPQCart-Overlay .plansList {
+    padding: 24px;
+    border-top-color: #f5f5f5;
+    border-top-width: 2px;
+    border-top-style: solid;
+  }
+
+  #modernCPQCart-Overlay button.planButton {
+    align-items: center;
+    display: flex;
+  }
+
+  #modernCPQCart-Overlay button.planButton p {
+    width: auto;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  #modernCPQCart-Overlay button.planButton h1 {
+    font-size: 20px;
+    width: auto;
+  }
+
+  button#modernCPQCart-OverlayClose {
+    display: none;
+  }
+
+  #modernCPQCart-Overlay .overlaySection {
+    display: none;
+  }
+
+  #modernCPQCart-Overlay .overlayFooter {
+    display: none;
+  }
+
+  #modernCPQCart-Overlay p.selectedOfferPrice {
+    display: none;
+  }
+
+  div#offerDialog {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ---- price ---- */
+  #modernCPQCart h1.cartPriceLabel.priceInteger {
+    font-size: 32px;
+  }
+
+  #modernCPQCart h2.cartPriceLabel.priceDecimal {
+    font-size: 16px;
+  }
+
+  #modernCPQCart p.priceMonth {
+    font-size: 8px;
+  }
+
+  #modernCPQCart p.priceReais {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  h2.sectionDesc {
+    font-size: 12px;
+    width: 145px;
+  }
+
+  a.sectionSubDesc {
+    font-size: 14px;
+  }
+
+  a.addDepen {
+    width: 138px;
+  }
+
+  a.addCanais {
+    width: 147px;
+  }
+
+  #modernCPQCart-Overlay button.modernCPQCart-toggler {
+    margin-top: 0;
+  }
+
+}
+
+@media (min-width: 992px) {
+
+  /* ---- price ---- */
+  #modernCPQCart h1.cartPriceLabel.priceInteger {
+    font-size: 48px;
+  }
+
+  #modernCPQCart h2.cartPriceLabel.priceDecimal {
+    font-size: 24px;
+  }
+
+  #modernCPQCart p.priceMonth {
+    font-size: 12px;
+  }
+
+  #modernCPQCart p.priceReais {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  h2.sectionDesc {
+    font-size: 14px;
+    width: 170px;
+  }
+
+  a.sectionSubDesc {
+    font-size: 16px;
+  }
+
+  a.addDepen {
+    width: 157px;
+  }
+
+  a.addCanais {
+    width: 168px;
+  }
+
+  #modernCPQCart .modernCPQCart-toggler div.priceSection {
+    margin-right: 230px;
+    margin-left: 0;
+  }
+
+  .modernCPQCart-desktopItem:first-child {
+    margin-right: 15%;
+    margin-left: 0%;
+  }
+
+  #sticky-actions td.button-middle {
+    width: 184px;
+  }
+
+}
+
+/* ----- 1024 ----- */
+
+@media (min-width: 1024px) {
+  #modernCPQCart .modernCPQCart-toggler {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .button-bar {
+    right: 44px;
+  }
+
+  div#sticky-actions {
+    padding: 0;
+  }
+
+  /* ---- overlay ---- */
+  #modernCPQCart-Overlay {
+    margin-left: 4.3%;
+    padding: 0px;
+  }
+
+  #modernCPQCart-Overlay .overlayContent {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  #modernCPQCart-Overlay button.modernCPQCart-toggler h1 {
+    margin-left: 12px;
+  }
+}
+
+/* ----- 1366 ----- */
+
+@media (min-width: 1366px) {
+  #modernCPQCart .modernCPQCart-toggler {
+    max-width: 1144px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    left: unset;
+  }
+
+  .button-bar {
+    max-width: 1144px;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  div#sticky-actions {
+    padding: 0;
+  }
+
+  /* ---- overlay ---- */
+  #modernCPQCart-Overlay {
+    margin-left: 5.2%;
+  }
+
+  #modernCPQCart-Overlay .overlayHeader {
+    width: 100%;
+    max-width: 1144px;
+  }
+
+  #modernCPQCart-Overlay button.modernCPQCart-toggler h1 {
+    margin: 0;
+  }
+
+  #sticky-actions td.button-middle {
+    left: 25%;
+  }
+
+  #modernCPQCart .modernCPQCart-toggler div.priceSection {
+    margin-right: 160px;
+  }
+}
+
+@media (min-width: 1440px) {
+  #modernCPQCart-Overlay {
+    margin-left: 7.5%
+  }
+}
+
+@media (min-width: 1920px) {
+  #modernCPQCart-Overlay {
+    margin-left: 18.2%
+  }
+}

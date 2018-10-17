@@ -1,0 +1,5 @@
+_start meta data
+_update_action,SKU,Ordem,Nome_Canal,IDLogo
+String,String,Integer,String,String
+,,,,
+_end meta data

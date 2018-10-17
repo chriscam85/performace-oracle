@@ -1,0 +1,22 @@
+records = bmql("SELECT I_atrib_conteudo.Texto_Legal FROM I_atrib_conteudo INNER JOIN I_relContOferta ON I_atrib_conteudo.SKU=I_relContOferta.SKU_Conteudo WHERE I_relContOferta.SKU_Oferta=$f_ofertaSelecionada AND I_atrib_conteudo.Mostrar_Selecao='S'");
+
+//print(records);
+
+legalText = "";
+
+for record in records{
+	text = get(record, "Texto_Legal");
+	if (len(text)>0){
+       legalText = legalText + text + "<br>";
+	}
+}
+
+html = stringbuilder();
+sbappend(html , "<div class='oi-infoLegalAddons'>");
+sbappend(html , "<p class='oi-sub-text-legal oi-color-light'>");
+sbappend(html , legalText );
+sbappend(html , "</p>");
+sbappend(html , "</div>");
+
+return sbtostring(html);
+

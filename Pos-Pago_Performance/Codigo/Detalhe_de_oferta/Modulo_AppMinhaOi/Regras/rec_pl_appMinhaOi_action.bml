@@ -1,0 +1,108 @@
+records = bmql("SELECT valor FROM Parametros_Globais WHERE chave='urlOCC'");
+
+occUrl = "";
+
+for record in records{
+    occUrl = get(record,"valor");
+}
+
+records = bmql("SELECT chave, valor FROM pos_ui_appMinhaOi");
+
+videoDict = dict("string");
+
+for record in records{
+    put(videoDict, get(record,"chave"), get(record,"valor"));
+}
+
+urlAppStore = get(videoDict, "urlAppStore");
+urlGooglePlay = get(videoDict, "urlGooglePlay");
+
+
+html = stringbuilder();
+
+sbappend(html, "<div id='appMinhaOi-container' class='container .oi-color-border-lighter'>");
+sbappend(html, "<div class='col-12'>");
+sbappend(html, "<div class='row'>");
+
+// ---- content ----
+sbappend(html, "<div class='tab-content col-lg-6' id='appMinhaOi-TabContent'>");
+
+
+sbappend(html, "<div class='tab-pane fade show active' id='appMinhaOi-video1' role='tabpanel' aria-labelledby='appMinhaOi-video1'>");
+sbappend(html, "<h3 class='appMinhaOi-videoTitle oi-sectionDesc-text oi-color-background-gradient'>", get(videoDict, "labelVideo1"),"</h3>");
+sbappend(html, "<video class='divisorVideo' muted='' playsinline='' poster='", get(videoDict, "imgVideo1"),"'");
+sbappend(html, "alt='Animação da internet compartilhada entre dependentes nos planos pós-pago Oi.'>");
+sbappend(html, "<source src='", occUrl + get(videoDict, "urlVideo1"),"'");
+sbappend(html, "type='video/mp4'> Seu browser não suporta a tag de vídeo.");
+sbappend(html, "</video>");
+sbappend(html, "</div>");
+
+sbappend(html, "<div class='tab-pane fade' id='appMinhaOi-video2' role='tabpanel' aria-labelledby='appMinhaOi-video2'>");
+sbappend(html, "<h3 class='appMinhaOi-videoTitle oi-sectionDesc-text oi-color-background-gradient'>", get(videoDict, "labelVideo2"),"</h3>");
+sbappend(html, "<video class='divisorVideo' muted='' playsinline='' poster='", get(videoDict, "imgVideo2"),"'");
+sbappend(html, "alt='Animação da internet compartilhada entre dependentes nos planos pós-pago Oi.'>");
+sbappend(html, "<source src='", occUrl + get(videoDict, "urlVideo2"),"'");
+sbappend(html, "type='video/mp4'> Seu browser não suporta a tag de vídeo.");
+sbappend(html, "</video>");
+
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+
+
+sbappend(html, "<div class='appMinhaOi-text col-lg-6'>");
+
+/* ---- desktop ---- */
+sbappend(html, "<ul class='nav flex-column' id='appMinhaOi-nav' role='tablist' aria-orientation='vertical'>");
+
+sbappend(html, "<li>");
+sbappend(html, "<a class='nav-link active' id='appMinhaOi-video1-tab' data-toggle='pill' href='#appMinhaOi-video1' role='tab' aria-controls='appMinhaOi-video1'");
+sbappend(html, "aria-selected='true'></a>");
+sbappend(html, "</li>");
+
+sbappend(html, "<li>");
+sbappend(html, "<a class='nav-link' id='appMinhaOi-video2-tab' data-toggle='pill' href='#appMinhaOi-video2' role='tab' aria-controls='vappMinhaOi-video2'");
+sbappend(html, "aria-selected='false'></a>");
+sbappend(html, "</li>");
+
+sbappend(html, "</ul>");
+/* ---- end desktop ---- */
+
+/* ---- mobile ---- */
+sbappend(html, "<ul class='nav nav-tabs' id='appMinhaOi-navMobile' role='tablist' aria-orientation='horizontal'>");
+
+
+sbappend(html, "<li class='nav-item'>");
+sbappend(html, "<a class='nav-link oi-sub-text-med oi-color-light oi-color-border-feature active' id='appMinhaOi-video1-tabMobile' data-toggle='pill'");
+sbappend(html, "href='#appMinhaOi-video1' role='tab' aria-controls='appMinhaOi-video1' aria-selected='true'></a>");
+sbappend(html, "</li>");
+
+sbappend(html, "<li class='nav-item'>");
+sbappend(html, "<a class='nav-link oi-sub-text-med oi-color-light oi-color-border-feature' id='appMinhaOi-video2-tabMobile' data-toggle='pill'");
+sbappend(html, "href='#appMinhaOi-video2' role='tab' aria-controls='vappMinhaOi-video2' aria-selected='false'></a>");
+sbappend(html, "</li>");
+
+
+sbappend(html, "</ul>");
+/* ---- end mobile ---- */
+
+sbappend(html, "</div>");
+
+sbappend(html, "</div>");
+
+sbappend(html, "</div>");
+
+sbappend(html, "<div class='appMinhaOi-download col-12 d-md-none'>");
+sbappend(html, "<p class='oi-desc-text'>Baixe o app Minha Oi!</p>");
+sbappend(html, "<div class='appMinhaOi-stores'>");
+sbappend(html, "<a href='", urlAppStore,"' target='_blank'>");
+sbappend(html, "<img src='$BASE_PATH$/oi_imagens/bt-google-play.png'>");
+sbappend(html, "</a>");
+sbappend(html, "<a href='", urlGooglePlay,"' target='_blank'>");
+sbappend(html, "<img src='$BASE_PATH$/oi_imagens/bt-app-store.png'>");
+sbappend(html, "</a>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+return sbtostring(html);

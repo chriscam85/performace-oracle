@@ -1,0 +1,75 @@
+html = stringbuilder();
+regURL = "";
+records = bmql("SELECT Regulamentos FROM pos_atributosOfert WHERE SKU=$f_ofertaSelecionada");
+for record in records{
+    regURL = get(record, "Regulamentos");
+}
+
+atrOfert = bmql("SELECT Dados, Bonus_de_dados, Validade_para_adesao FROM pos_atributosOfert WHERE SKU=$f_ofertaSelecionada");
+
+dados = "";
+bonusDeDados = "";
+validadeParaAdesao = "";
+
+for atribute in atrOfert{
+    dados = get(atribute, "Dados");
+    bonusDeDados = get(atribute, "Bonus_de_dados");
+    preco = get(atribute, "Preco");
+    validadeParaAdesao = get(atribute, "Validade_para_adesao");   
+}
+
+atrDepen = bmql("SELECT Preco FROM pos_atribDependente WHERE SKU_Oferta = $f_ofertaSelecionada");
+
+preco = "";
+
+for atribute in atrDepen {
+    precoVal = get(atribute, "Preco");
+    precopes = split(formatascurrency(atof(precoVal)), "$");
+    preco = precopes[1];
+    
+}
+
+//validadeParaAdesaoDate = split(trim(validadeParaAdesao), "a");
+
+records = bmql("SELECT Titulo, Descricao, Logo FROM pos_ui_infoLegais ORDER BY Ordem");
+
+sbappend(html, "<div class='infoLegais-container'>");
+sbappend(html, "<div class='infoLegais row'>");
+
+for record in records{
+	title = get(record, "Titulo");
+    desc = get(record, "Descricao");
+    logo = get(record, "Logo");
+
+    desc = replace(desc,"{regulamento}",regURL);
+
+    sbappend(html, "<div class='infoLegais-item col-12 col-md-5'>");
+    sbappend(html, "<div class='infoLegais-inner'>");
+    sbappend(html, "<div class='img-infoLegais'>");
+    sbappend(html, "<img class='lazy' data-src='",logo,"'>");
+    sbappend(html, "</div>");
+    sbappend(html, "<div class='text-infoLegais'>");
+    sbappend(html, "<h3 class='title-infoLegais oi-sectionDesc-text '>",title,"</h3>");
+
+    result = "";
+    if(find(desc, "{Dados}") > 0){
+        atrDados = replace(desc, "{Dados}", dados);
+        result = replace(atrDados, "{Bonus_de_dados}", bonusDeDados);
+    } elif (find(desc, "{preco}") > 0 ) {
+        result = replace(desc, "{preco}", preco);
+    } elif(find(desc, "{Validade_para_adesao}") > 0){
+        result = replace(desc, "{Validade_para_adesao}", validadeParaAdesao);
+    } else{
+        result = desc;
+    }
+    sbappend(html, "<p class='desc-infoLegais oi-sub-text oi-color-light'>",result,"</p>");
+    sbappend(html, "</div>");
+    sbappend(html, "</div>");
+    sbappend(html, "</div>");
+}
+
+
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+return sbtostring(html);

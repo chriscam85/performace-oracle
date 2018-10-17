@@ -1,0 +1,35 @@
+_start meta data,,,,
+_update_action,Grupo_Conteudo,SKU_Conteudo,Incluso,Disp_Pos_Venda
+String,String,String,String,String
+,,,,
+_end meta data,,,,
+modify,Basico,bl_conteudo_colecao_oi,S,S
+modify,Basico,bl_conteudo_noggin,N,S
+modify,Basico,bl_conteudo_crackle,N,S
+modify,Basico,bl_conteudo_discovery_kids_on,N,S
+modify,Basico,bl_conteudo_hbo_go,N,S
+modify,Basico,bl_conteudo_watch_espn,N,S
+modify,Basico,bl_conteudo_fox_basicos,N,S
+modify,Basico,bl_conteudo_fox_premium,N,S
+modify,Basico,bl_conteudo_fox_mais,N,S
+modify,Basico,bl_conteudo_telecine_play,N,S
+modify,Intermediario,bl_conteudo_colecao_oi,S,S
+modify,Intermediario,bl_conteudo_noggin,N,S
+modify,Intermediario,bl_conteudo_crackle,N,S
+modify,Intermediario,bl_conteudo_discovery_kids_on,N,S
+modify,Intermediario,bl_conteudo_hbo_go,N,S
+modify,Intermediario,bl_conteudo_watch_espn,N,S
+modify,Intermediario,bl_conteudo_fox_basicos,N,S
+modify,Intermediario,bl_conteudo_fox_premium,N,S
+modify,Intermediario,bl_conteudo_fox_mais,N,S
+modify,Intermediario,bl_conteudo_telecine_play,N,S
+modify,Top,bl_conteudo_colecao_oi,S,S
+modify,Top,bl_conteudo_noggin,N,S
+modify,Top,bl_conteudo_crackle,N,S
+modify,Top,bl_conteudo_discovery_kids_on,N,S
+modify,Top,bl_conteudo_hbo_go,N,S
+modify,Top,bl_conteudo_watch_espn,N,S
+modify,Top,bl_conteudo_fox_basicos,N,S
+modify,Top,bl_conteudo_fox_premium,N,S
+modify,Top,bl_conteudo_fox_mais,N,S
+modify,Top,bl_conteudo_telecine_play,N,S

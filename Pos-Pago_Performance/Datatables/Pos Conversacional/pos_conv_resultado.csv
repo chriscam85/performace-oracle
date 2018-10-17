@@ -1,0 +1,12 @@
+_start meta data,,
+_update_action,Chave,Valor
+String,String,String
+,,
+_end meta data,,
+modify,fraseFrequenciaMidia,Você [FREQMIDIA].
+modify,conectorDoisElementos,e
+modify,conectorMultiplos,","
+modify,fraseTitular,Sabemos que o plano é só pra você
+modify,fraseUmDependente,Sabemos que o plano é para você e mais um dependente
+modify,fraseMultiplosDependentes,Sabemos que o plano é para você e mais [NUMDEP] dependentes
+modify,fraseValor,E o ideal seria pagar até R$[VALOR] no meu plano.

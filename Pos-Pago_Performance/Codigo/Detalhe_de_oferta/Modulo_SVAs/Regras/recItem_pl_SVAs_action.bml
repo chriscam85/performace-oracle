@@ -1,0 +1,3 @@
+svas = util.pos_calcularSVAs(f_ofertaSelecionada, true);
+
+return join(svas,"|^|"); 

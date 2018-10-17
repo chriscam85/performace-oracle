@@ -1,0 +1,1 @@
+{ "messageType": "Configuration_Details", "quantity": "1", "catalogRefId":"{{model}}", "amount": "{{totalPrice}}", "price": "{{basePrice}}","currencyCode": "{{currency}}", "configurationId": "{{ConfigId}}","attributes": [{{attributes}}], "childItems": [{{ChildItems}}], "bomItems":[{{BomItems}}]}

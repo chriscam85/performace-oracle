@@ -1,0 +1,91 @@
+html = stringbuilder();
+regURL = "";
+Taxa_Inst_Hab = "";
+Vel_Download = "";
+Vel_Upload = "";
+Validade_adesao = "";
+Preco_Fixo = "";
+
+records = bmql("SELECT Regulamentos, Taxa_Inst_Hab, Vel_Download, Vel_Upload, Validade_adesao, Preco_Fixo  FROM I_atrib_2PBL WHERE SKU_Combo = $f_ofertaSelecionada");
+
+for record in records{
+    regURL = get(record, "Regulamentos");
+    Taxa_Inst_Hab = get(record, "Taxa_Inst_Hab");
+    Vel_Download = get(record, "Vel_Download");
+    Vel_Upload = get(record, "Vel_Upload");
+    Validade_adesao = get(record, "Validade_adesao");
+    Preco_Fixo = get(record, "Preco_Fixo"); 
+    precofixo = split(formatascurrency(atof(Preco_Fixo)), "$");
+    Preco_Fixo = precofixo[1];
+}
+
+//validadeParaAdesaoDate = split(trim(validadeParaAdesao), "a");
+
+records = bmql("SELECT Titulo, Descricao, Descricao2, Logo FROM I_ui_infoLegais ORDER BY Ordem");
+
+// get images
+logoIDs = string[0];
+for record in records{
+    logo = get(record, "Logo");
+    append(logoIDs, logo);
+}
+logoUrls = util.internet_calcularImagens(logoIDs);
+logoDesktopList = get(logoUrls, "Desktop");
+logoMobileList = get(logoUrls, "Mobile");
+logoTitleList = get(logoUrls, "Title");
+logoAltList = get(logoUrls, "Alt");
+
+sbappend(html, "<div class='infoLegais-container'>");
+sbappend(html, "<div class='infoLegais row'>");
+
+for record in records{
+    title = get(record, "Titulo");
+    logoId = get(record, "Logo");
+    logoDesktop = get(logoDesktopList, logoId);
+    logoMobile = get(logoMobileList, logoId);
+    logoTitle = get(logoTitleList, logoId);
+    logoAlt = get(logoAltList, logoId);
+    descArray = string[3];
+    descArray[0] = get(record,"Descricao");
+    descArray[1] = get(record,"Descricao2");
+    desc = "";
+    for descTemp in descArray{
+        if (not isnull(descTemp)){
+            desc = desc + descTemp ;
+        }
+    }
+    
+    desc = replace(desc,"{regulamento}",regURL);
+
+    sbappend(html, "<div class='infoLegais-item col-12 col-md-5'>");
+    sbappend(html, "<div class='infoLegais-inner'>");
+    sbappend(html, "<div class='img-infoLegais'>");
+    sbappend(html, "<img class='lazy' data-src='",logo,"'>");
+    sbappend(html, "</div>");
+    sbappend(html, "<div class='text-infoLegais'>");
+    sbappend(html, "<h3 class='title-infoLegais oi-sectionDesc-text '>",title,"</h3>");
+    
+    result = "";
+    if(find(desc, "{Vel_Download}") >= 0){
+        atrDados = replace(desc, "{Vel_Download}", Vel_Download);
+        result = replace(atrDados, "{Vel_Upload}", Vel_Upload);
+    } elif (find(desc, "{Preco_Fixo}") >= 0 ) {
+        result = replace(desc, "{Preco_Fixo}", Preco_Fixo);
+    } elif(find(desc, "{Taxa_Inst_Hab}") >= 0){
+        result = replace(desc, "{Taxa_Inst_Hab}", Taxa_Inst_Hab);
+    } elif(find(desc, "{Validade_adesao}") >= 0){
+        result = replace(desc, "{Validade_adesao}", Validade_adesao);
+    } else {
+        result = desc;
+    }
+    sbappend(html, "<p class='desc-infoLegais oi-sub-text oi-color-light'>",result,"</p>");
+    sbappend(html, "</div>");
+    sbappend(html, "</div>");
+    sbappend(html, "</div>");
+}
+
+
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+return sbtostring(html);

@@ -1,0 +1,7 @@
+records = bmql("SELECT Preco FROM pos_atributosOfert WHERE SKU=$offering");
+
+for record in records{
+	return getfloat(record,"Preco");
+}
+
+return 0;

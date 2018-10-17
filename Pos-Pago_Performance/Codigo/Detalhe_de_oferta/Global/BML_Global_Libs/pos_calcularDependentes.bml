@@ -1,0 +1,34 @@
+ret = "";
+retArray = string[0];
+records = bmql("SELECT SKU, Preco FROM pos_atribDependente WHERE SKU_Oferta=$offering");
+
+//print(records);
+
+dummyArray = string[quantity];
+
+for record in records{
+	sku = get(record,"SKU");
+	price = getFloat(record,"Preco");
+
+	addonArray = string[5];
+	addonArray[0] = sku;
+	addonArray[1] = "1";
+	addonArray[2] = "";
+	addonArray[3] = string(price);
+	
+	depNum = 0;
+	for dummy in dummyArray{
+		addonArray[4] = string(depNum);
+
+		depItem = join(addonArray , "~");
+	
+		append(retArray, depItem);
+
+		depNum = depNum + 1;
+	
+	}
+	
+}
+
+
+return retArray;

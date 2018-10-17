@@ -1,0 +1,17 @@
+offerPrice = 0.0;
+
+records = bmql("SELECT Preco FROM pos_atributosOfert WHERE SKU=$f_ofertaSelecionada");
+
+for record in records{
+	offerPrice = getfloat(record,"Preco");
+}
+
+
+retArray = string[4];
+
+retArray[0] = f_ofertaSelecionada;
+retArray[1] = "1";
+retArray[2] = "";
+retArray[3] = string(offerPrice);
+
+return join(retArray, "~");

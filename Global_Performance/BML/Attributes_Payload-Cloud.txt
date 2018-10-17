@@ -1,0 +1,1 @@
+{"variableName": "{{variableName}}","label": "{{label}}","dataType":"{{dataType}}","value": "{{value}}"}

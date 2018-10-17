@@ -1,0 +1,34 @@
+included = "N";
+
+if (incluso){
+	included = "S";
+}
+
+records = bmql("SELECT Grupo_Conteudo FROM I_atrib_2PBL WHERE SKU_Combo=$oferta");
+
+grupoConteudo = "";
+
+for record in records{
+	grupoConteudo = get(record,"Grupo_Conteudo");
+}
+
+records = bmql("SELECT I_atrib_conteudo.SKU, I_atrib_conteudo.Preco FROM I_atrib_conteudo INNER JOIN I_relContOferta ON I_atrib_conteudo.SKU=I_relContOferta.SKU_Conteudo WHERE I_relContOferta.Grupo_Conteudo=$grupoConteudo AND I_relContOferta.Incluso=$included");
+
+print(records);
+
+retArray = string[0];
+
+for record in records{
+	sku = get(record,"SKU");
+	price=getFloat(record,"Preco");
+
+	addonArray = string[0];
+	append(addonArray , sku);
+	append(addonArray , "1");
+	append(addonArray , "");
+	append(addonArray , string(price));
+	
+	append(retArray , join(addonArray , "~"));
+}
+
+return retArray ;

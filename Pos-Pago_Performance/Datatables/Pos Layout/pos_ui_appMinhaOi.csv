@@ -1,0 +1,13 @@
+_start meta data,,
+_update_action,chave,valor
+String,String,String
+,,
+_end meta data,,
+modify,urlVideo1,/file/thirdparty/oi-media/cingapura_divisor
+modify,urlVideo2,/file/thirdparty/oi-media/video-compartilhe-internet-no-pos-pago-oi
+modify,labelVideo1,Distribua internet
+modify,labelVideo2,Transfira internet
+modify,imgVideo1,https://ofertas.oi.com.br/file/general/Cingapura_Divisor.jpg
+modify,imgVideo2,https://ofertas.oi.com.br/file/general/Cingapura_Transfer.jpg
+modify,urlAppStore,https://itunes.apple.com/br/app/minha-oi/id564319331?mt=8
+modify,urlGooglePlay,https://play.google.com/store/apps/details?id=br.com.mobicare.minhaoi&hl=pt_BR

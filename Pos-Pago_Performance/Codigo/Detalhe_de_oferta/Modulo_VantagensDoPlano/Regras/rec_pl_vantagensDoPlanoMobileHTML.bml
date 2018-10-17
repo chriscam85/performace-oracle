@@ -1,0 +1,108 @@
+html = stringbuilder();
+
+allCards = bmql("SELECT Titulo, Descricao, Logo FROM pos_ui_vantDoPlano ORDER BY Ordem");
+
+// DESKTOP
+//sbappend(html, "<div id='lucros-container-desktop' class='d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none'>");
+sbappend(html, "<div id='lucros-container-desktop' class='d-none d-xl-block d-none d-lg-block d-xl-none'>");
+sbappend(html, "<div id='oferDesktop'>");
+sbappend(html, "<ul class='glideList row'>");
+
+for record in allCards{
+    title = get(record, "Titulo");
+    desc = get(record, "Descricao");
+    logo = get(record, "Logo");
+
+	sbappend(html, "<li>");
+    sbappend(html, "<div class='lucros-card'>");
+    sbappend(html, "<div class='img-lucrosPos'>");
+    sbappend(html, "<img class='lazy' data-src='",logo,"'>");
+    sbappend(html, "</div>");
+    sbappend(html, "<h3 class='oi-desc-text'>",title,"</h3>");
+    sbappend(html, "<p class='desc-lucrosPos oi-sub-text oi-color-light'>",desc,"</p>");
+    sbappend(html, "</div>");
+    sbappend(html, "</li>");
+}
+
+sbappend(html, "</ul>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+
+// MOBILE
+//sbappend(html, "<div id='lucros-container-mobile' class='d-block d-sm-none d-none d-sm-block d-md-none'>");
+sbappend(html, "<div id='lucros-container-mobile' class='d-block d-sm-none d-none d-sm-block d-md-none'>");
+sbappend(html, "<div class='glide'>");
+sbappend(html, "<div class='glide__track' data-glide-el='track'>");
+sbappend(html, "<ul class='glide__slides glideList'>");
+
+for record in allCards{
+    title = get(record, "Titulo");
+    desc = get(record, "Descricao");
+    logo = get(record, "Logo");
+
+    sbappend(html, "<li class='glide__slide'>");
+    sbappend(html, "<div class='lucros-card'>");
+    sbappend(html, "<div class='img-lucrosPos'>");
+    sbappend(html, "<img class='' src='",logo,"'>");
+    sbappend(html, "</div>");
+    sbappend(html, "<h3 class='oi-desc-text'>",title,"</h3>");
+    sbappend(html, "<p class='desc-lucrosPos oi-sub-text oi-color-light'>", desc,"</p>");
+    sbappend(html, "</div>");
+    sbappend(html, "</li>");
+}
+
+
+sbappend(html, "</ul>");
+sbappend(html, "</div>");
+sbappend(html, "<div class='glide__bullets' data-glide-el='controls[nav]'>");
+
+i = 0;
+for record in allCards{
+    sbappend(html, "<button class='glide__bullet' data-glide-dir='=", string(i),"'></button>");
+    i = i + 1;
+}
+
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+//TABLETS
+
+sbappend(html, "<div id='lucros-container-mobile' class='d-none d-md-block d-lg-none'>");
+sbappend(html, "<div class='glideTablet'>");
+sbappend(html, "<div class='glide__track' data-glide-el='track'>");
+sbappend(html, "<ul class='glide__slides glideList'>");
+
+for record in allCards{
+    title = get(record, "Titulo");
+    desc = get(record, "Descricao");
+    logo = get(record, "Logo");
+
+    sbappend(html, "<li class='glide__slide'>");
+    sbappend(html, "<div class='lucros-card'>");
+    sbappend(html, "<div class='img-lucrosPos'>");
+    sbappend(html, "<img class='' src='",logo,"'>");
+    sbappend(html, "</div>");
+    sbappend(html, "<h3 class='oi-desc-text'>",title,"</h3>");
+    sbappend(html, "<p class='desc-lucrosPos oi-sub-text oi-color-light'>", desc,"</p>");
+    sbappend(html, "</div>");
+    sbappend(html, "</li>");
+}
+
+
+sbappend(html, "</ul>");
+sbappend(html, "</div>");
+sbappend(html, "<div class='glide__bullets' data-glide-el='controls[nav]'>");
+
+i = 0;
+for record in allCards{
+    sbappend(html, "<button class='glide__bullet' data-glide-dir='=", string(i),"'></button>");
+    i = i + 1;
+}
+
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+return sbtostring(html);

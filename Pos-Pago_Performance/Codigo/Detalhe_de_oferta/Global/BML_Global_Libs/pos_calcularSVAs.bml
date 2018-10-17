@@ -1,0 +1,23 @@
+retArray = string[0];
+
+if (add){
+	
+	records = bmql("SELECT pos_relSVAOferta.SKU_SVA, pos_atributosSVA.Preco FROM pos_relSVAOferta INNER JOIN pos_atributosSVA ON pos_relSVAOferta.SKU_SVA = pos_atributosSVA.SKU WHERE pos_relSVAOferta.SKU_Oferta=$offering ");
+	
+	//print(records);
+	
+	for record in records{
+		sku = get(record,"SKU_SVA");
+		price = getFloat(record,"Preco");
+	
+		addonArray = string[0];
+		append(addonArray , sku);
+		append(addonArray , "1");
+		append(addonArray , "");
+		append(addonArray , string(price));
+		
+		append(retArray , join(addonArray , "~"));
+	}
+	
+}
+return retArray ;

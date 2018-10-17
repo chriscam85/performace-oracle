@@ -1,0 +1,10 @@
+records = bmql("SELECT SKU_Conteudo FROM pos_relContOferta where SKU_Oferta = $f_ofertaSelecionada AND Incluso = 'N' AND Disp_Pos_Venda = 'N'");
+
+retArray = string[1];
+retArray[0] = "";
+
+for item in records{
+	append(retArray, get(item,"SKU_Conteudo"));
+}
+
+return join(retArray,"|^|");

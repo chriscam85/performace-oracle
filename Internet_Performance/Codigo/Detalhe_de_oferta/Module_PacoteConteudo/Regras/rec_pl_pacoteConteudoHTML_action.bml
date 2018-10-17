@@ -1,0 +1,55 @@
+records = bmql("SELECT Regiao, Tipo, Chave_Vel FROM I_atrib_2PBL WHERE SKU_Combo=$f_ofertaSelecionada");
+
+regiao = "";
+tipo = "";
+vel = "";
+
+for record in records{
+	regiao = get(record, "Regiao");
+	tipo = get(record, "Tipo");
+    vel = get(record, "Chave_Vel");
+}
+
+records = bmql("SELECT Pac_Conteudo, Chave_Conteudo, Preco_conteudo FROM I_atrib_2PBL WHERE Regiao=$regiao AND Tipo=$tipo AND Chave_Vel=$vel ORDER BY Preco_conteudo");
+
+alreadyAdded = string[0];
+
+html = stringbuilder();
+sbappend(html, "<div id='pacoteConteudoField'>");
+
+
+for record in records{
+    conteudolabel =  get(record, "Pac_Conteudo");
+	conteudo = get(record, "Chave_Conteudo");
+    conteudoPreco = get(record, "Preco_conteudo");
+
+    if (findinarray(alreadyAdded, conteudo) <> 0){
+         label = "Incluído no plano";
+
+        if (conteudoPreco <> "0"){
+            label = "+ R$ " + conteudoPreco + "/mês";
+        }
+
+        if (pl_pacoteConteudo == conteudo){
+             sbappend(html, "    <span class='pacoteConteudo-Option pacoteConteudo-Selected'>");
+        }else{
+             sbappend(html, "    <span class='pacoteConteudo-Option'>");
+        }
+
+        sbappend(html, "        <label for='pl_pacoteConteudo_",conteudo,"'>");
+        sbappend(html, "            <h3 class='oi-item-med oi-color-normal'>", conteudolabel ,"</h3><p class='oi-desc-text oi-color-normal'>",label,"</p>");
+        sbappend(html, "        </label>");
+        sbappend(html, "    </span>");
+
+        append(alreadyAdded, conteudo);
+    }
+   
+   
+}
+
+sbappend(html, "</div>");
+
+return sbtostring(html);
+
+
+

@@ -1,0 +1,9 @@
+_start meta data,,
+_update_action,Midia,Peso
+String,String,Float
+,,
+_end meta data,,
+modify,Mensagem,0
+modify,Musica,2
+modify,Video,5
+modify,Jogo,0.5

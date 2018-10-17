@@ -1,0 +1,87 @@
+<div id='sva_container'>
+
+<div id='sva_list'>
+
+    <div class='sva_nav'>
+
+        <ul class='nav nav-tabs' role='tablist'>
+
+            <li class='nav-item'>
+                <a id='{svaSkus[i]}-tab' class='{class}' data-toggle='tab' href='#{svaSkus[i]}' role='tab' aria-controls='{svaSkus[i]}' aria-selected='true'
+                    href='#'>
+                    <p>{sva}</p>
+                </a>
+            </li>
+
+            <li class='nav-item'></li>
+            <a id='{svaSkus[i]}-tab' class='class' data-toggle='tab' href='#{svaSkus[i]}' role='tab' aria-controls='{svaSkus[i]}' aria-selected='true'
+                href='#'>
+                <p>{sva}</p>
+            </a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class='tab-content' id='sva-TabContent'>
+
+        <div class='tab-pane fade show active' id='{svaSkus[i]}' role='tabpanel' aria-labelledby='{svaSkus[i]-tab}'>
+
+            <div class='row'>
+
+                <div class='sva-desc col-lg-6'>
+
+                    <p>{desc}</p>
+
+                    <div class='sva-download'>
+                        <p>Baixe {svas[i]} acessando:</p>
+                        <div class='sva-stores'>
+                            <a href='#'>
+                                <img src='$BASE_PATH$/oi_imagens/logoAppStore.png'>
+                            </a>
+                            <a href='#'>
+                                <img src='$BASE_PATH$/oi_imagens/logoGooglePlay.png'>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='sva-img col-lg-6'>
+                    <img src='{urlImagem[i]}'>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class='tab-pane fade show' id='{svaSkus[i]}' role='tabpanel' aria-labelledby='{svaSkus[i]-tab}'>
+
+            <div class='row'>
+
+                <div class='sva-desc col-lg-6'>
+
+                    <p>{desc}</p>
+
+                    <div class='sva-download'>
+                        <p>Baixe {svas[i]} acessando:</p>
+                        <div class='sva-stores'>
+                            <a href='#'>
+                                <img src='$BASE_PATH$/oi_pos_imagens/logoAppStore.png'>
+                            </a>
+                            <a href='#'>
+                                <img src='$BASE_PATH$/oi_pos_imagens/logoGooglePlay.png'>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='sva-img col-lg-6'>
+                    <img src='{urlImagem[i]}'>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

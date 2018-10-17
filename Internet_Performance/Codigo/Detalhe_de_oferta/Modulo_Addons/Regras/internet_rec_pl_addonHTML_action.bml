@@ -1,0 +1,362 @@
+selectedAddons = split(pl_addons,"~");
+
+imgIDsToSearch = string[0];
+
+// get addons data
+addonRecords = util.internet_calcularConteudos(f_ofertaSelecionada, false);
+addonRecordsIncluded = util.internet_calcularConteudos(f_ofertaSelecionada, true);
+
+addonArray = string[0];
+
+for addon in addonRecords {
+	item = split(addon,"~");
+	append(addonArray , item [0]);
+}
+for addon in addonRecordsIncluded {
+	item = split(addon,"~");
+	append(addonArray , item [0]);
+}
+
+addonSKUsOptional = string[0];
+
+for addon in addonRecordsIncluded {
+	item = split(addon,"~");
+	append(addonSKUsOptional, item [0]);
+}
+
+//print(addonArray );
+//print(addonSKUsOptional );
+
+
+records = bmql("SELECT Grupo_Conteudo FROM I_atrib_2PBL WHERE SKU_Combo=$f_ofertaSelecionada");
+
+grupoConteudo = "";
+
+for record in records{
+	grupoConteudo = get(record,"Grupo_Conteudo");
+}
+
+records = bmql("SELECT I_atrib_conteudo.SKU, I_atrib_conteudo.Nome_comercial, I_atrib_conteudo.Preco, I_atrib_conteudo.Descricao, I_atrib_conteudo.Descricao_Extra, I_atrib_conteudo.ID_Img_Logo_Peq, I_atrib_conteudo.ID_Img_Logo_Grande, I_atrib_conteudo.ID_Imagem, I_relContOferta.Disp_Pos_Venda FROM I_atrib_conteudo INNER JOIN I_relContOferta ON I_atrib_conteudo.SKU=I_relContOferta.SKU_Conteudo WHERE I_relContOferta.Grupo_Conteudo=$grupoConteudo AND I_atrib_conteudo.SKU in $addonArray ORDER BY I_relContOferta.Disp_Pos_Venda, I_relContOferta.Incluso, I_atrib_conteudo.Ordem");
+
+addonSKUs = string[0];
+addons = string[0];
+postVenda = string[0];
+descs = string[0];
+descsCanais = string[0];
+addonPricesInteger = string[0];
+addonPricesDecimal = string[0];
+idsLogo = string[0];
+idsImg = string[0];
+
+for record in records{
+	append(addonSKUs,get(record,"SKU"));
+	append(addons,get(record,"Nome_comercial"));
+	append(postVenda,get(record,"Disp_Pos_Venda"));
+	append(descs,get(record,"Descricao"));
+	append(descsCanais,get(record,"Descricao_Extra"));
+	
+	preco = getFloat(record,"Preco");
+	logo = get(record,"ID_Img_Logo_Grande");
+	img = get(record,"ID_Imagem");
+
+	append(idsLogo, logo);
+	append(idsImg, img);
+
+	totalPriceInteger =  integer(preco);
+	totalPriceDecimal = (preco - totalPriceInteger) * 100;
+	totalPriceDecimalLabel = string(integer(totalPriceDecimal));
+
+	append(addonPricesInteger,string(totalPriceInteger));
+	append(addonPricesDecimal,totalPriceDecimalLabel);
+
+	append(imgIDsToSearch, logo);
+	append(imgIDsToSearch, img);
+}
+
+
+// get UI data
+records3 = bmql("SELECT Chave, Valor FROM I_ui_addons");
+
+//print(records3);
+
+uiValues = dict("string");
+
+for record in records3{
+	key = get(record, "Chave");
+	value = get(record, "Valor");
+
+	put(uiValues, key, value);
+	append(imgIDsToSearch, value);
+}
+
+// get channel data
+records = bmql("SELECT SKU, Nome_Canal, IDLogo FROM I_conteudoCanais ORDER BY Ordem");
+
+//print(records);
+
+channelList = dict("string[]");
+channelLogos = dict("string");
+
+for record in records{
+	sku = get(record, "SKU");
+	canal = get(record, "Nome_Canal");
+	logo = get(record, "IDLogo");
+
+	if (containskey(channelList, sku)){
+		array = get(channelList, sku);
+		append(array, canal);
+		put(channelList, sku, array);
+	}else{
+		array = string[1];
+		array[0] = canal;
+		put(channelList, sku, array);
+	}
+
+	put(channelLogos, canal, logo);
+
+	append(imgIDsToSearch, logo);
+}
+
+// get images URL
+append(imgIDsToSearch, "logoGooglePlay");
+append(imgIDsToSearch, "logoAppStore");
+
+
+imagesDict = util.internet_calcularImagens(imgIDsToSearch);
+
+//print(records3);
+
+imgDesktopUrls = get(imagesDict, "Desktop");
+imgMobileUrls = get(imagesDict, "Mobile");
+
+imgTitles = get(imagesDict, "Title");
+imgAlts = get(imagesDict, "Alt");
+
+
+/* 
+==================================
+HTML mobile
+==================================
+*/
+html = stringbuilder();
+sbappend(html, "<!-- mobile -->");
+sbappend(html, "<div class='accordion' id='addon_list-mobile'>");
+
+
+sbappend(html, "<!-- each addon -->");
+
+sbappend(html, "<div class='cardList'>");
+i = 0;
+for addonSKU in addonSKUs{
+
+	// si el addons esta incluido
+	isIncluded = (findinarray(addonSKUsOptional, addonSKU) >= 0);
+	hasChannels = containskey(channelList, addonSKU);
+	isPostVenda = (postVenda[i] == "S");
+	
+	sbappend(html, "<div class='card'>");
+
+	//header
+	sbappend(html, "<div class='card-header' id='",addonSKU,"-heading' addon-sku='", addonSKU ,"'>");
+	sbappend(html, "<h3 class='mb-0'>");
+
+	//checkbox
+	/* El addon no esta incluido y no es post venta (es opcional) */
+	if(NOT isIncluded and NOT isPostVenda){
+		if (findinarray(selectedAddons, addonSKU) >=0){
+			//selected
+			sbappend(html, "<a class='btn btn-link addon-selected oi-sectionDesc-text oi-color-normal' data-toggle='collapse' data-target='#",addonSKU,"-card'");
+			sbappend(html, "aria-expanded='false' aria-controls='",addonSKU,"-card'>");
+			sbappend(html, "<span class='oi-item-big oi-color-light'>",addons[i],"</span>");
+			sbappend(html, "<p class='addon-included oi-sub-text-small oi-color-light'>Adicionado por R$",addonPricesInteger[i],",",addonPricesDecimal[i],"/mês</p>");
+			sbappend(html, "</a>");
+		}else{
+			//unselected
+			sbappend(html, "<a class='btn btn-link oi-sectionDesc-text oi-color-normal' data-toggle='collapse' data-target='#",addonSKU,"-card'");
+			sbappend(html, "aria-expanded='false' aria-controls='",addonSKU,"-card'>");
+			sbappend(html, "<span class='oi-item-big oi-color-light'>",addons[i],"</span>");
+			sbappend(html, "<p class='addon-included oi-sub-text-small oi-color-light'>&nbsp;</p>");
+			sbappend(html, "</a>");
+		}		/* esta incluido y no es post venta (obligatorio) */
+	}elif(isIncluded and NOT isPostVenda){
+			sbappend(html, "<input type='checkbox' id='",addonSKU,"-header' name='",addonSKU,"' value='",addonSKU,"' class='addon-checkbox' checked disabled/>");
+			sbappend(html, "<span class='addon-checkmark'></span>");
+			sbappend(html, "<a class='btn btn-link oi-sectionDesc-text oi-color-normal' data-toggle='collapse' data-target='#",addonSKU,"-card'");
+			sbappend(html, "aria-expanded='false' aria-controls='",addonSKU,"-card'>");
+			sbappend(html, "<span class='oi-item-big oi-color-light'>",addons[i],"</span>");
+			sbappend(html, "<p class='addon-included oi-sub-text-small oi-color-light'>Incluído no plano</p>");
+			sbappend(html, "</a>");		
+	}else{
+			/* Post Venda */
+			sbappend(html, "<a class='btn btn-link oi-sectionDesc-text oi-color-normal' data-toggle='collapse' data-target='#",addonSKU,"-card'");
+			sbappend(html, "aria-expanded='false' aria-controls='",addonSKU,"-card'>");
+			sbappend(html, "<span class='oi-item-big oi-color-light'>",addons[i],"</span>");
+			sbappend(html, "</a>");			
+	}
+
+	sbappend(html, "</h3>");
+	sbappend(html, "</div>");
+
+	// content
+	sbappend(html, "<div id='",addonSKU,"-card' class='collapse' aria-labelledby='",addonSKU,"-heading' data-parent='#addon_list-mobile'>");
+	sbappend(html, "<div class='card-body oi-desc-text'>");
+
+	sbappend(html, "<div class='card-inner'>");
+	
+	sbappend(html, "<div class='addon-CardBody'>");
+	
+	sbappend(html, "<div class='addon-desc-col'>");
+
+	logoTitle = get(imgTitles, idsLogo[i]);
+	logoAlt = get(imgAlts, idsLogo[i]);
+	logo = get(imgMobileUrls, idsLogo[i]);
+
+	sbappend(html, "<img class='addon-logo lazy' title='",logoTitle,"' alt='",logoAlt,"' data-src='",logo,"'>");
+
+	sbappend(html, "<p class='addon-desc oi-sub-text oi-color-light'>",descs[i],"</p>");
+
+	//if has channels
+	if (hasChannels){
+		channelCount = sizeofarray(get(channelList, addonSKU));
+		sbappend(html, "<span class='addon-channels  oi-sub-text-small oi-color-light' addon='", addonSKU ,"'>Pacote com ", string(channelCount)," canais</span>");
+	}
+
+	// text post Venda
+	if(NOT isIncluded and isPostVenda){
+		sbappend(html, "<p class='addon-postVenda oi-sub-text-small oi-color-light'>Assine no site oiplay.tv com sua conta da Minha Oi.</p>");
+	}
+
+	//prices
+	if (NOT isIncluded) {
+		sbappend(html, "<div class='addonPriceSection'>");
+		sbappend(html, "<div class='addonpriceText'>");
+		sbappend(html, "<div class='addonPriceBigLabel'>");
+		sbappend(html, "<p class='addonPriceLabel priceReais oi-section-text-head oi-color-normal'>R$</p>");
+		sbappend(html, "<p class='addonPriceLabel priceInteger oi-section-text-head oi-color-normal'>",addonPricesInteger[i],"</p>");
+		sbappend(html, "</div>");
+		sbappend(html, "<div class='addonPriceSmallLabel'>");
+		sbappend(html, "<p class='addonPriceLabel priceDecimal oi-section-text-head oi-color-normal'>,",addonPricesDecimal[i],"</p>");
+		sbappend(html, "<p class='addonPriceLabel priceMonth oi-section-text-head oi-color-normal'>/MÊS</p>");
+		sbappend(html, "</div>");
+		sbappend(html, "</div>");
+		sbappend(html, "</div>");
+	}
+
+	sbappend(html, "</div>");
+	
+
+	picTitle = get(imgTitles, idsImg[i]);
+	picAlt = get(imgAlts, idsImg[i]);
+	picMobile = get(imgMobileUrls, idsImg[i]);
+	picDesktop = get(imgDesktopUrls, idsImg[i]);
+
+	sbappend(html, "<div class='addon-desc-pic'>");
+	sbappend(html, "<picture>");
+	sbappend(html, "<source media='(min-width: 768px)' data-srcset='",picDesktop,"' /> <!--desktop-->");
+	sbappend(html, "<img class='lazy' title='",picTitle,"' alt='",picAlt,"' data-src='",picMobile,"'> <!--mobile-->");
+	sbappend(html, "</picture>");
+	sbappend(html, "</div>");
+	
+
+	sbappend(html, "</div>");
+	sbappend(html, "</div>");
+
+	sbappend(html, "</div>");
+	sbappend(html, "</div>");
+
+	sbappend(html, "</div>");
+
+	i = i + 1;
+}
+sbappend(html, "</div>");
+
+/* 
+-------- download oi play --------
+*/
+titleGooglePlay = get(imgTitles, "logoGooglePlay");
+altGooglePlay = get(imgAlts, "logoGooglePlay");
+imgGooglePlay = get(imgMobileUrls, "logoGooglePlay");
+
+titleAppStore = get(imgTitles, "logoAppStore");
+altAppStore = get(imgAlts, "logoAppStore");
+imgAppStore = get(imgMobileUrls, "logoAppStore");
+
+
+sbappend(html, "<div class='addon-oiPlay'>");
+sbappend(html, "<p class='oi-sub-text-small oi-color-normal'>", get(uiValues, "descricaoOiPlay"),"</p>");
+sbappend(html, "<div class='addon-appStores'>");
+sbappend(html, "<div class='addon-store'>");
+sbappend(html, "<img class='lazy' title='",titleGooglePlay,"' alt='",altGooglePlay,"' data-src='",imgGooglePlay,"'>");
+sbappend(html, "<p class='oi-sub-text-xs oi-color-light'>Play Store</p>");
+sbappend(html, "</div>");
+sbappend(html, "<div class='addon-store'>");
+sbappend(html, "<img class='lazy' title='",titleAppStore,"' alt='",altAppStore,"' data-src='", imgAppStore,"'>");
+sbappend(html, "<p class='oi-sub-text-xs oi-color-light'>App Store</p>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+
+
+/* 
+================= Overlay =================
+*/
+// for each addon
+i = 0;
+for sku in addonSKUs{
+
+	if (containskey(channelList, sku)){
+		sbappend(html, "<div id='addon-",sku,"-Overlay' class='addon-Overlay'>");
+
+		sbappend(html, "<div class='overlayMask'>");
+		sbappend(html, "</div>");
+
+		sbappend(html, "<div class='addonDialog-Container'>");
+		sbappend(html, "<div class='addonDialog-inner'>");
+
+		sbappend(html, "<button class='addon-OverlayX addon-CloseOverlay oi-section-text oi-color-light' parent-overlay='addon-",sku,"-Overlay' type='button'></button>");
+
+		title = get(imgTitles, idsLogo[i]);
+		alt = get(imgAlts, idsLogo[i]);
+		img = get(imgMobileUrls, idsLogo[i]);
+
+		sbappend(html, "<div class='addonDialog-Text'>");
+		sbappend(html, "<img class='lazy addonDialog-logo' title='",title,"' alt='",alt,"' data-src='",img,"'>");
+		sbappend(html, "<h4 class='oi-sub-text-big oi-color-normal'>",descsCanais[i],"</h4>");
+		sbappend(html, "<ul class='addonDialog-channels'>");
+		//for each channel img
+		channelListArray = get(channelList, sku);
+		for channelName in channelListArray{
+
+			chanelImgID = get(channelLogos, channelName);
+			title = get(imgTitles, chanelImgID);
+			alt = get(imgAlts, chanelImgID);
+			img = get(imgMobileUrls, chanelImgID);
+
+			sbappend(html, "<li>");
+			sbappend(html, "<img class='lazy' title='",title,"' alt='",alt,"' data-src='",img,"'>");
+			sbappend(html, "</li>");
+		}
+
+		sbappend(html, "</ul>");
+		sbappend(html, "</div>");
+
+		sbappend(html, "<div class='addonDialog-ButtonContainer'>");
+
+		sbappend(html, "<div class='addonDialog-Button'>");
+		sbappend(html, "<button class='addon-CloseOverlay oi-desc-text oi-color-background-gradient' parent-overlay='addon-",sku,"-Overlay' type='button'>");
+		sbappend(html, "Voltar para a oferta");
+		sbappend(html, "</button>");
+		sbappend(html, "</div>");
+
+		sbappend(html, "</div>");
+		sbappend(html, "</div>");
+		sbappend(html, "</div>");
+		sbappend(html, "</div>");
+	}
+	i = i + 1;
+}
+
+sbappend(html, "</div>");
+
+return sbtostring(html);

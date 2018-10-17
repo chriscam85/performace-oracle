@@ -1,0 +1,138 @@
+html = stringbuilder();
+oferSelec = f_ofertaSelecionada;
+urlImg = "";
+urlImgTablet = "";
+urlImgMobile = "";
+vozOfer = "";
+dadosOfer = "";
+titBanner = "";
+titAppsBanner = "";
+uniaoTitBanner = "";
+uniaoTitSimbBanner = "";
+addonSKUs = string[0];
+addons = string[0];
+urlLogo = string[0];
+sku = string[0];
+ordem = string[0];
+uiValues = dict("string");
+titleImgOfer = "";
+altImgOfer = "";
+addonSKUs = string[0];
+imgDestaqTitle = string[0];
+imgDestaqAlt = string[0];
+
+records = bmql("SELECT pos_ui_banner.Valor, pos_ui_banner.Chave2, pos_atributosOfert.Nome_comercial, pos_atributosOfert.Dados, pos_atributosOfert.Voz FROM pos_ui_banner INNER JOIN pos_atributosOfert ON pos_ui_banner.Chave = pos_atributosOfert.SKU WHERE pos_ui_banner.Chave = $oferSelec");
+
+for record in records{
+	chave2 = get(record, "Chave2");
+	if (chave2 == "mobile"){
+		urlImgMobile = get(record, "Valor");
+	} elif(chave2 == "desktop"){
+		urlImg = get(record, "Valor");
+	} elif(chave2 == "tablet"){
+		urlImgTablet = get(record, "Valor");
+	}
+	
+	vozOfer = get(record, "Voz");
+	dadosOfer = get(record, "Dados");
+}
+
+records2 = bmql("SELECT Valor, Chave FROM pos_ui_banner");
+
+for record in records2{
+	key = get(record, "Chave");
+	value = get(record, "Valor");
+
+	put(uiValues, key, value);
+}
+
+titBanner = get(uiValues, "Titulo_Banner");
+uniaoTitBanner = get(uiValues, "Uniao_Titulo_banner");
+uniaoTitSimbBanner = get(uiValues, "Uniao_Titulo_Sim_banner");
+titAppsBanner = get(uiValues, "Titulo_Apps_Banner");
+
+records3 =  bmql("SELECT SKU, Title_Imagem_Destaq, Alt_Imagem_Destaq FROM pos_atributosOfert");
+
+for record in records3{
+	append(addonSKUs,get(record,"SKU"));
+	append(imgDestaqTitle, get(record, "Title_Imagem_Destaq"));
+	append(imgDestaqAlt, get(record, "Alt_Imagem_Destaq"));
+}
+//print imgDestaqTitle;
+
+// get included addons data
+addonSKUsIncluded = util.pos_calcularConteudos(f_ofertaSelecionada, true);
+
+
+addonIncludedArray = string[0];
+
+for addon in addonSKUsIncluded {
+	item = split(addon,"~");
+	append(addonIncludedArray , item [0]);
+}
+
+records2 = bmql("SELECT SKU, Nome_comercial, URL_Imagem, Ordem FROM pos_atribConteudo WHERE SKU in $addonIncludedArray ORDER BY Ordem");
+
+for record in records2{
+	append(addonSKUs,get(record,"SKU"));
+	append(sku,get(record,"SKU"));
+	append(addons,get(record,"Nome_comercial"));
+	append(urlLogo,get(record,"URL_Imagem"));
+	append(ordem,get(record,"Ordem"));
+}
+
+// get UI data
+
+records3 = bmql("SELECT chave, valor FROM pos_ui_addons");
+
+
+uiValues = dict("string");
+
+for record in records3{
+	key = get(record, "chave");
+	value = get(record, "valor");
+
+	put(uiValues, key, value);
+
+}
+////////////////////////////////
+	sbappend(html, "<div class='bgOfer row'>");
+	
+		sbappend(html, "<div class='oiSectionHeader txtOfer'>");
+			sbappend(html, "<p class='oi-sub-text'>", titBanner, "</p>");
+			sbappend(html, "<h1 class='titleOfer oi-section-text-head'>", dadosOfer,  " ", uniaoTitBanner, "</br>", uniaoTitSimbBanner, " ", vozOfer, "</h1>");
+			sbappend(html, "<p class='oi-sub-text-sm'>", titAppsBanner, "</p>");
+			sbappend(html, "<ul class='appsOfer row col-lg-12'>");
+				i = 0;
+				for dum in urlLogo{
+					sbappend(html, "<li>");
+					sbappend(html, "<img data-src=", "'", urlLogo[i], "'", "class='appsImgOfer lazy'>");
+					sbappend(html, "</li>");
+					i = i + 1; 
+				}
+		
+		sbappend(html, "</ul>");	
+		sbappend(html, "</div>");
+
+		
+	sbappend(html, "<div class='imgOfer'>");
+		sbappend(html, "<picture>");
+		sbappend(html, "<source media='(min-width: 992px)' data-srcset='", urlImg, "' />");
+		sbappend(html, "<source media='(min-width: 768px)' data-srcset='", urlImgTablet, "' />");
+		sbappend(html, "<img class='appsImgFija col-lg-12 lazy' title='", imgDestaqTitle[i], "'", "alt='",  imgDestaqAlt[i], "'data-src='", urlImgMobile, "'>");
+		sbappend(html, "</picture>");
+		
+		sbappend(html, "<div class='arrowDownDesk d-none'>");
+			sbappend(html, "<p class ='oiSectionHeader-enlace'>Saiba mais</p>");
+			sbappend(html, "<a href='#pl_tituloDependentesHTML' class='oi-smoothScroll'><img src='$BASE_PATH$/oi_pos_imagens/img-down.png'></a>");
+		sbappend(html, "</div>");
+			
+	sbappend(html, "</div>");
+    
+sbappend(html, "</div>");
+
+sbappend(html, "<div class='arrowDown d-block d-sm-none d-none d-sm-block d-md-none'>");
+	sbappend(html, "<a href='#pl_tituloDependentesHTML' class='oi-smoothScroll'><img src='$BASE_PATH$/oi_pos_imagens/img-down.png'></a>");
+sbappend(html, "</div>");
+
+return sbtostring(html);

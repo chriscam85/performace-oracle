@@ -1,0 +1,89 @@
+
+// get dep price
+depNum = atoi(pl_dependentes);
+depPrice = 0.0;
+txtDepen = "";
+
+txtdep = bmql("SELECT Valor FROM pos_ui_dependente WHERE Chave = 'Texto_Caixinha_Depen'");
+
+for result in txtdep{
+    txtDepen = get(result, "Valor");
+}
+
+records = bmql("SELECT Preco FROM pos_atribDependente WHERE SKU_Oferta = $f_ofertaSelecionada");
+
+//print(records);
+
+for record in records{
+    depPrice = getFloat(record, "Preco");
+}
+
+depPriceLabel = replace(formatascurrency(depPrice), "$", "$ ");
+
+
+
+// offer Data
+offerData = 0;
+offerDataLabel = "";
+
+records = bmql("SELECT Dados FROM pos_atributosOfert WHERE SKU = $f_ofertaSelecionada");
+
+//print(records);
+
+for record in records{
+    data = get(record, "Dados");
+    offerData = atof(data);
+}
+
+if (depNum <> 0){
+    dataDivided = round(offerData/ (depNum + 1), 2);
+    
+    //print(dataDivided );
+    
+    splitofferDataLabel = split(string(dataDivided), ".");
+    
+    if(splitofferDataLabel[1] == "0"){
+    	offerDataLabel = splitofferDataLabel[0];
+    }else{
+    	
+    	offerDataLabel = replace(string(dataDivided), ".", ",");
+    }
+
+}
+
+
+// ================= Build HTML =================
+htmlBuilder = stringbuilder();
+
+
+sbappend(htmlBuilder , "<div class='dep-container'>");
+
+sbappend(htmlBuilder , "<div class='dep-descContainer'>");
+
+
+if (depNum == 0){
+
+txtDepen = replace(txtDepen, "{X}", depPriceLabel);
+
+
+    sbappend(htmlBuilder , "<h3 class='dep-desc oi-sectionDesc-text'>Adicione dependentes:</h3>");
+    sbappend(htmlBuilder , "<p class='dep-subDesc oi-sub-text oi-color-light'>", txtDepen, "</p>");
+
+} elif (depNum == 1){
+
+    sbappend(htmlBuilder , "<h2 class='dep-desc oi-sectionDesc-text'>1 Dependente</h2>");
+    sbappend(htmlBuilder , "<p class='dep-subDesc oi-sub-text oi-color-light'>Cada pessoa com ", offerDataLabel, " GB</p>");
+
+} else{
+
+    sbappend(htmlBuilder , "<h2 class='dep-desc oi-sectionDesc-text'>", string(depNum) ," Dependentes</h2>");
+    sbappend(htmlBuilder , "<p class='dep-subDesc oi-sub-text oi-color-light'>Cada pessoa com ", offerDataLabel, " GB</p>");
+}
+
+
+sbappend(htmlBuilder , "</div>");
+
+sbappend(htmlBuilder , "</div>");
+
+
+return sbtostring(htmlBuilder);

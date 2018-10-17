@@ -1,0 +1,298 @@
+chaves = string[3];
+chaves[0] = "payloadTemplateURL";
+chaves[1] = "attrPayloadURL";
+chaves[2] = "childPayloadURL";
+
+records = bmql("SELECT chave, valor FROM Parametros_Globais WHERE chave IN $chaves");
+
+parameterDict = dict("string");
+
+for record in records{
+	chave = get(record, "chave");
+	valor = get(record, "valor");
+
+	put(parameterDict, chave, valor);
+}
+
+payloadTemplateURL = get(parameterDict, "payloadTemplateURL");
+attrPayloadURL = get(parameterDict, "attrPayloadURL");
+childPayloadURL = get(parameterDict, "childPayloadURL");
+
+// Rec Item Properties
+part = String[1];
+quantity = String[1];
+price = String[1];
+selected = String[1];
+childpaths = String[1];
+childpaths[0] ="/configuration/configureResponse/spare/rule/item/part";
+childpaths[1] ="/configuration/configureResponse/spare/rule/item/quantity";
+childpaths[2] ="/configuration/configureResponse/spare/rule/item/price";
+childpaths[3] ="/configuration/configureResponse/spare/rule/item/selected";
+// Attribute Properties (Not all attributes may be necessary, depending on your specific requirements)
+attrVarName = String[1];
+attrLabel = String[1];
+attrValue = String[1];
+attrDataType = String[1];
+attrHidden = String[1];
+attrpaths = String[1];
+attrpaths[0] = "/configuration/configureResponse/attributes/attribute/@_variableName";
+attrpaths[1] = "/configuration/configureResponse/attributes/attribute/@label";
+attrpaths[2] = "/configuration/configureResponse/attributes/attribute/@dataType";
+attrpaths[3] = "/configuration/configureResponse/attributes/attribute/value";
+attrpaths[4] = "/configuration/configureResponse/attributes/attribute/@hiddenByRule";
+/*
+attrpaths[5] = "/configuration/configureResponse/attributes/attribute/@menuType";
+attrpaths[6] = "/configuration/configureResponse/attributes/attribute/@value_var_name";
+attrpaths[7] = "/configuration/configureResponse/attributes/attribute/@locked";
+attrpaths[8] = "/configuration/configureResponse/attributes/attribute/@isArrayAttr";
+*/
+// BOM Item Properties
+bomItem = String[1];
+bomItem[0] = "/configuration/configureResponse/bomItem";
+// Model/Price Properties
+models=string[1];
+configIdSearch=string[1];
+currpath = String[1];
+totalPrices=string[1];
+bomTotals=string[1];
+models[0]="/configuration/configureResponse/item/model";
+configIdSearch[0]="/configuration/configureResponse/item/@configurationId";
+currpath[0] ="/configuration/configureResponse/attributes/attribute[@_variableName='currencyCode']/value";
+totalPrices[0]="/configuration/configureResponse/price/totalPrice";
+bomTotals[0] = "/configuration/configureResponse/price/bomPrice";
+priceTotal=0.0;
+baseModelPrice = 0.0;
+recurringSubtotal = 0.0;
+// Extract data from configXML
+outputModel = readxmlsingle(configXML, models);
+outputConfigIds = readxmlsingle(configXML, configIdSearch);
+currXML = readxmlsingle(configXML, currpath);
+currency = get(currXML, currpath[0]);
+outputPrices = readxmlsingle(configXML, totalPrices);
+bomPrices = readxmlsingle(configXML, bomTotals);
+attributes = readxmlmultiple(configXML, attrpaths);
+output1 = readxmlmultiple(configXML, childpaths);
+payloadTemplate = urldatabyget(payloadTemplateURL, "", "");
+model1="";
+model1="";
+totalPrice1="";
+
+// Get Model data
+for model in models {
+	model1 = get(outputModel,model);
+}
+
+// Get Price data
+for totalPrice in totalPrices
+{
+	totalPrice1=get(outputPrices ,totalPrice);
+	//totalPrice0=replace(totalPrice1,",","");
+	totalPrice0=replace(totalPrice1,",","."); // CUSTOM OI
+	
+	//if (isnumber(substring(totalPrice0,1))) {
+	if (isnumber(substring(totalPrice0,2))) {
+		totalPrice2 = getcurrencyvalue(totalPrice1, currency);
+		print(totalPrice2);
+		priceTotal=priceTotal+totalPrice2;
+	}
+}
+baseModelPrice=priceTotal;
+// Add BOM total price
+if(containskey(bomPrices,bomTotals[0])) {
+	for bomPrice in bomTotals {
+		bomTotal = get(bomPrices, bomPrice);
+		//bomTotalReplace = replace(bomTotal,",",""); // CUSTOM OI
+		bomTotalReplace = replace(bomTotal,",",".");
+		print(bomTotalReplace);
+		//if (isnumber(substring(bomTotalReplace, 1))) {
+		if (isnumber(substring(bomTotalReplace, 2))) {
+			bomTotalPrice = getcurrencyvalue(bomTotal, currency);
+			priceTotal = bomTotalPrice + priceTotal;
+		}
+	}
+}
+// Get ConfigID
+configId = "";
+for id in configIdSearch {
+	configId = get(outputConfigIds, id);
+}
+
+// Get Attributes
+for attribute in attrpaths {
+	if (find (attribute , "_variableName") <> -1) {
+		attrVarName=get(attributes ,attribute);
+	} elif (find (attribute , "label")<> -1) {
+		attrLabel=get(attributes ,attribute);
+	} elif (find (attribute , "dataType")<> -1 ) {
+		attrDataType=get(attributes ,attribute);
+	} elif (find (attribute, "value")<> -1) {
+		attrValue=get(attributes ,attribute);
+	} elif (find (attribute, "hiddenByRule")<> -1) {
+		attrHidden=get(attributes ,attribute);
+	}
+}
+// Format Attributes payload
+attrSize = sizeofarray(attrVarName);
+attrSizeInt = integer[attrSize];
+attrList = "";
+i = 0;
+for attribute in attrSizeInt {
+	if (attrHidden[i] == "false" AND attrDataType[i] <> "HTML") {
+		attrPayloadTemplate = urldatabyget(attrPayloadURL, "","");
+		attrPayloadTemplate = replace(attrPayloadTemplate,"{{variableName}}",attrVarName[i]);
+		attrPayloadTemplate = replace(attrPayloadTemplate,"{{label}}",attrLabel[i]);
+		attrPayloadTemplate = replace(attrPayloadTemplate,"{{dataType}}",attrDataType[i]);
+		attrPayloadTemplate = replace(attrPayloadTemplate,"{{value}}",attrValue[i]);
+		
+		if (attrList == "") {
+			attrList = attrPayloadTemplate;
+		} else {
+			attrList = attrList + "," + attrPayloadTemplate;
+		}
+	}
+	i = i+1;
+}
+
+// Get Recommended Items
+for childpath in childpaths {
+	if (find (childpath , "part") <> -1) {
+		part=get(output1 ,childpath);
+	} elif (find (childpath , "quantity")<> -1) {
+		quantity=get(output1 ,childpath);
+	} elif (find (childpath , "price")<> -1 ) {
+		price=get(output1 ,childpath);
+	} elif (find (childpath, "selected")<> -1) {
+		selected=get(output1 ,childpath);
+	}
+}
+// Format Rec Items payload
+childItemList="";
+if (isnull(part)) {
+	print("No Recommended Items");
+} else {
+	childItems = sizeofarray(part);
+	childItemsInt = integer[childItems];
+	i = 0;
+	for childItem in childItemsInt {
+		if (selected[i] == "true") {
+			//recurring price from parts BMQL
+			part_num = part[i];
+			partCustomFields = bmql("SELECT part_number, custom_field5, custom_field4, custom_field6, custom_field8 FROM _parts WHERE part_number = $part_num");
+			childPayloadTemplate = urldatabyget(childPayloadURL, "", "");
+			childPayloadTemplate = replace(childPayloadTemplate,"{{quantity}}",quantity[i]);
+			childPayloadTemplate = replace(childPayloadTemplate,"{{part}}",part[i]);
+			/*/
+			for each in partCustomFields {
+				if (get(each, "custom_field8") == "Recurring") {
+					childPayloadTemplate = replace(childPayloadTemplate,"{{pricePeriod}}", get(each, "custom_field4"));
+					childPayloadTemplate = replace(childPayloadTemplate,"{{recurringPrice}}",get(each, "custom_field5"));
+					childPayloadTemplate = replace(childPayloadTemplate,"{{duration}}",get(each, "custom_field6"));//recurringSubtotal = recurringSubtotal + get(each, "custom_field5");
+				} else {
+					//childPayloadTemplate = replace(childPayloadTemplate,"{{pricePeriod}}", "One Time");
+					//childPayloadTemplate = replace(childPayloadTemplate,"{{recurringPrice}}","0");
+					//childPayloadTemplate = replace(childPayloadTemplate,"{{duration}}","0");
+				}
+			}
+			*/
+			//remove region specific formatting for price
+			//sPrice0 = substring(price[i], 1);
+			//sPrice0 = replace(sPrice0,",",""); // CUSTOM OI
+			
+			sPrice0 = substring(price[i], 2);
+			sPrice0 = replace(sPrice0,",",".");
+			print(sPrice0);
+			if (isnumber(sPrice0)) {
+				priceTotal = priceTotal + atof(sPrice0);
+				childPayloadTemplate = replace(childPayloadTemplate,"{{price}}",sPrice0);
+			} else {
+				childPayloadTemplate = replace(childPayloadTemplate,"{{price}}","0");
+			}
+			if (childItemList == "") {
+				childItemList = childPayloadTemplate;
+			} else {
+				childItemList = childItemList+","+childPayloadTemplate;
+			}
+		}
+		i=i+1;
+	}
+}
+// Get the BOM Items
+bomItemXMLDict = readxmlsingle(configXML, bomItem);
+bomItemString = get(bomItemXMLDict, "/configuration/configureResponse/bomItem");
+if(isnull(bomItemString)) {
+	bomItemString = "";
+	payloadTemplate = replace(payloadTemplate,"{{BomItems}}", bomItemString);
+} else {
+	// Get part numbers for each BOM item, convert to string array for bmql
+	bomJson = json(bomItemString);
+	// Remove extraneous BOM fields (may have to revert if CC was expecting to use them)
+	jsonpathremove(bomJson, "$..variableName");
+	jsonpathremove(bomJson, "$..definition");
+	jsonpathremove(bomJson, "$..category");
+	// Replacing all 0 prices with actual number 0
+	bomPriceArray = jsonpathgetmultiple(bomJson, "$.._price_unit_price_each");
+	replace_lookup = boolean[];
+	bomPricesString = jsonarraytostr(bomPriceArray);
+	bomPricesString = replace( replace( replace(bomPricesString, "\"", "") , "[", "") ,	"]", "");
+	bomPricesStringArray = split(bomPricesString, ",");
+	i = 0;
+	for each in bomPricesStringArray {
+		append(replace_lookup, isnumber(each));
+		i = i+1;
+	}
+	i = 0;
+	for each in replace_lookup {
+		if (i == 0 and each == false) {
+			jsonpathset(bomJson, "$.fields._price_unit_price_each", "0");
+		} elif (each == false) {
+			str = "$.children[" + string(i-1) + "].fields._price_unit_price_each";
+			jsonpathset(bomJson, str, "0");
+		}
+		i = i + 1;
+	}
+	bomItemString = jsontostr(bomJson);
+	bomPartsArray = jsonpathgetmultiple(bomJson, "$..partNumber");
+	bomPartsString = jsonarraytostr(bomPartsArray);
+	bomPartsString = replace( replace( replace(bomPartsString, "\"", "") , "[", "") , "]", "");
+	bomPartsStringArray = split(bomPartsString, ",");
+	bomParts = bmql("SELECT part_number, custom_field5, custom_field4, custom_field6, custom_field8 FROM _parts WHERE part_number IN $bomPartsStringArray");
+	// Get path for each part, add recurringCharge to them all
+	for each in bomParts {
+		//partField = "\"partNumber\":\"" + get(each, "part_number") + "\",";
+		partField = "\"partNumber\":\"" + get(each, "part_number") + "\"";
+		/*
+		recurringTemplate = "\"recurringCharge\":{\"amount\":,\"frequency\":,\"duration\":},";
+		
+		if (get(each, "custom_field8") == "Recurring") {
+			recurringTemplate = replace(recurringTemplate,"frequency\":", "frequency\":\"" + get(each, "custom_field4") + "\"");
+			recurringTemplate = replace(recurringTemplate,"amount\":", "amount\":\"" + get(each, "custom_field5") + "\"");
+			recurringTemplate = replace(recurringTemplate,"duration\":", "duration\":\"" + get(each, "custom_field6") + "\"");
+			//recurringSubtotal = recurringSubtotal + get(each, "custom_field5");
+		} else {
+			recurringTemplate = replace(recurringTemplate,"frequency\":", "frequency\":\"One Time\"");
+			recurringTemplate =	replace(recurringTemplate,"amount\":","amount\":\"0\"");
+			recurringTemplate =	replace(recurringTemplate,"duration\":","duration\":\"0\"");
+		}
+		*/
+		//bomItemString = replace(bomItemString, partField, partField + recurringTemplate);
+		bomItemString = replace(bomItemString, partField, partField);
+	}
+	// Unflatten
+	bomItemString = replace(bomItemString, "\"partNumber\":", "\"catalogRefId\":");
+	bomItemString = replace(bomItemString, "On Request", "0"); // This may only fix English users
+	bomJson = convertbomtohier(json(bomItemString));
+	payloadTemplate = replace(payloadTemplate,"{{BomItems}}", jsontostr(bomJson));
+}
+
+print(priceTotal);
+
+// Format main template with subcomponents and properties
+payloadTemplate = replace(payloadTemplate, "{{commerceItemId}}", "");
+payloadTemplate = replace(payloadTemplate,"{{ConfigId}}", configId);
+payloadTemplate = replace(payloadTemplate,"{{model}}", model1);
+payloadTemplate = replace(payloadTemplate,"{{totalPrice}}", string(priceTotal));
+payloadTemplate = replace(payloadTemplate,"{{basePrice}}", string(baseModelPrice));
+payloadTemplate = replace(payloadTemplate,"{{currency}}", currency);
+payloadTemplate = replace(payloadTemplate,"{{attributes}}", attrList);
+payloadTemplate = replace(payloadTemplate, "{{ChildItems}}", childItemList);
+return payloadTemplate;

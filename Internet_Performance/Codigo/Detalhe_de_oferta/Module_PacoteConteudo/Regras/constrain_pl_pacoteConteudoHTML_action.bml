@@ -1,0 +1,24 @@
+records = bmql("SELECT Regiao, Tipo, Chave_Vel FROM I_atrib_2PBL WHERE SKU_Combo=$f_ofertaSelecionada");
+
+regiao = "";
+tipo = "";
+vel = "";
+
+for record in records{
+	regiao = get(record, "Regiao");
+	tipo = get(record, "Tipo");
+    vel = get(record, "Chave_Vel");
+}
+
+
+records = bmql("SELECT DISTINCT Chave_Conteudo FROM I_atrib_2PBL WHERE Regiao=$regiao AND Tipo=$tipo AND Chave_Vel=$vel");
+
+retArray = string[1];
+retArray[0] = "";
+
+for record in records{
+	allowedVel = get(record, "Chave_Conteudo");
+	append(retArray , allowedVel );
+}
+
+return join(retArray, "|^|");

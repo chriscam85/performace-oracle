@@ -1,0 +1,7 @@
+qtd = atoi(pl_dependentes);
+
+
+ret = util.pos_calcularDependentes(f_ofertaSelecionada, qtd);
+
+
+return join(ret,"|^|");

@@ -1,0 +1,115 @@
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta charset="utf-8">
+    <title>HTML 2 BML</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <p>HTML</p>
+    <textarea id="htmlInput"></textarea>
+
+    <button id="convertButton">HTML to BML</button>
+    <button id="convertBackButton">BML to HTML</button>
+    <button id="clearButton">Clear</button>
+
+    <p>BML</p>
+    <textarea id="result"></textarea>
+</body>
+
+<style>
+    #htmlInput,
+    #result {
+        width: 100%;
+        height: 300px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#clearButton").click(function () {
+            $('#htmlInput').val("");
+            $('#result').val("");
+        });
+
+        $("#convertButton").click(function () {
+            ret = "";
+
+            var lines = $('#htmlInput').val().split('\n');
+
+            $.each(lines, function () {
+
+                treatedLine = this;
+                //treatedLine = $.trim(treatedLine);
+
+                treatedLine = treatedLine.replace(/\"/g, "'");
+
+                treatedLine = treatedLine.replace(/\{(.*?)\}/g, function (match, token) {
+                    var matchTreated = match.replace(/\}/g, "");
+                    matchTreated = matchTreated.replace(/\{/g, "");
+                    return "\"," + matchTreated + ",\"";
+                });
+
+                if (treatedLine.length > 0) {
+                    ret += "\nsbappend(html, \"" + treatedLine + "\");";
+                } else {
+                    ret += "\n";
+                }
+
+            });
+
+            $('#result').val(ret);
+        });
+
+        $("#convertBackButton").click(function () {
+            ret = "";
+
+            var lines = $('#result').val().split('\n');
+
+            $.each(lines, function () {
+
+                treatedLine = this;
+                //treatedLine = $.trim(treatedLine);
+
+                if (treatedLine.includes("sbappend(html,")) {
+                    // remove nsbappend
+                    treatedLine = treatedLine.replace("sbappend(html, \"", "");
+                    treatedLine = treatedLine.replace("\");", "");
+
+
+                    treatedLine = treatedLine.replace(/\",(.*?)\,"/g, function (match, token) {
+                        var matchTreated = match.replace(/\,"/g, "}");
+                        matchTreated = matchTreated.replace(/\",/g, "{");
+                        return matchTreated;
+                    });
+
+                    //treatedLine = treatedLine.replace(/\'/g, "\"");
+
+
+                    if (treatedLine.length > 0) {
+                        ret += treatedLine + "\n";
+                    } else {
+                        ret += "\n";
+                    }
+                }
+
+
+
+            });
+
+            $('#htmlInput').val(ret);
+
+
+        });
+
+    });
+</script>
+
+</html>

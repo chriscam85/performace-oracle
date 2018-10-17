@@ -1,0 +1,12 @@
+allowed = util.pos_calcularConteudos(f_ofertaSelecionada, true);
+
+retArray = string[0];
+
+for item in allowed{
+	itemArray = split(item, "~");
+	itemArray[3] = "0.0";
+	append(retArray, join(itemArray, "~"));
+}
+
+return join(retArray,"|^|");
+

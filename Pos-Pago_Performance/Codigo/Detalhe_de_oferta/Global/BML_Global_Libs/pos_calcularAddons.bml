@@ -1,0 +1,23 @@
+ret = "";
+
+retArray = string[0];
+
+selected = split(selectedAddonsList, "~");
+
+records = bmql("SELECT SKU,Preco FROM pos_atribConteudo WHERE SKU in $selected ");
+//print(records);
+
+for record in records{
+	addon = get(record,"SKU");
+	price = getFloat(record,"Preco");
+	
+	addonArray = string[0];
+	append(addonArray , addon);
+	append(addonArray , "1");
+	append(addonArray , "");
+	append(addonArray , string(price));
+	
+	append(retArray , join(addonArray , "~"));
+}
+
+return retArray ;

@@ -1,0 +1,19 @@
+chaves = string[4];
+chaves[0] = "urlOCCIntegracao1";
+chaves[1] = "urlOCCIntegracao2";
+chaves[2] = "urlOCCIntegracao3";
+chaves[3] = "urlOCCIntegracao4";
+
+records = bmql("SELECT valor FROM Parametros_Globais WHERE chave IN $chaves");
+
+urls  = string[0];
+
+for record in records{
+	valor = get(record, "valor");
+
+	append(urls, valor);
+}
+
+ret = join(urls, "|");
+
+return ret;

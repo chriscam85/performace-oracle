@@ -1,0 +1,15 @@
+records = bmql("SELECT Max_dependentes FROM pos_atributosOfert WHERE SKU=$f_ofertaSelecionada");
+
+print(records);
+
+
+for record in records{
+	maxDeps = getint(record,"Max_dependentes");
+	
+	if (maxDeps == 0){
+		return false;
+	}
+	
+}
+
+return true;

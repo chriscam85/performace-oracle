@@ -1,0 +1,261 @@
+svaSKUs = util.pos_calcularSVAs(f_ofertaSelecionada, true);
+
+skuArray = string[0];
+
+for sva in svaSKUs {
+	item = split(sva,"~");
+	append(skuArray, item [0]);
+}
+
+records = bmql("SELECT SKU, Nome_comercial, Nome_Sub_Comercial, Descricao,Descricao2,Descricao3,Descricao4, URL_Web, URL_GooglePlay, URL_AppStore, URL_Imagem, URL_ImagenDesktop, URL_ImagenDesktop1, URL_ImagenDesktop2 FROM pos_atributosSVA WHERE SKU in $skuArray ORDER BY Ordem");
+
+//print(records);
+
+svaSkus = string[0];
+svas = string[0];
+descs = string[0];
+urlImagem = string[0];
+urlImagemDesk = string[0];
+urlImagemDesk1 = string[0];
+urlImagemDesk2 = string[0];
+urlGoogle = string[0];
+urlAppStore = string[0];
+urlWeb = string[0]; 
+subtit = string[0]; 
+
+for record in records{
+	append(svaSkus,get(record,"SKU"));
+	append(svas,get(record,"Nome_comercial"));
+	append(urlImagem,get(record,"URL_Imagem"));
+	append(urlGoogle,get(record,"URL_GooglePlay"));
+	append(urlAppStore,get(record,"URL_AppStore"));
+	append(urlWeb,get(record,"URL_Web"));
+	append(subtit,get(record,"Nome_Sub_Comercial"));
+	append(urlImagemDesk,get(record,"URL_ImagenDesktop"));
+	append(urlImagemDesk1,get(record,"URL_ImagenDesktop1"));
+	append(urlImagemDesk2,get(record,"URL_ImagenDesktop2"));
+
+	descArray = string[4];
+	descArray[0] = get(record,"Descricao");
+	descArray[1] = get(record,"Descricao2");
+	descArray[2] = get(record,"Descricao3");
+	descArray[3] = get(record,"Descricao4");
+	
+	descComplete = "";
+	for descTemp in descArray{
+		if (not isnull(descTemp)){
+			descComplete = descComplete + descTemp ;
+		}
+	}
+	
+	append(descs,descComplete);
+	
+}
+
+//print(urlGoogle);
+//print(urlAppStore);
+
+html = stringbuilder();
+
+sbappend(html, "<div id='sva_container'>");
+
+sbappend(html, "<div id='sva_list'>");
+
+sbappend(html, "<div class='sva_nav'>");
+
+sbappend(html, "<ul class='nav nav-tabs' role='tablist'>");
+
+i = 0;
+for sva in svas{
+	sbappend(html, "<li class='nav-item'>");
+	
+	class="nav-link";
+	if (i == 0){
+		class="nav-link active";
+	}
+	
+	sbappend(html, "<a id='",svaSkus[i],"-tab' class='",class,"' data-toggle='tab' href='#",svaSkus[i],"' role='tab' aria-controls='",svaSkus[i],"' aria-selected='true' href='#'><p class='oi-sub-text-small oi-color-light'>",sva,"</p></a>");
+	sbappend(html, "</li>");
+	
+	i = i + 1;
+}
+sbappend(html, "</ul>");
+
+sbappend(html, "</div>");
+
+sbappend(html, "<div class='tab-content' id='sva-TabContent'>");
+
+i = 0;
+for desc in descs{
+	
+	if (i == 0){
+		sbappend(html, "<div class='tab-pane fade show active' id='",svaSkus[i],"' role='tabpanel' aria-labelledby='",svaSkus[i],"-tab'>");
+	}else{
+		sbappend(html, "<div class='tab-pane fade show' id='",svaSkus[i],"' role='tabpanel' aria-labelledby='",svaSkus[i],"-tab'>");
+	}
+
+	sbappend(html, "<div class='row'>");
+
+	sbappend(html, "<div class='sva-desc col-md-6'>");
+	
+	sbappend(html, "<div class='subtitApps'>");
+		sbappend(html, "<img class='lazy' data-src='",urlImagem[i], "'>");
+		sbappend(html, "<p class='oi-desc-textBig'>",subtit[i],"</p>");
+	sbappend(html, "</div>");
+
+	sbappend(html, "<p class='oi-desc-text'>",desc,"</p>");
+
+
+
+//ACA EMPIEZA LA PARTE DESKTOP DOWNLOAD
+	hasAppStore = len(urlAppStore[i])>0;
+	hasGooglePlay = len(urlGoogle[i])>0;
+	hasWeb = len(urlWeb[i])>0;
+
+	if (hasAppStore OR hasGooglePlay OR hasWeb)
+	{
+		sbappend(html, "<div class='sva-download'>");
+
+		if (hasWeb){
+
+			if (hasGooglePlay OR hasAppStore){
+				sbappend(html, "<p class='oi-sub-text-sm'><a target='_blank' href='", urlWeb[i], "'>Acesse agora</a> ou baixe o app</p>");
+			}else{
+				sbappend(html, "<p class='oi-sub-text-sm'><a target='_blank' href='", urlWeb[i], "'>Acesse agora.</a></p>");
+			}
+		}else{
+			sbappend(html, "<p class='oi-sub-text-sm'>Baixe o app.</p>");
+		}
+		
+		sbappend(html, "<div class='sva-stores'>");
+
+		if (hasGooglePlay){
+			sbappend(html, "<a href='",urlGoogle[i],"' target='_blank'>");
+			sbappend(html, "<img class='lazy' alt='' data-src='$BASE_PATH$/oi_imagens/bt-google-play.png'>");
+			sbappend(html, "</a>");
+		}
+		if (hasAppStore){
+			sbappend(html, "<a href='",urlAppStore[i],"' target='_blank'>");
+			sbappend(html, "<img class='lazy' alt='' data-src='$BASE_PATH$/oi_imagens/bt-app-store.png'>");
+			sbappend(html, "</a>");
+		}
+		
+		sbappend(html, "</div>");
+		sbappend(html, "</div>");
+	}
+// ACA TERMINA LA PARTE DESKTOP DOWNLOAD
+
+
+	sbappend(html, "</div>");
+
+	sbappend(html, "<div class='sva-img col-md-6'>");
+	sbappend(html, "<img class='lazy imgDeskFirst col-lg-7 col-xl-10' data-src='",urlImagemDesk[i], "'>");
+	sbappend(html, "<img class='lazy imgDeskLatFirst d-none d-lg-block d-xl-none d-none d-xl-block col-lg-3 col-xl-4' data-src='",urlImagemDesk1[i], "'>");
+	sbappend(html, "<img class='lazy imgDeskLatSecond d-none d-lg-block d-xl-none d-none d-xl-block col-lg-3 col-xl-4' data-src='",urlImagemDesk2[i], "'>");
+	sbappend(html, "</div>");
+
+
+	sbappend(html, "</div>");
+
+	sbappend(html, "</div>");
+	
+	i = i + 1;
+}
+sbappend(html, "</div>");
+
+sbappend(html, "</div>");
+
+// ===============================
+// MOBILE
+// ===============================
+
+sbappend(html, "<div class='accordion' id='sva_list-mobile'>");
+
+i = 0;
+for desc in descs{
+
+	sbappend(html, "<div class='card'>");
+
+	sbappend(html, "<div class='card-header' id='",svaSkus[i],"-heading'>");
+	
+	if (i == 0){
+		sbappend(html, "<a class='btn btn-link  oi-sectionDesc-text oi-color-normal' data-toggle='collapse' data-target='#",svaSkus[i],"-card' aria-expanded='false' aria-controls='",svaSkus[i],"-card'>");
+	}else{
+		sbappend(html, "<a class='btn btn-link  oi-sectionDesc-text oi-color-normal' data-toggle='collapse' data-target='#",svaSkus[i],"-card' aria-expanded='false' aria-controls='",svaSkus[i],"-card'>");
+	}
+
+	sbappend(html, "<img class='lazy' alt='' data-src='",urlImagem[i],"'>");
+	sbappend(html, "<h3 class='oi-sectionDesc-text oi-color-normal'>",svas[i],"</h3>");
+	sbappend(html, "</a>");
+
+	sbappend(html, "</div>");
+
+	if (i == 0){
+		sbappend(html, "<div id='",svaSkus[i],"-card' class='collapse' aria-labelledby='",svaSkus[i],"-heading' data-parent='#sva_list-mobile'>");
+	}else{
+		sbappend(html, "<div id='",svaSkus[i],"-card' class='collapse' aria-labelledby='",svaSkus[i],"-heading' data-parent='#sva_list-mobile'>");
+	}
+	sbappend(html, "<div class='card-body oi-desc-text'>");
+	sbappend(html, "<div class='sva-CardBody'>");
+	sbappend(html, desc);
+	sbappend(html, "</div>");
+
+	hasAppStore = len(urlAppStore[i])>0;
+	hasGooglePlay = len(urlGoogle[i])>0;
+	hasWeb = len(urlWeb[i])>0;
+
+// LOGICA DE QUE SI APARECE O NO APARECE EL BOTON DE DESCARGAR
+	if (hasAppStore OR hasGooglePlay OR hasWeb)
+	{
+		sbappend(html, "<div class='sva-download'>");
+
+		if (hasWeb){
+
+			if (hasGooglePlay OR hasAppStore){
+				sbappend(html, "<p class='oi-desc-text'><a target='_blank' href='", urlWeb[i], "'>Acesse agora</a> ou baixe o app</p>");
+			}else{
+				sbappend(html, "<p class='oi-desc-text'><a target='_blank' href='", urlWeb[i], "'>Acesse agora.</a></p>");
+			}
+		}else{
+			sbappend(html, "<p class='oi-sub-text-sm'>Baixe o app.</p>");
+		}
+		
+		sbappend(html, "<div class='sva-stores'>");
+
+		if (hasGooglePlay){
+			sbappend(html, "<a href='",urlGoogle[i],"' target='_blank'>");
+			sbappend(html, "<img class='lazy' alt='' data-src='$BASE_PATH$/oi_imagens/bt-google-play.png'>");
+			sbappend(html, "</a>");
+		}
+		if (hasAppStore){
+			sbappend(html, "<a href='",urlAppStore[i],"' target='_blank'>");
+			sbappend(html, "<img class='lazy' alt='' data-src='$BASE_PATH$/oi_imagens/bt-app-store.png'>");
+			sbappend(html, "</a>");
+		}
+		
+		sbappend(html, "</div>");
+		sbappend(html, "</div>");
+	}
+// FIN LOGICA
+	
+
+	sbappend(html, "</div>");
+
+	sbappend(html, "</div>");
+
+	sbappend(html, "</div>");
+
+	i = i + 1;
+}
+
+
+sbappend(html, "</div>");
+
+// ===============================
+// END MOBILE
+// ===============================
+
+
+sbappend(html, "</div>");
+
+return sbtostring(html);

@@ -1,0 +1,251 @@
+// ================= Oferta =================
+offerData = "";
+selectedOfferPrice = 0.0;
+
+
+// ================= Todas as Ofertas  =================
+
+records = bmql("SELECT SKU_Combo, Velocidade_BL, Preco_Oi_Total FROM I_atrib_2PBL WHERE Regiao=$f_regiao AND Mostrar_Selecao='S'");
+print(records );
+
+allOffersSKU = string[0];
+allOffersData = string[0];
+allOffersPrice = string[0];
+
+for record in records{
+	sku = get(record, "SKU_Combo");
+	append(allOffersSKU, sku);
+	data = get(record, "Velocidade_BL");
+	append(allOffersData, data);
+	offerPrice =  getFloat(record, "Preco_Oi_Total");
+
+	offerPriceLabel = formatascurrency(offerPrice, "BRL");
+	offerPriceLabel = replace(offerPriceLabel,"R$","");
+
+	if (sku == f_ofertaSelecionada){
+		offerData = data;
+		selectedOfferPrice = offerPrice;
+	}
+
+	append(allOffersPrice, offerPriceLabel);
+}
+
+// ================= Addons =================
+priceAddons = 0.0;
+
+records = bmql("SELECT Preco_conteudo FROM I_atrib_2PBL WHERE SKU_Combo=$f_ofertaSelecionada");
+
+for record in records{
+	priceAddons = getFloat(record , "Preco_conteudo");
+}
+
+priceAddonsLabel = "Incluso";
+
+if (priceAddons > 0){
+	priceAddonsLabel = formatascurrency(priceAddons, "BRL");
+	priceAddonsLabel = replace(priceAddonsLabel,"R$","");
+}
+
+
+// ================= Price =================
+totalPrice = selectedOfferPrice + priceAddons;
+
+totalPriceInteger =  integer(totalPrice);
+totalPriceDecimal = (totalPrice - totalPriceInteger) * 100;
+totalPriceDecimalLabel = string(integer(totalPriceDecimal));
+
+if (totalPriceDecimal < 10){
+	totalPriceDecimalLabel = "0" + totalPriceDecimalLabel;
+}
+
+selectedOfferPriceLabel = formatascurrency(selectedOfferPrice, "BRL");
+selectedOfferPriceLabel = replace(selectedOfferPriceLabel,"R$","");
+
+
+
+
+
+
+
+// ================= Build HTML =================
+html = stringbuilder();
+
+
+sbappend(html , "<nav  id='modernCPQCart' class='navbar navbar-expand-lg'>");
+
+// menu button
+sbappend(html , "<button id='modernCPQCart-OpenButton' class='row modernCPQCart-toggler' type='button'>");
+sbappend(html , "<div class='selectedPlanHeader col-md-5 col-12'>");
+sbappend(html , "<h1 class='oi-section-text-head-gradient oi-color-background-gradient'>", offerData,"</h1>");
+sbappend(html , "</div>");
+
+// desktop
+sbappend(html, "<div class='modernCPQCart-desktopBar col-md-3'>");
+
+// ================= Addons =================
+sbappend(html, "<div class='modernCPQCart-desktopItem'>");
+sbappend(html, "<h2 class='sectionDesc oi-sub-text oi-color-light'>Conteúdo digital em vídeo</h2>");
+
+sbappend(html, "<a class='addCanais sectionSubDesc oi-smoothScroll oi-sub-text-big oi-color-normal' href='#attribute-pl_labelAddonsHTML'>Plano ",pl_pacoteConteudo,"</a>");
+
+sbappend(html, "</div>");
+
+
+sbappend(html, "</div>");
+
+
+
+sbappend(html, "<div class='priceSection col-md-4'>");
+sbappend(html, "<div class='priceText'>");
+sbappend(html, "<div class='cartPriceBigLabel'>");
+sbappend(html, "<p class='cartPriceLabel priceReais oi-section-text-head oi-color-normal'>R$</p>");
+sbappend(html, "<h1 class='cartPriceLabel priceInteger oi-section-text-head oi-color-normal'>",string(totalPriceInteger),"</h1>");
+sbappend(html, "</div>");
+sbappend(html, "<div class='cartPriceSmallLabel'>");
+sbappend(html, "<h2 class='cartPriceLabel priceDecimal oi-section-text-head oi-color-normal'>", "," ,totalPriceDecimalLabel,"</h2>");
+sbappend(html, "<p class='cartPriceLabel priceMonth oi-section-text-head oi-color-normal'>/MÊS</p>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+sbappend(html , "</button>");
+
+
+sbappend(html , "</nav>");
+
+
+// =====================OVERLAY==========================
+sbappend(html, "<div id='modernCPQCart-Overlay'>");
+
+
+// --------- header ---------
+sbappend(html, "<div class='overlayHeader'>");
+
+// close overlay button
+sbappend(html, "<button id='modernCPQCart-OverlayClose' type='button'>");
+sbappend(html, "<img class='lazy' alt='' data-src='$BASE_PATH$/oi_imagens/icon-fechar-cinza.png'>");
+sbappend(html, "</button>");
+
+// offer data button
+sbappend(html, "<button id='modernCPQCart-OverlayPlansButton' class='modernCPQCart-toggler plans-collapsed' type='button'>");
+sbappend(html, "<h1 class='oi-section-text-head-gradient oi-color-background-gradient'>",offerData,"</h1>");
+//sbappend(html, "<p class='oi-sub-text-small oi-color-light'>",offerBonus,"</p>");
+sbappend(html, "</button>");
+
+sbappend(html, "<p class='selectedOfferPrice oi-sub-text-big oi-color-normal'>R$ ",selectedOfferPriceLabel,"/mês</p>");
+
+sbappend(html, "</div>");
+
+// --------- content ---------
+sbappend(html, "<div class='overlayContent'>");
+
+// --------- offers ---------
+sbappend(html, "<div class='plansSection plans-collapsed'>");
+sbappend(html, "<div class='plansList'>");
+
+i = 0;
+for offerSKU in allOffersSKU{
+
+	sbappend(html, "<div>");
+
+	if (offerSKU == f_ofertaSelecionada){
+		sbappend(html, "<button class='planButton offerSelected' offer='",offerSKU,"' type='button'>");
+	}else{
+		
+		sbappend(html, "<button class='planButton' offer='",offerSKU,"' type='button'>");
+	}
+	
+	sbappend(html, "<h1 class='priceReais sectionDesc oi-color-normal oi-section-text-head'>",allOffersData[i],"</h1>");
+	sbappend(html, "<p class='oi-sub-text-small sectionsubDesc oi-color-light oi-sub-text-small'>R$ ",allOffersPrice[i],"/mês</p>");
+	sbappend(html, "</button>");
+	sbappend(html, "</div>");
+
+	i = i + 1;
+}
+
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+// --------- extras ---------
+sbappend(html, "<div class='overlaySection'>");
+
+
+// --------- addons ---------
+sbappend(html, "<div class='overlayContentSection'>");
+
+sbappend(html, "<h1 class='sectionDesc oi-sub-text-small oi-color-light'>Conteúdo digital em vídeo</h1>");
+sbappend(html, "<ul class='sectionList'>");
+
+
+sbappend(html, "<li class='sectionListItem'>");
+sbappend(html, "<a href='#attribute-pl_labelAddonsHTML' class='sectionsubItem oi-smoothScroll oi-sub-text-big oi-color-normal'>",pl_pacoteConteudo,"</a>");
+sbappend(html, "<p class='sectionsubPrice oi-sub-text-big oi-color-normal'>R$ ",priceAddonsLabel,"/mês</p>");
+sbappend(html, "</li>");
+
+
+sbappend(html, "</ul>");
+sbappend(html, "</div>");
+
+
+sbappend(html, "</div>");
+
+sbappend(html, "</div>");
+
+// --------- footer ---------
+sbappend(html, "<div class='overlayFooter'>");
+
+// --------- price label ---------
+sbappend(html, "<div class='footerPriceSection'>");
+sbappend(html, "<div class='priceSectionLabel oi-sub-text-big oi-color-normal'>");
+sbappend(html, "Total");
+sbappend(html, "</div>");
+
+// --------- price ---------
+sbappend(html, "<div class='priceSection'>");
+sbappend(html, "<div class='priceText'>");
+sbappend(html, "<div class='cartPriceBigLabel'>");
+sbappend(html, "<p class='cartPriceLabel priceReais oi-section-text-head oi-color-normal'>R$</p>");
+sbappend(html, "<h1 class='cartPriceLabel priceInteger oi-section-text-head oi-color-normal'>",string(totalPriceInteger),"</h1>");
+sbappend(html, "</div>");
+sbappend(html, "<div class='cartPriceSmallLabel'>");
+sbappend(html, "<h2 class='cartPriceLabel priceDecimal oi-section-text-head oi-color-normal'>",totalPriceDecimalLabel,"</h2>");
+sbappend(html, "<p class='cartPriceLabel priceMonth oi-section-text-head oi-color-normal'>/MÊS</p>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+sbappend(html, "</div>");
+
+
+sbappend(html, "</div>");
+
+// ---------  change plan dialog ---------
+sbappend(html, "<div class='offerDialog-overlayMask'>");
+sbappend(html, "</div>");
+
+sbappend(html, "<div class='offerDialog-Container'>");
+sbappend(html, "<div id='offerDialog'>");
+sbappend(html, "<div class='offerDialog-Text'>");
+sbappend(html, "<h1 class='oi-sub-text-big oi-color-normal'>Deseja mesmo trocar de plano?</h1>");
+sbappend(html, "<p class='oi-sub-text oi-color-light'>Você vai precisar configurar suas preferências novamente.</p>");
+sbappend(html, "</div>");
+
+sbappend(html, "<div class='offerDialog-ButtonContainer'>");
+
+sbappend(html, "<div class='offerDialog-Button'>");
+sbappend(html, "<button id='offerDialog-Close' class='oi-desc-text oi-color-background-gradient' type='button'>");
+sbappend(html, "Cancelar");
+sbappend(html, "</button>");
+sbappend(html, "</div>");
+sbappend(html, "<div class='offerDialog-Button'>");
+sbappend(html, "<button id='offerDialog-Change' class='oi-desc-text oi-color-background-gradient' type='button'>");
+sbappend(html, "Trocar de plano");
+sbappend(html, "</button>");
+sbappend(html, "</div>");
+sbappend(html, "</div>");
+
+sbappend(html, "</div>");
+
+sbappend(html, "</div>");
+
+return sbtostring(html);

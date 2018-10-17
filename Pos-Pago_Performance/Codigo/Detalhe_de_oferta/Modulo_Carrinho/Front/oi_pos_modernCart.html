@@ -1,0 +1,171 @@
+<nav id='modernCPQCart' class='navbar'>
+
+    <!--
+    <div class='navbar-brand'>
+        <img src='$BASE_PATH$/oi_pos_imagens/iconeCelular.png' class='d-inline-block align-top' alt=''>
+    </div>
+    -->
+
+    <button id='modernCPQCart-OpenButton' class='modernCPQCart-toggler' type='button'>
+        <div class="selectedPlanHeader">
+            <h1 class='oi-section-text-head-gradient oi-color-background-gradient'>{offerData} GB</h1>
+        </div>
+
+        <div class='modernCPQCart-desktopBar'>
+            <!-- ================= Dependentes ================= -->
+            <div class='modernCPQCart-desktopItem'>
+                <h2 class='sectionDesc oi-sub-text oi-color-light'>Compartilhe seu plano</h2>
+                <!-- se nenhum dep -->
+                <a class='sectionSubDesc oi-smoothScroll oi-sub-text-big oi-color-normal' href='#attribute-pl_tituloDependentesHTML'>Adicione dependentes</a>
+                <!-- se deps -->
+                <a class='sectionSubDesc oi-smoothScroll oi-sub-text-big oi-color-normal' href='#attribute-pl_tituloDependentesHTML'>{addedDepLabel}</a>
+            </div>
+    
+            <!-- ================= Addons ================= -->
+            <div class='modernCPQCart-desktopItem'>
+                <h2 class='sectionDesc oi-sub-text oi-color-light'>Conteúdo digital em vídeo</h2>
+                <!-- se nenhum addons -->
+                <a class='sectionSubDesc oi-smoothScroll oi-sub-text-big oi-color-normal' href='#attribute-pl_tituloAddonsHTML'>Adicione canais especiais</a>
+                 <!-- se 1 ou 2 addons -->
+                <a class='sectionSubDesc oi-smoothScroll oi-sub-text-big oi-color-normal' href='#attribute-pl_tituloAddonsHTML'>{addedAddonLabel}</a>
+                 <!-- se mais de 2 addons -->
+                <a class='sectionSubDesc oi-smoothScroll oi-sub-text-big oi-color-normal' href='#attribute-pl_tituloAddonsHTML'>{addonCount} Canais especiais</a>
+            </div>
+        </div>
+        
+        <div class='priceSection'>
+            <div class='priceText'>
+                <div class='cartPriceBigLabel'>
+                    <p class='cartPriceLabel priceReais oi-section-text-head oi-color-normal'>R$</p>
+                    <h1 class='cartPriceLabel priceInteger oi-section-text-head oi-color-normal'>{string(totalPriceInteger)}</h1>
+                </div>
+                <div class='cartPriceSmallLabel'>
+                    <h2 class='cartPriceLabel priceDecimal oi-section-text-head oi-color-normal'>{totalPriceDecimalLabel}</h2>
+                    <p class='cartPriceLabel priceMonth oi-section-text-head oi-color-normal'>/MÊS</p>
+                </div>
+            </div>
+        </div>
+    </button>
+
+</nav>
+
+
+<!-- ================= Overlay ================= -->
+
+<div id="modernCPQCart-Overlay">
+
+    <div class="overlayHeader">
+
+        <button id="modernCPQCart-OverlayClose" type='button'>
+            <img class='lazy' alt='' data-src='$BASE_PATH$/oi_imagens/icon-fechar-cinza.png'>
+        </button>
+
+        <button id="modernCPQCart-OverlayPlansButton" class='modernCPQCart-toggler plans-collapsed' type='button'>
+            <h1 class='oi-section-text-head-gradient oi-color-background-gradient'>{offerData} GB</h1>
+            <p class='oi-sub-text-small oi-color-light'>{offerBonus}</p>
+        </button>
+
+        <p class='selectedOfferPrice oi-sub-text-big oi-color-normal'>R${string(totalPriceInteger)},{totalPriceDecimalLabel}/mês</p>
+
+    </div>
+
+
+
+    <div class="overlayContent">
+
+        <div class='overlaySection'>
+
+            <!-- ================= Plans ================= -->
+            <div class="plansSection plans-collapsed">
+                <div class='plansList'>
+                    <div class='offerSelected'>
+                        <button class="planButton" offer="{offerSKU}" type='button'>
+                            <h1 class='sectionDesc oi-color-normal oi-section-text-head'>{dadosPlano} GB</h1>
+                            <p class='sectionsubDesc oi-color-light oi-sub-text-small'>R${precoPlano}/mês</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= Dependentes ================= -->
+            <div class='overlayContentSection'>
+                <h1 class='sectionDesc oi-sub-text-small oi-color-light'>Compartilhe seu plano</h1>
+              
+                <div class="sectionListItem">
+                    <!-- if has deps -->
+                    <a href='#pl_tituloDependentesHTML' class='sectionsubItem oi-smoothScroll oi-sub-text-big oi-color-normal'>{string(depCount)} Dependentes</a>
+                    <p class='sectionsubPrice oi-sub-text-big oi-color-normal'>{priceDepLabel}</p>
+                    <!-- else -->
+                    <a href='#pl_tituloDependentesHTML' class='sectionsubItem oi-smoothScroll sectionLink oi-sub-text-big oi-color-normal'>Adicione dependentes</a>
+                </div>
+            </div>
+
+            <!-- ================= Addons ================= -->
+
+            <div class='overlayContentSection'>
+
+                <h1 class='sectionDesc oi-sub-text-small oi-color-light'>Conteúdo digital em vídeo</h1>
+                <ul class="sectionList">
+                    <li class="sectionListItem">
+                         <!-- if has addons -->
+                        <a href='#pl_tituloAddonsHTML' class='sectionsubItem oi-smoothScroll oi-sub-text-big oi-color-normal'>{header}</a>
+                        <p class='sectionsubPrice oi-sub-text-big oi-color-normal'>{addonPrice}</p>
+                        <!-- else -->
+                        <a href='#pl_tituloAddonsHTML' class='sectionsubItem oi-smoothScroll oi-sub-text-big oi-color-normal'>Adicione canais especiais</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="overlayFooter">
+
+        <!-- ================= Price ================= -->
+        <div class="footerPriceSection">
+
+            <div class='priceSectionLabel oi-sub-text-big oi-color-normal'>
+                Total
+            </div>
+
+            <div class='priceSection'>
+                <div class='priceText'>
+                    <div class='cartPriceBigLabel'>
+                        <p class='cartPriceLabel priceReais oi-section-text-head oi-color-normal'>R$</p>
+                        <h1 class='cartPriceLabel priceInteger oi-section-text-head oi-color-normal'>{string(totalPriceInteger)}</h1>
+                    </div>
+                    <div class='cartPriceSmallLabel'>
+                        <h2 class='cartPriceLabel priceDecimal oi-section-text-head oi-color-normal'>{totalPriceDecimalLabel}</h2>
+                        <p class='cartPriceLabel priceMonth oi-section-text-head oi-color-normal'>/MÊS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="offerDialog-overlayMask">
+</div>
+
+<div class="offerDialog-Container">
+    <div id="offerDialog">
+        <div class="offerDialog-Text">
+            <h1 class="oi-sub-text-big oi-color-normal">Trocar de plano?</h1>
+            <p class="oi-sub-text oi-color-light">Vai precisar configurar novamente.</p>
+        </div>
+        <div class="offerDialog-ButtonContainer">
+            <div class="offerDialog-Button">
+                <button id="offerDialog-Close" class="oi-desc-text oi-color-background-gradient" type='button'>
+                    Cancelar
+                </button>
+            </div>
+            <div class="offerDialog-Button">
+                <button id="offerDialog-Change" class="oi-desc-text oi-color-background-gradient" type='button'>
+                    Trocar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

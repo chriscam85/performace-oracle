@@ -1,0 +1,14 @@
+_start meta data,,,,,,,,,,,,,,,,,,,,,,,,
+_update_action,SKU,Regiao,Tipo,Chave_Vel,Chave_Conteudo,Nome_comercial,Velocidade_BL,Vel_Download,Vel_Upload,Preco_BL,Preco_Fixo,Preco_Total,Modem_Wifi,Oi_Wifi,Carac_Fixo,Multa,Preco_Multa,Taxa_Inst_Hab,Validade_adesao,Regulamentos,Sumario,Outros_contratos,ID_Imagem,Mostrar_Selecao
+String,String,String,string,String,String,String,String,String,String,Float,Float,Float,String,String,String,String,Float,String,String,String,String,String,String,String
+,,,,,,,,,,,,,,,,,,,,,,,,
+_end meta data,,,,,,,,,,,,,,,,,,,,,,,,
+modify,banda_larga_fibra_voip_50mb,R1,Fibra,50Mega,FibraVoip,Banda Larga  50 Mega + Fixo Ilimitado,50 Mega,,,99.9,20,,,,,,,,,,,,,
+modify,banda_larga_fibra_voip_100mb,R1,Fibra,100Mega,FibraVoip,Banda Larga 100 Mega + Fixo Ilimitado,100 Mega,,,149.9,20,,,,,,,,,,,,,
+modify,banda_larga_fibra_voip_200mb,R1,Fibra,200Mega,FibraVoip,Banda Larga  200 Mega + Fixo Ilimitado,200 Mega,,,189.9,20,,,,,,,,,,,,,
+modify,banda_larga_fibra_50mb,R1,Fibra,50Mega,Alone,Banda Larga  50 Mega,50 Mega,,,99.9,,99.9,,,,,,,,,,,,
+modify,banda_larga_fibra_100mb,R1,Fibra,100Mega,Alone,Banda Larga 100 Mega,100 Mega,,,149.9,,149.9,,,,,,,,,,,,
+modify,banda_larga_fibra_200mb,R1,Fibra,200Mega,Alone,Banda Larga  200 Mega,200 Mega,,,189.9,,189.9,,,,,,,,,,,,
+modify,banda_larga_fibra_50mb,R2,Fibra,50Mega,Alone,Banda Larga  50 Mega,50 Mega,,,99.9,,99.9,,,,,,,,,,,,
+modify,banda_larga_fibra_100mb,R2,Fibra,100Mega,Alone,Banda Larga 100 Mega,100 Mega,,,149.9,,149.9,,,,,,,,,,,,
+modify,banda_larga_fibra_200mb,R2,Fibra,200Mega,Alone,Banda Larga  200 Mega,200 Mega,,,189.9,,189.9,,,,,,,,,,,,
