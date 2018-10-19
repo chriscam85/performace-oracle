@@ -4,6 +4,7 @@ const gulp = require('gulp')
     , less = require('gulp-less')
     , sourcemaps = require('gulp-sourcemaps')
     , minifyCss = require('gulp-clean-css')
+    , svgSprite = require("gulp-svg-sprites")
     , stripDebug = require('gulp-strip-debug')
     , uglify = require('gulp-uglify-es').default
     , flatten = require('gulp-flatten')
@@ -39,6 +40,12 @@ gulp.task('minify-styles', () => {
     .pipe( gulp.dest(`${PATH.output}/css`) )
 });
 
+gulp.task('sprites', () =>{
+    gulp.src('sprite/*.svg')
+    .pipe( svgSprite({mode: "symbols"}) )
+    .pipe( gulp.dest( `${PATH.output}/sprites`) )
+});
+
 gulp.task('minify-scripts', () => {
    return gulp.src([
         `${PATH.input}**/*.js`,
@@ -52,4 +59,4 @@ gulp.task('minify-scripts', () => {
 
 gulp.task('prepare-require', ['minify-scripts'], run('node r.js -o name=config out=build/js/master/main-built.js baseUrl=build/js') );
 
-gulp.task( 'build', ['delete'], () => gulp.start('minify-styles', 'prepare-require' ) );
+gulp.task( 'build', ['delete'], () => gulp.start('minify-styles', 'prepare-require', 'sprites' ) );
