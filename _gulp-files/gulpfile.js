@@ -5,6 +5,8 @@ const gulp = require('gulp')
     , sourcemaps = require('gulp-sourcemaps')
     , minifyCss = require('gulp-clean-css')
     , svgSprite = require("gulp-svg-sprites")
+    , imagemin = require('gulp-imagemin')
+    , spritesmith = require('gulp.spritesmith')
     , stripDebug = require('gulp-strip-debug')
     , uglify = require('gulp-uglify-es').default
     , flatten = require('gulp-flatten')
@@ -40,10 +42,22 @@ gulp.task('minify-styles', () => {
     .pipe( gulp.dest(`${PATH.output}/css`) )
 });
 
-gulp.task('sprites', () =>{
-    gulp.src('sprite/*.svg')
+gulp.task('sprites-svg', () =>{
+    gulp.src('sprites/**/*.svg')
     .pipe( svgSprite({mode: "symbols"}) )
     .pipe( gulp.dest( `${PATH.output}/sprites`) )
+});
+
+gulp.task('sprite-png', function() {
+    const spriteData = gulp.src('sprites/**/*.png') 
+        .pipe(imagemin())
+        .pipe(spritesmith({
+            imgName: 'sprite.png',
+            cssName: 'sprite.css',
+        }));
+
+    spriteData.img.pipe(gulp.dest(`${PATH.output}/sprites/img`)); 
+    spriteData.css.pipe(gulp.dest(`${PATH.output}/sprites/css`)); 
 });
 
 gulp.task('minify-scripts', () => {
@@ -59,4 +73,5 @@ gulp.task('minify-scripts', () => {
 
 gulp.task('prepare-require', ['minify-scripts'], run('node r.js -o name=config out=build/js/master/main-built.js baseUrl=build/js') );
 
-gulp.task( 'build', ['delete'], () => gulp.start('minify-styles', 'prepare-require', 'sprites' ) );
+gulp.task( 'build', ['delete'], () => gulp.start('minify-styles', 'sprite-png') );
+// gulp.task( 'build', ['delete'], () => gulp.start('minify-styles', 'sprite-png', 'prepare-require' ) );
