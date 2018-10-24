@@ -4,6 +4,7 @@ const gulp = require('gulp')
     , less = require('gulp-less')
     , sourcemaps = require('gulp-sourcemaps')
     , minifyCss = require('gulp-clean-css')
+    , modifyCssUrls  = require('gulp-modify-css-urls')
     , svgSprite = require("gulp-svg-sprites")
     , imagemin = require('gulp-imagemin')
     , spritesmith = require('gulp.spritesmith')
@@ -24,20 +25,27 @@ gulp.task('minify-styles', () => {
         `${PATH.input}Pos-Pago_Performance/**/*.less`,
         `${PATH.input}Internet_Performance/**/*.less`
     ])
-    .pipe(sourcemaps.init())
     .pipe( 
         less( {
-            paths: [ path.join(__dirname, 'less', 'includes') ]
+            paths: [`${PATH.input}Pos-Pago_Performance/**/*.css`]
         }).on('error', (erro) => {
             console.log('LESS, erro compilação: ' + erro.filename);
             console.log(erro.message);
         })
     )
+    .pipe(
+        modifyCssUrls({
+            modify(url, filePath) {
+                // console.log(url);
+                
+                return `../image/${url}`;
+            },
+            prepend: '../',
+            // append: ''
+        })
+    )
     .pipe( 
-        minifyCss({
-            compatibility: 'ie8',
-            level: 1
-        }) 
+        minifyCss() 
     )
     .pipe( gulp.dest(`${PATH.output}/css`) )
 });
