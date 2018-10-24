@@ -1,0 +1,810 @@
+// Carrinho cabecalho da pagina -> oi_pos_modernCart
+
+#modernCPQCart, #modernCPQCart-Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+}
+
+#modernCPQCart {
+	z-index: 4;
+	
+    min-height: 65px;
+    padding: 0;
+   
+	box-shadow: 0 3px 15px 0 @colors[shadow];
+	
+	border-style: solid;
+	border-width: 1px 0;
+    border-color: @colors[border];
+
+    .navbar-nav, .modernCPQCart-toggler { width: 100%; }
+    
+    .navbar-nav {
+        list-style: none;
+        margin: 0;
+    }
+
+    .nav-item { width: 33% }
+
+    .modernCPQCart-toggler {
+        border: none;
+        background: transparent;
+        text-align: left;
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 63px;
+
+        display: flex;
+        align-items: center;
+
+        @media mediaDesktop {
+            padding-left: 36px;
+            padding-right: 36px;
+            height: 80px;
+
+            .selectedPlanHeader h1 {
+                font-size: 32px;
+                width: 90px
+            }
+
+            .selectedPlanHeader {
+                &:after {
+                    content: "";
+                    display: inline-block;
+
+                    background-image: url("@{imagePath}/icon-seta-expandir-laranja.png");
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
+
+                    height: 8px;
+                    width: 12px;
+
+                    .transition(.5s);
+                    .transform(rotate(0));
+                }
+            }
+        }
+    }
+
+    .selectedPlanHeader h1,  .priceSection {
+        font-size: 24px;
+        font-weight: 400;
+        display: inline-block;
+    }
+
+    .selectedPlanHeader { 
+        h1 { margin-left: 0; }
+    }
+
+    .priceSection {
+        height: auto;
+        font-family: simplon_oiheadline;
+        margin: auto 98px auto auto;
+
+        @media @mediaDesktop {
+            margin-right: 242px;
+        }
+    }
+
+    @media @mediaDesktop { min-height: 80px; }
+}
+
+.modernCPQCart-toggler {
+
+    .togglerExpanded {
+
+        h1 {
+            &:after { .transform( rotate(180deg) ); }
+        }
+    }
+}
+
+#modernCPQCart-Overlay {
+    height: 0;
+    z-index: 5;
+
+    overflow: hidden;
+    flex: auto;
+    flex-direction: column;
+
+    &, button.modernCPQCart-toggler, .footerPriceSection { display: flex; } 
+
+    .transition(height .5s ease 0s);
+
+    &.cartOverlayOpened, .plansSection, .plansList { height: 100%; }
+
+    .overlayHeader {
+        position: relative;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 20px;
+
+        @media @mediaDesktop {
+            margin-top: 24px;
+            margin-left: 34px;
+
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+    }
+
+    button {
+
+        &.modernCPQCart-toggler {
+            border: none;
+            background: 0 0;
+            align-items: center;
+            margin: 10px 0 0;
+            padding: 0;
+            pointer-events: auto;
+            cursor: pointer;
+
+            &:after {
+                content: "";
+              
+                background: url("@{imagePath}/icon-seta-expandir-laranja.png");
+                background-size: 12px 8px;
+                background-repeat: no-repeat;
+
+                height: 8px;
+                width: 12px;
+                margin-left: 10px;
+                display: inline-block;
+
+                .transition(.5s);
+                .transform(rotate(180deg));
+            }
+
+        }
+        
+        &.plans-collapsed {
+            &:after { .transform(rotate(0)); }
+        }
+
+        &.planButton { 
+            border: 1px solid @colors[border];
+            background: 0 0;
+            width: 100%;
+
+            margin-bottom: .5em;
+            padding: 0;
+            cursor: pointer;
+            
+            .radius;
+
+            h1, p {
+                display: inline-block;
+                width: 50%;
+            }
+
+            h1 {
+                padding: .5em;
+                font-size: 16px;
+            }
+
+            p  {
+                text-align: right;
+                padding-right: 15px
+            }
+        }
+
+        &.offerSelected {
+            border: 1px solid transparent;
+            background-image: 
+                linear-gradient(@colors[gray], @colors[gray]), 
+                linear-gradient(279deg, @colors[focus], @colors[variantFocus]);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+
+            h1, p {
+                background-image: linear-gradient(289deg, @colors[focus], @colors[variantFocus]);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        p, h1 { margin: 0; }
+
+        h1 {
+            text-align: left;
+            font-size: 32px;
+            font-weight: 400;
+        }
+    }
+
+    .overlayContent {
+        padding-top: 1em;
+        padding-bottom: 1em;
+
+        flex-grow: 1;
+        overflow-y: auto
+    }
+
+    .overlayContentSection p,  ul.sectionList { margin: 0; }
+
+    .overlayContentSection {
+        border-top: 1px solid @colors[gray];
+        padding-top: 1em;
+        padding-bottom: 1em;
+
+        h1 {
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        p { float: right; }
+
+        .sectionsubItem {
+            border-bottom: 1px solid @colors[border];
+            display: inline-block;
+
+            &:hover {
+                color: unset;
+                text-decoration: none;
+            }
+        }
+
+        @media @mediaDesktop {
+            position: absolute;
+            top: 80px;
+            padding: 0;
+            margin-top: 1px;
+            border: none;
+            left: 0;
+            margin-left: 36px;
+        }
+    }
+
+    .sectionsubPrice { text-align: right; }
+
+    .overlaySection {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .sectionList { list-style: none; }
+
+    .plansSection {
+        background: @colors[gray];
+        overflow: hidden;
+
+        .transition(.5s);
+
+        &.plans-collapsed { height: 0; }
+
+        @media @mediaDesktop {
+            min-width: 230px;
+            background-color: #fff;
+            box-shadow: 0 6px 15px 0 @colors[shadow];
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            width: 20%;
+        }
+    }
+
+    .plansList {
+        padding: 15px 20px;
+        display: block;
+        pointer-events: auto;
+
+        button {
+            .planButton {
+
+                &:hover {
+                    border: 1px solid transparent;
+                    background-image: 
+                        linear-gradient(#ffff, #ffff), 
+                        linear-gradient(279deg, @colors[focus], @colors[variantFocus]);
+                    background-origin: border-box;
+                    background-clip: content-box, border-box;
+                }
+
+                @media @mediaDesktop {
+                    align-items: center;
+                    display: flex;
+
+                    p, h1{ width: auto; }
+                    
+                    p {
+                        margin-right: 0;
+                        margin-left: auto
+                    }
+                    
+                    h1 { font-size: 20px; }
+                }
+            }
+
+            @media mediaDesktop {
+                .offerSelected {
+                    background-image: 
+                        linear-gradient(#fff, #fff), 
+                        linear-gradient(279deg, @colors[focus], @colors[variantFocus]);
+                }
+            }
+        }
+
+        @media @mediaDesktop {
+            padding: 24px;
+            border-top-color: @colors[gray];
+            border-top-width: 2px;
+            border-top-style: solid;
+        }
+    }
+
+    .overlayFooter {
+        width: 100%;
+        border-top: 1px solid @colors[border];
+        background: white;
+        flex-grow: 0;
+        padding: 15px 20px 80px;
+
+        .priceSectionLabel, .priceSection, .priceText { display: inline-block; }
+
+        .priceSectionLabel, .priceSection { width: 50% }
+
+        .priceSection {
+            margin: 0;
+            text-align: right
+        }
+    }
+
+    .footerPriceSection { align-items: flex-end; }
+
+    @media @mediaDesktop {  
+        min-height: 80px;
+        height: auto;
+        padding-left: 36px;
+        padding-right: 36px;
+        background: 0 0;
+        left: 0;
+        pointer-events: none;
+        overflow: visible;
+
+        button.modernCPQCart-toggler {
+            margin-top: 0;
+
+            h1 {
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+        }
+
+        .overlayFooter, .overlaySection { display: none; }
+    }
+}
+
+#modernCPQCart-OverlayClose {
+    display: block;
+    border: none;
+    background: 0 0;
+    padding: 0;
+    margin-right: 0;
+    margin-left: auto;    
+
+    img {
+        width: 14px;
+        height: 14px;
+    }
+
+    @media @mediaDesktop { display: none; }
+}
+
+  
+.descSection { float: left }
+
+h1 {
+    &.sectionDesc,  &.cartPriceLabel.priceInteger { margin: 0; }
+    
+    &.selectedPlanHeader,  &.cartPriceLabel.priceInteger { font-weight: 400; }
+
+    &.sectionDesc { font-size: 20px; }
+
+    &.cartPriceLabel {
+
+        &.priceInteger {
+            font-size: 32px;
+            vertical-align: bottom;
+            display: inline-block;
+            
+            height: 100%;
+            padding-left: 5px;
+            padding-right: 5px;
+
+            @media @mediaDesktop {
+                font-size: 48px; 
+            }
+        }
+    }
+
+    &.selectedPlanHeader {
+        font-size: 24px;
+        margin-left: .5em
+    }
+}
+
+h2 {
+    &.cartPriceLabel.priceDecimal, &.sectionDesc { 
+        margin: 0;
+        font-weight: 400;
+    }
+
+    &.cartPriceLabel.priceDecimal {
+        font-size: 16px;
+        height: 50%;
+        padding-top: 2px;
+
+        @media @mediaDesktop { font-size: 24px; }
+    }
+
+    &.sectionDesc {
+        font-size: 12px;
+        display: inline-block;
+        
+        @media @mediaDesktop { font-size: 14px; }
+    }
+}
+
+p {
+    &.selectedOfferPrice, &.sectionSubDesc, &.priceMonth { margin: 0 }
+  
+    &.selectedOfferPrice {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+        @media @mediaDesktop { display: none; }
+    }
+    
+
+    &.txtDepen { 
+        margin: -5px 0 0; 
+        
+        @media @mediaDesktop { font-size: 12px; }
+    }
+
+    &.priceMonth {
+        font-size: 8px;
+        font-weight: 400;
+        height: 50%;
+        font-family: simplon_oiheadline;
+
+        @media @mediaDesktop { font-size: 12px; }
+    }
+
+    &.priceReais {
+        margin: 0 0 3px;
+        vertical-align: bottom;
+        display: inline-block;
+
+        @media @mediaDesktop {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+    }
+}
+
+#addonSection {
+
+    &:hover { 
+        
+        i { .transform( rotate(-135deg) ); }
+        
+        .dropdown-menu { visibility: visible }
+    }
+
+    i {
+        margin-top: 20px;
+        margin-left: 20px
+    }
+
+    .dropdown-menu {
+        width: 100%;
+        visibility: hidden;
+        margin-top: 0;
+        display: block;
+        box-shadow: 0 4px 8px 0 @colors[border];
+    }
+}
+
+i {
+    &.cartArrowDown { .transform( rotate(45deg) ); }
+    
+    &.cartArrowUp { .transform( rotate(-135deg); ) }
+    
+    &.cartArrowLeft { .transform( rotate(135deg); ) }
+
+    &.cartArrow {
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 3px
+    }
+}
+
+.navbar-brand { 
+
+    a, img { float: left; }
+    
+    a { text-decoration: none; }
+
+    i {
+        &.cartArrow {
+            margin-left: 15px;
+            margin-top: 10px;
+            padding: 8px;
+        }
+    }
+
+    img { margin-left: 1rem; }
+}
+ 
+.priceSection {
+    margin-right: 110px;
+    height: 100%;
+    display: table
+}
+
+.priceText {
+    display: table-cell;
+    vertical-align: middle
+}
+  
+.cartPriceTxtDepen{ text-align: right; }
+  
+.cartPriceBigLabel, .cartPriceSmallLabel {
+    float: left;
+    height: 50%
+}
+   
+#sticky-actions { 
+    
+    td {
+        &.button-middle, div { height: 48px; }
+
+        &.button-middle {
+            width: 90px;
+            background-image: 
+                linear-gradient(@colors[defaultDestak], @colors[defaultDestak]), 
+                linear-gradient(to top, @colors[variantDestak], @colors[defaultDestak]);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            pointer-events: unset;
+
+            .radius;
+
+            &:active, &:hover {
+                background-color: @colors[destak] !important;
+                background-image: none;
+                border-color: @colors[destak] !important;
+
+                a {
+                    margin: 0 !important;
+                    color: #000 !important;
+                }
+            }
+
+            a {
+                vertical-align: middle;
+                line-height: 48px;
+                display: inline;
+                font-family: simplon_bpmedium;
+                font-size: 16px !important;
+                font-weight: 500 !important;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: normal;
+                text-align: center;
+                color: @colors[dark];
+            }
+        }
+    }
+
+    @media @mediaDesktop {
+        padding: 0;
+
+        td.button-middle { width: 96px; }  
+    }
+}
+  
+.button-bar {
+
+    &.stickBottom {
+        bottom: 0;
+        top: auto;
+        left: 0;
+        width: 100%;
+        margin: 0 !important;
+        z-index: 6;
+        padding-right: 20px !important;
+        padding-left: 20px !important;
+
+        &, .button-middle { 
+            bottom: 0;
+            top: 0; 
+        }
+    }
+
+    #sticky-actions {
+        padding: 0;
+        display: inline-block;
+        
+        &, .plain-button, .buttons { width: 100%; }
+
+        .plain-button, .buttons {
+            position: absolute;
+            left: 0;
+        }
+
+        .plain-button { bottom: 0; }
+
+        .button-middle {
+            width: auto;
+            height: 48px
+        }
+
+        .buttons { bottom: 20px; }
+    }
+
+    @media @mediaDesktop {
+        right: 36px;
+        height: 80px !important;
+    }
+}
+ 
+#pl_carrinhoPosPago { 
+
+    .offerDialog-overlayMask, 
+    .offerDialog-Container,  
+    .offerDialog-Text,
+    .offerDialog-ButtonContainer,
+    .offerDialog-Button button { width: 100%; }
+
+    .offerDialog-Text, 
+    .offerDialog-ButtonContainer,  
+    .offerDialog-Button,
+    .offerDialog-Button button { display: inline-block; }
+
+    .offerDialog-overlayMask, 
+    .offerDialog-Container, 
+    .offerDialog-Button,
+    .offerDialog-Button button { height: 100%; }
+
+    .offerDialog-overlayMask, .offerDialog-Container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        
+        display: none;
+    }
+
+    .offerDialog-overlayMask {
+        opacity: .6;
+        background-color: #000;
+        z-index: 7;
+    }
+
+    .offerDialog-Container {
+        z-index: 8;
+        align-items: center;
+    }
+
+    .offerDialog-Text {
+        padding: 2em;
+        overflow: hidden;
+        position: relative;
+
+        &:after {
+            content: "";
+
+            background-image: url("@{imagePath}/oi_bolha.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+
+            width: 106px;
+            height: 150px;
+            position: absolute;
+            top: -110px;
+            left: 50%;
+
+            .transform(rotate(300deg));
+        }
+          
+        h1 {
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0
+        }
+        
+        p {
+            font-size: 14px;
+            margin: .5em 0 0
+        }
+    }
+        
+    .offerDialog-ButtonContainer {
+        height: 5em;
+        border: 1px solid @colors[border];
+        border-bottom-left-radius: @radius;
+        border-bottom-right-radius: @radius;
+    }
+        
+    .offerDialog-Button { 
+        width: 50%; 
+
+        &:first-child { border-right: 1px solid @colors[border]; }
+        
+        button {
+            border: none;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: @colors[active];
+        }
+    }
+}
+  
+#offerDialog {
+    background: #fff;
+    margin-left: 20px;
+    margin-right: 20px;
+    
+    .radius;
+}
+
+.modernCPQCart-desktopBar { 
+    align-items: center;
+    display: none; 
+    margin-left: 260px;
+
+    @media @mediaDesktop { display: flex; }
+}
+  
+.modernCPQCart-desktopItem {
+    display: flex;
+    flex-direction: column;
+
+    &:first-child { margin-right: 110px; }
+}
+  
+a {
+    &.sectionSubDesc { 
+        border-bottom: 1px solid @colors[border]; 
+        font-size: 15px;
+        width: 100%;
+
+        &, &:hover { display: inline-block; }
+
+        &:hover {
+            color: @colors[active];
+            text-decoration: none;
+            border-bottom: 1px solid @colors[active];
+        }
+    }
+
+    @media @mediaDesktop {
+        &.addDepen { width: 138px; }
+    
+        &.addCanais { width: 147px; }
+
+        &.sectionSubDesc { width: 100%; }
+    }
+}
+
+.plansSection.plansSection-expanded { display: none; }
+
+@media @mediaDesktop {
+
+    .selectedPlanHeader {
+        display: flex;
+        align-items: center;
+        opacity: 0
+    }
+      
+    #offerDialog {
+        margin-left: auto;
+        margin-right: auto
+    }
+}

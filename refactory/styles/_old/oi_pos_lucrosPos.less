@@ -1,0 +1,221 @@
+/*================================================
+* Vantagens do Pós da Oi
+* ================================================
+*/
+
+/* ---- label ---- */
+#pl_labelLucrosOIHTML{
+    border-top: solid 1px #dbdbdb;
+}
+
+
+#pl_labelLucrosOIHTML .lucrosTitle{
+    margin: 0;
+    /*margin-top: 35px;
+    margin-bottom: 35px;*/
+}
+
+/* ---- MOBILE ---- */
+#pl_labelLucrosOIHTML .oi-section-text{
+    text-align: center;
+}
+
+#pl_lucrosOIHTML .glideList .oi-sub-text{
+    margin: 0;
+}
+
+#pl_lucrosOIHTML .glideList .oi-desc-text{
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#pl_lucrosOIHTML .glideList{
+    margin: 0;
+}
+
+#pl_lucrosOIHTML .glide__track {
+    margin-bottom: 25px;
+}
+
+#pl_lucrosOIHTML{
+    margin-bottom: 35px;
+}
+
+#pl_lucrosOIHTML .glide__slides li{
+    display: inline-block;
+    text-align: center;
+}
+
+#pl_lucrosOIHTML .img-lucrosPos{
+    height: 55px;
+    /* min-width: 24px; */
+}
+
+#pl_lucrosOIHTML .img-lucrosPos img {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 100%;
+}
+
+#glideList li, #oferDesktop .row li{
+    list-style: none;
+    text-align: center;
+}
+
+#pl_lucrosOIHTML .lucros-card {
+    width: 140px;
+    margin-left: 0;
+    display: inline-block;
+}
+
+#pl_lucrosOIHTML .lucros-container-desktop{
+    display: none;
+}
+
+.glide__bullet--active{
+    /*width: 8px !important;
+    height: 8px !important;*/
+}
+
+.glide__bullet{
+    width: 6px;
+    height: 6px;
+}
+
+#lucros-container-mobile .glide__bullets{
+	align-items: center;
+}
+
+
+#pl_lucrosOIHTML .glide__bullet{
+    background-color: #dbdbdb;
+    width: 6px;
+    height: 6px;
+    padding: 0;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+    line-height: 0;
+    margin: 0 0.25em;
+    margin-right: 15px;
+    box-shadow: none;
+}
+
+#pl_lucrosOIHTML .glide__bullet--active{
+    background-color: #f8562c;
+    width: 8px;
+    height: 8px;
+}
+
+#pl_lucrosOIHTML .glide__bullets {
+    position: relative;
+    z-index: 2;
+    bottom: 0;
+    left: 50%;
+    display: inline-flex;
+    list-style: none;
+    transform: translateX(-50%);
+}
+
+/* ---- DESKTOP ---- */
+@media (min-width: 768px) {
+    #pl_lucrosOIHTML .lucros-container-desktop{
+        display: block;
+    }
+
+    #oferDesktop li img{
+        min-width: 55px;
+    }
+
+    #pl_lucrosOIHTML .lucros-container-mobile{
+        display: none;
+    }
+
+    #oferDesktop{
+        margin-left: 36px;
+    }
+
+    #oferDesktop .glideList{
+        max-width: 1144px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 34px; 
+    }
+
+    #pl_lucrosOIHTML .glideList .oi-desc-text{
+        font-size: 20px;
+    }
+
+    .lucros-card .desc-lucrosPos{
+        margin-left: auto !important;
+        margin-right: auto !important;
+        font-size: 16px;
+        max-width: 132px;
+        height: 72px;
+    }
+
+    #pl_labelLucrosOIHTML .lucrosTitle{
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+
+    #pl_lucrosOIHTML .glideList .oi-desc-text{
+        margin-bottom: 16px;
+        margin-top: 27px;
+        width: 165px;
+    }
+
+    #pl_lucrosOIHTML{
+        padding-bottom: 60px;
+        margin-bottom: 0;
+    }
+
+    #oferDesktop li:nth-child(2) img{
+        max-height: 100px;
+        width: 64px;
+        height: 60px;
+    }
+}
+
+@media (min-width: 806px) {
+
+    #glideList li, #oferDesktop .row li{
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    #pl_lucrosOIHTML .lucros-card {
+        width: 156px;
+    }
+
+    #glideList li, #oferDesktop .row li{
+        margin-left: 20px;
+    }
+
+    #oferDesktop{
+        margin-left: 14px;
+    }
+
+    #glideList li, #oferDesktop .row li{
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 1366px) {
+    #glideList li, #oferDesktop .row li{
+        margin-right: auto;
+    }
+
+    #glideList li, #oferDesktop .row li:last-child{
+        margin-right: 0px;
+    }
+
+    #oferDesktop{
+        margin-left: auto;
+    }
+}  

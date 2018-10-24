@@ -1,0 +1,1025 @@
+/*================================================
+* Addon List HTML
+* ================================================
+*/
+
+/*================================================
+* Mobile
+* ================================================
+*/
+
+.card .collapse {
+    position: relative;
+    top: 0;
+
+}
+
+#addon_list-mobile .card {
+    border: none;
+    position: relative;
+}
+
+#addon_list-mobile .collapse,
+#addon_list-mobile .collapsing {
+    position: relative;
+    width: 100%;
+    /* top: 60px; */
+}
+
+#addon_list-mobile .lastCard .collapse,
+#addon_list-mobile .lastCard .collapsing {
+    position: absolute;
+    width: 100%;
+    top: 60px;
+}
+
+#addon_list-mobile .card-body {
+    position: relative;
+    z-index: 3;
+    background: #f5f5f5;
+    padding: 0;
+    overflow: hidden;
+}
+
+#addon_list-mobile .card:last-of-type {
+    height: 100%;
+    min-height: 60px;
+}
+
+#addon_list-mobile .card:last-of-type .collapse.show {
+    /* display: block; */
+    /* position: unset; */
+}
+
+/*  ------ Campo CPQ ------ */
+
+
+#attribute-pl_addons {
+    position: absolute;
+    width: 100%;
+}
+
+#pl_addonsHTML {
+    overflow: visible;
+    height: 100%;
+}
+
+#attribute-pl_addonsHTML {
+    width: 100%;
+    float: left;
+    margin: 0px;
+}
+
+#attribute-pl_addons label {
+    color: transparent;
+}
+
+.AddonsLabel {
+    border-top: solid 1px #dbdbdb;
+    overflow-x: hidden;
+}
+
+#attribute-pl_addons .group-option {
+    height: 60px;
+    margin: 0;
+}
+
+#attribute-pl_addons .expand {
+    margin-bottom: 288px;
+}
+
+/*  ------ Custom Checkbox ------ */
+
+/* Customize the label (the container) */
+
+#attribute-pl_addons .group-option {
+    display: block;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: margin-bottom 0.3s;
+}
+
+/* Hide the browser's default checkbox */
+
+#attribute-pl_addons .group-option input,
+.card-header input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* ------- image icons ------- */
+
+/* label */
+
+#attribute-pl_addons .group-option label,
+.card-header .addon-checkmark {
+    position: absolute;
+    top: 7px;
+    left: 20px;
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* add icon */
+
+#attribute-pl_addons .group-option input:not(:checked)+labeL:after {
+    content: "";
+    background-image: url(../oi_imagens/add-adicionar.png);
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    color: #222222;
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 32px;
+    margin-top: 7px;
+}
+
+/* added icon */
+
+#attribute-pl_addons .group-option input:checked+label:after,
+.card-header .addon-checkmark:after {
+    content: "";
+    background-image: url(../oi_imagens/add-adicionado.png);
+    background-size: 32px 32px;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 0;
+    top: 0;
+    min-width: 32px;
+}
+
+#pl_addonsHTML .card-header input:disabled~.addon-checkmark:after {
+    content: "";
+    background-image: url(../oi_imagens/add-adicionado.png);
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 0;
+    top: 0;
+    margin-top: 7px;
+}
+
+/*  ------ header ------ */
+
+#addon_list-mobile .card-header {
+    height: 60px;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+#addon_list-mobile h3.mb-0 {
+    margin: 0;
+    height: 100%;
+}
+
+#addon_list-mobile .btn.btn-link {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    padding-top: 8px;
+    padding-right: 20px;
+    padding-left: 68px;
+    background: #f5f5f5;
+}
+
+#addon_list-mobile .btn.btn-link[aria-expanded="false"] {
+    background: #fff;
+}
+
+#addon_list-mobile .btn.btn-link span {
+    background-color: #909090;
+    text-transform: uppercase;
+    font-size: 24px;
+    line-height: 30px;
+    display: block;
+}
+
+#addon_list-mobile .btn.btn-link[aria-expanded="true"] span {
+    background-image: linear-gradient(289deg, #fe6b03, #e33465);
+    text-shadow: 3px 5px 8px rgba(248, 86, 44, 0.15);
+}
+
+#addon_list-mobile .btn.btn-link p {
+    margin: 0;
+    position: relative;
+    top: -5px;
+    line-height: 1.33;
+}
+
+#addon_list-mobile .btn.btn-link[aria-expanded="true"] p {
+    color: #f8562c;
+    /* position: relative; */
+    /* top: -7px; */
+    /* line-height: 1.33; */
+}
+
+#addon_list-mobile .btn.btn-link:before {
+    display: inline-block;
+    content: "";
+    background-image: url(../oi_imagens/icon-seta-expandir-preto.png);
+    background-size: 12px 8px;
+    background-repeat: no-repeat;
+    height: 8px;
+    width: 12px;
+    position: absolute;
+    right: 23px;
+    top: 1em;
+    transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+}
+
+#addon_list-mobile .btn.btn-link[aria-expanded="true"]:before {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    background-image: url(../oi_imagens/icon-seta-expandir-laranja.png);
+}
+
+img.addonDialog-logo {
+    max-width: 30%;
+    max-height: 50px;
+}
+
+.addonPriceLabel {
+    margin: 0px !important;
+}
+
+p.addonPriceLabel.priceInteger {
+    display: inline-block;
+    font-weight: normal;
+}
+
+p.addonPriceLabel.priceDecimal {
+    display: inline-block;
+}
+
+.addonPriceBigLabel {
+    display: inline-block;
+}
+
+.addonPriceSmallLabel {
+    display: inline-block;
+    list-style: none;
+    margin: 0px;
+}
+
+ul.addonPriceSmallLabel {
+    margin: 0px;
+    height: 100%;
+    list-style: none !important;
+    display: inline-block;
+    text-align: left;
+}
+
+.addonPriceBigLabel {
+    display: inline-block;
+}
+
+.addonPriceSection p.priceReais {
+    margin: 0px;
+    display: inline-block;
+    margin-bottom: 3px;
+    vertical-align: inherit;
+}
+
+.addon-CardBody.addon-CardBody-noPic:after {
+    background-image: url(../oi_imagens/oi_bolha.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 106px;
+    height: 150px;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -3.5em;
+    -webkit-transform: rotate(-30deg);
+    transform: rotate(-20deg);
+    display: inline-block;
+}
+
+.addon-CardBody {
+    position: relative;
+    height: 375px;
+}
+
+.addon-desc {
+    margin-right: 0;
+    max-width: 128px;
+    line-height: 1.43;
+}
+
+.addon-postVenda {
+    line-height: 1.44;
+    max-width: 115px;
+    font-size: 12px;
+}
+
+.addon-CardBody-noPic .addon-desc {
+    margin-right: 3em;
+}
+
+.addon-desc-col {
+    width: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding-left: 20px;
+    z-index: 2;
+}
+
+.addon-CardBody-noPic .addon-desc-col {
+    width: 100%;
+    display: inline-block;
+    float: none;
+}
+
+.addon-desc-pic {
+    width: 100%;
+    height: 100%;
+    text-align: right;
+    display: inline-block;
+    position: relative;
+}
+
+.addon-desc-pic img {
+    width: 313px;
+    height: auto;
+    left: 84px;
+    position: absolute;
+    bottom: 0;
+}
+
+span.addon-channels {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.addon-CardBody.addon-CardBody-noPic {
+    margin-bottom: 20px;
+}
+
+/* --- OverlayMask --- */
+
+.addon-Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.addon-Overlay .overlayMask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.6;
+    background-color: #000000;
+    z-index: 2;
+}
+
+.addonDialog-Container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addonDialog-inner {
+    background: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+    position: relative;
+    max-width: 85%;
+    max-height: 100%;
+}
+
+.addonDialog-Text {
+    margin: 0;
+    padding-top: 26px;
+    display: inline-block;
+    width: auto;
+    overflow: hidden;
+    position: relative;
+    /* padding-right: 12%; */
+    padding-left: 11%;
+}
+
+.addonDialog-ButtonContainer {
+    height: 44px;
+    display: inline-block;
+    width: 100%;
+    border: 1px solid #dbdbdb;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.addonDialog-Button {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.addonDialog-Button button {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: #f8562c;
+  /*-webkit-text-fill-color: transparent;*/
+    cursor: pointer;
+}
+
+.addonDialog-Button:first-child {
+    border-right: 1px solid #dbdbdb;
+}
+
+.addonDialog-Text h4 {
+    margin-right: 11%;
+    line-height: 23px;
+    letter-spacing: 1px;
+}
+
+.addonDialog-Text p {
+    font-size: 14px;
+    margin: 0;
+    margin-top: 0.5em;
+}
+
+.addonDialog-Text:after {
+    background-image: url(../oi_imagens/oi_bolha.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 106px;
+    height: 150px;
+    content: "";
+    position: absolute;
+    top: -114px;
+    left: 39%;
+    -webkit-transform: rotate(300deg);
+    transform: rotate(300deg);
+}
+
+.addon-OverlayX {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    border: none;
+    background: none;
+    font-size: 36px;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.addon-OverlayX:after {
+    content: "";
+    background-image: url(../oi_imagens/icon-fechar-cinza.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+}
+
+.addon-OverlayX:hover:after {
+    background-image: url(../oi_imagens/icon-fechar-preto.png);
+}
+
+ul.addonDialog-channels {
+    list-style: none;
+    margin: 0;
+    padding: 0px;
+}
+
+ul.addonDialog-channels li {
+    float: left;
+    margin-right: 13%;
+    margin-bottom: 5%;
+    height: 20px;
+}
+
+ul.addonDialog-channels img {
+    width: auto;
+    height: 100%;
+}
+
+/* ----- oi play ------ */
+
+.addon-oiPlay {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+    transition: padding-top 0.35s;
+    margin-bottom: 24px;
+}
+
+.addon-oiPlay p {
+    margin: 0;
+}
+
+.addon-appStores {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.addon-store {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.addon-store p {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.addon-store img,
+.addon-store p {
+    display: inline-block;
+    line-height: unset;
+}
+
+.addon-store img {
+    height: 15px;
+    width: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 5px;
+}
+
+/* ----- bolha oi ------ */
+
+#pl_tituloAddonsHTML .oiSectionHeader:after {
+    content: "";
+    background-image: url(../oi_imagens/ameba-detalhe-produto-1.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 121px;
+    height: 117px;
+    position: absolute;
+    top: 0;
+    right: -90px;
+    -webkit-transform: rotate(140deg);
+    transform: rotate(140deg);
+}
+
+.addon-logo {
+    height: 40px;
+    width: auto;
+    min-height: 30px;
+    margin-top: 24px;
+}
+
+/*================================================
+* Responsive
+* ================================================
+*/
+
+/* ----- 768 ----- */
+@media (min-width: 768px) {
+
+    .AddonsLabel {
+        border-top: solid 1px #dbdbdb;
+        margin-top: 54px;
+    }
+
+    img.addonDialog-logo {
+        max-width: 21%;
+        margin-bottom: 12px;
+        margin-top: 15px;
+        max-height: 70px;
+    }
+
+    .addon-postVenda {
+        font-size: 14px;
+        max-width: unset;
+    }
+
+    .addon-logo {
+        height: 80px;
+        width: auto;
+        min-height: 38px;
+    }
+
+    #addon_list-mobile .collapse,
+    #addon_list-mobile .collapsing {
+        position: absolute;
+        top: 60px;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+
+    #addon_list-mobile .lastCard .collapse,
+    #addon_list-mobile .lastCard .collapsing {
+        position: absolute;
+    }
+
+    .group-full-width.addon-container .group-content {
+        margin-left: 36px;
+        margin-right: 36px;
+    }
+
+    .addon-desc {
+        font-family: simplon_bpregular;
+        max-width: unset;
+        width: auto;
+        font-size: 16px;
+    }
+
+    /* label Desktop */
+
+    #attribute-pl_addons .group-option label,
+    .card-header .addon-checkmark {
+        position: absolute;
+        top: 7px;
+        left: 20px;
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    /* add icon Desktop */
+
+    #attribute-pl_addons .group-option input:not(:checked)+labeL:after {
+        content: "";
+        background-image: url(../oi_imagens/add-adicionar.png);
+        background-size: 32px 32px;
+        background-repeat: no-repeat;
+        width: 32px;
+        height: 32px;
+        display: inline-block;
+        color: #222222;
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 32px;
+    }
+
+    /* added icon Desktop */
+
+    #attribute-pl_addons .group-option input:checked+label:after,
+    .card-header .addon-checkmark:after {
+        content: "";
+        background-image: url(../oi_imagens/add-adicionado.png);
+        background-size: 40px 40px;
+        background-repeat: no-repeat;
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 0;
+        top: 0;
+    }
+
+    #pl_addonsHTML .card-header input:disabled~.addon-checkmark:after {
+        content: "";
+        background-image: url(../oi_imagens/add-adicionado.png);
+        background-size: 32px 32px;
+        background-repeat: no-repeat;
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        left: 0;
+        top: 0;
+    }
+
+    /* cpq field */
+    #attribute-pl_addons .group-option label,
+    .card-header .addon-checkmark {
+        z-index: 2;
+        left: 0;
+        top: 5px;
+    }
+
+    #attribute-pl_addons .group-option {
+        height: 75px;
+        margin-left: 20px;
+    }
+
+    /* custom html */
+    #addon_list {
+        display: block;
+    }
+
+    #addon_list-mobile {
+        position: relative;
+    }
+
+    #pl_tituloAddonsHTML .oiSectionHeader:after {
+        display: none;
+    }
+
+    /* chekcbox */
+    #attribute-pl_addons .group-option input:hover+label:after {
+        background-image: url(../oi_imagens/add-adicionar-hover.png);
+    }
+
+    #attribute-pl_addons .group-option input:checked:hover+label:after {
+        background-image: url(../oi_imagens/add-adicionado-hover.png);
+    }
+
+    /* card  */
+    #addon_list-mobile .card {
+        position: unset;
+        height: 75px;
+    }
+
+    /* card header */
+    #addon_list-mobile .card-header {
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+        margin-right: auto;
+        height: 100%;
+    }
+
+    #addon_list-mobile .btn.btn-link {
+        width: auto;
+        background: transparent;
+        padding-left: 70px;
+        padding-top: 5px;
+    }
+
+    #addon_list-mobile .btn.btn-link[aria-expanded="false"] {
+        background: transparent;
+        padding-top: 5px;
+    }
+
+    #addon_list-mobile .btn.btn-link:before {
+        display: none;
+    }
+
+    #addon_list-mobile h3.mb-0 {
+        width: auto;
+        display: inline-block;
+    }
+
+    #addon_list-mobile .btn.btn-link span {
+        font-size: 40px;
+        line-height: 48px;
+    }
+
+    /* card body */
+    #addon_list-mobile .card-body {
+        z-index: 0;
+        height: 100%;
+        background: none;
+    }
+
+    #addon_list-mobile .card-inner {
+        height: 100%;
+    }
+
+    #addon_list-mobile .addon-CardBody {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+    }
+
+    #addon_list-mobile .collapse {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    #addon_list-mobile .show .addon-channels {
+        pointer-events: auto;
+        display: block;
+    }
+
+    #addon_list-mobile .collapse,
+    #addon_list-mobile .collapsing {
+        top: 0;
+        z-index: 3;
+        display: block;
+        -webkit-transition: 0s;
+        -moz-transition: 0s;
+        -ms-transition: 0s;
+        -o-transition: 0s;
+        transition: 0s;
+    }
+
+    #addon_list-mobile .collapse.show {
+        opacity: 1;
+        z-index: 2;
+        -webkit-transition: 500ms ease-out;
+        -moz-transition: 500ms ease-out;
+        -o-transition: 500ms ease-out;
+        transition: 500ms ease-out;
+    }
+
+    #addon_list-mobile .addon-desc-col {
+        width: 16%;
+        position: unset;
+        left: 0;
+        top: 0;
+        padding-left: 0;
+        padding-bottom: 20%;
+    }
+
+    #addon_list-mobile .addon-desc-col {
+        opacity: 0;
+        -webkit-transition: 0s;
+        -moz-transition: 0s;
+        -ms-transition: 0s;
+        -o-transition: 0s;
+        transition: 0s;
+    }
+
+    #addon_list-mobile .card .collapse.show .addon-desc-col {
+        opacity: 1;
+        -webkit-transition: 500ms ease-out;
+        -moz-transition: 500ms ease-out;
+        -o-transition: 500ms ease-out;
+        transition: 500ms ease-out;
+        transition-delay: 0.5s;
+        padding-right: 0px;
+    }
+
+    #addon_list-mobile .addon-desc-pic {
+        width: 52%;
+        margin-right: -16%;
+        height: 100%;
+        opacity: 0;
+        -webkit-transition: 0s;
+        -moz-transition: 0s;
+        -ms-transition: 0s;
+        -o-transition: 0s;
+        transition: 0s;
+        position: relative;
+    }
+
+    #addon_list-mobile .card .collapse.show .addon-desc-pic {
+        opacity: 1;
+        margin-right: 0;
+        padding-right: 25px;
+        -webkit-transition: 500ms ease-out;
+        -moz-transition: 500ms ease-out;
+        -o-transition: 500ms ease-out;
+        transition: 500ms ease-out;
+    }
+
+    #addon_list-mobile .addon-desc-pic img {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: auto;
+    }
+
+    .addon-oiPlay {
+        padding: 0;
+        margin-top: 34px;
+        margin-bottom: 50px;
+    }
+
+    .addon-store {
+        margin-right: 60px;
+    }
+
+    /* ---- overlay ---- */
+    ul.addonDialog-channels {
+        margin-top: 37px;
+        display: inline-block;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .addonDialog-Text h4 {
+        width: 80%;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .addonDialog-logo {
+        margin-bottom: 20px;
+    }
+
+    ul.addonDialog-channels li {
+        margin-right: 7%;
+        margin-bottom: 2%;
+        height: 30px;
+    }
+
+    .addonDialog-Text {
+        padding-left: 50px;
+        width: 100%;
+        padding-right: 50px;
+        margin-bottom: 5%;
+    }
+
+    .addonDialog-Text:after {
+        right: 100px;
+        left: 63%;
+        width: 156px;
+        top: -145px;
+        height: 191px;
+        -webkit-transform: rotate(300deg);
+        transform: rotate(300deg);
+    }
+
+
+    #pl_tituloAddonsHTML .oiSectionHeader {
+        padding-top: 80px;
+        padding-bottom: 44px;
+    }
+
+    #addon_list-mobile {
+        position: relative;
+        height: 100%;
+    }
+
+    .addonDialog-inner {
+        max-width: 50%;
+    }
+
+    #addon_list-mobile .cardList {
+        padding-left: 20px;
+    }
+
+    .addon-oiPlay p {
+        font-size: 12px;
+    }
+
+
+}
+
+/* ----- 1024 ----- */
+@media (min-width: 1024px) {
+    .group-full-width.addon-container .group-content {
+        margin-left: 44px;
+        margin-right: 44px;
+    }
+
+    #addon_list-mobile .addon-desc-pic img {
+        height: 100%;
+        width: auto;
+    }
+
+    #addon_list-mobile .addon-desc-col {
+        width: 16%;
+    }
+
+    #addon_list-mobile .addon-desc-pic {
+        width: 84%;
+        margin-right: -16%;
+    }
+
+}
+
+/* ----- 1200 ----- */
+@media (min-width: 1200px) {
+    .group-full-width.addon-container .group-content {
+        max-width: 1144px;
+        margin-left: 5.2%;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 1440px) {
+    .group-full-width.addon-container .group-content {
+        margin-left: 7.5%;
+    }
+}
+
+@media (min-width: 1920px) {
+    .group-full-width.addon-container .group-content {
+        margin-left: 18.2%
+    }
+}
