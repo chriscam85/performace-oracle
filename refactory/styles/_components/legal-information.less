@@ -1,0 +1,98 @@
+//* Informações Legais -> oi_pos_infoLeg
+
+.subTitInfoLeg { margin-left: -5% !important; }
+
+.infoLegais { margin: 0; }
+
+.infoLegais-item {
+    padding: 0;
+
+    h3 {
+        font-size: 18px;
+        font-weight: normal;
+
+        @media @mediaDesktop {
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+    
+    a {
+        text-decoration: underline;
+        color: @colors[light];
+
+        &:hover { color: @colors[active]; }
+    }
+
+    @media @mediaDesktop {
+        margin-right: 55px;
+        display: inline-block;
+        vertical-align: text-top;
+        margin-bottom: 20px;
+    }
+}
+
+.img-infoLegais, .text-infoLegais { display: table-cell; }
+
+.img-infoLegais {
+    width: 40px;
+    height: 100%;
+
+    img { width: 100%; }
+
+    @media @mediaDesktop { width: 56px; }
+}
+
+.text-infoLegais {
+    margin: auto;
+    padding-left: 10px;
+
+    .desc-infoLegais {
+        @media @mediaDesktop {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    }
+
+    @media @mediaDesktop { padding-left: 35px; }
+}
+
+.infoLegais-inner { display: table; }
+
+.infoLegais-container { overflow: hidden; }
+
+.infoLeg-title { 
+
+    .oi-item-med, .oi-desc-text {
+        @media @mediaDesktop { margin-top: 0; }
+    }
+
+    .oi-item-med { 
+        font-size: 24px;
+        font-weight: normal;
+
+        @media @mediaDesktop {
+            font-size: 34px;
+            margin-bottom: 0;
+        }
+    }
+    
+    .oi-desc-text {
+        @media @mediaDesktop {
+            font-size: 20px;
+            margin-bottom: 50px;
+        }
+    }
+}
+
+.infoLeg-Conte {
+
+    @media @mediaDesktop {
+        border-top: solid 1px @colors[border];
+        max-width: 100%;
+        margin-top: -56px;
+
+        .group-content { margin-top: 90px; }
+    }
+}
