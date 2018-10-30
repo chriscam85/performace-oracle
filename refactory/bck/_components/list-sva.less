@@ -1,0 +1,429 @@
+//SVA List  -> oi_pos_svas.less
+
+#sva-TabContent {
+
+	&, .tab-pane { overflow: hidden; }
+
+	@media @mediaDesktop { height: 705px; }
+}
+
+#sva_list {  
+    display: none;
+    
+    .nav {
+	    margin-left: 0;
+	    display: inline-flex;
+		flex-direction: row;
+		
+		@media @mediaDesktop {
+			width: 100%;
+			margin-left: 10px;
+		}
+    }
+
+    .nav-item { 
+        list-style: none;
+        
+        @media @mediaDesktop {
+            &:first-child {  margin-left: 87px; }
+        }
+    }
+
+    .nav-link {
+        padding-bottom: 0;
+		padding-top: 0;
+		border-color: white;
+
+        &.active {
+            border: none;
+            border-bottom: 3px solid @colors[success];
+            border-image-source: linear-gradient(271deg, @colors[focus], @colors[variantFocus]);
+            border-image-slice: 3;
+            
+            &, p { color: @colors[focus]; }
+
+            p {
+                @media @mediaDesktop { font-weight: 500; }
+            }
+        }
+
+        p { 
+            font-weight: bold;
+            
+            @media @mediaDesktop {
+                font-weight: normal;
+		        letter-spacing: 1px;
+                text-transform: uppercase;
+                
+                &:hover { color: @colors[active]; }
+            }
+        }
+    }
+
+	@media @mediaDesktop { display: block; }
+}
+
+.sva-download p, .sva-stores { display: inline-block; }
+
+.sva-stores {
+    margin-left: 20px;
+    
+    img {
+        width: 100px;
+        height: 30px;
+	}
+	
+	@media @mediaDesktop { 
+		margin-left: 0;
+
+		img { margin-right: 17px; }
+	}
+}
+
+.sva-download {
+	margin-top: 20px;
+	margin-bottom: 30px;
+
+	@media @mediaDesktop {
+
+		&:hover, p a:hover { color: @colors[active]; }
+
+		p { 
+			a {
+				&:hover {
+					border-bottom: 1px @colors[active] solid;
+					text-decoration-line: none;
+				}
+
+				&:first-child {
+					text-decoration-color: @colors[light];
+					color: unset;
+					border-bottom: solid 1px @colors[light];
+					text-decoration-line: none;
+				}
+			}
+		}
+
+		.oi-desc-text, .oi-sub-text-sm {
+			display: block;
+			margin: 0 0 13px 0;
+		}
+	}
+}
+
+.sva-desc { 
+	margin-top: 150px;
+	
+	ul { 
+		@media @mediaDesktop { margin-left: 20px; }
+	}
+
+	li {
+		@media @mediaDesktop {
+			list-style: none;
+			width: 334px;
+			margin-bottom: 8px;
+			position: relative;
+
+			&:before {
+				content: "";
+				background-image: url("@{imagePath}/icon-cleck.png");
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+
+				height: 9px;
+				width: 12px;
+				position: absolute;
+				left: -20px;
+				top: 7px;
+			}
+		}
+	}
+
+	.oi-desc-text { 
+		@media @mediaDesktop { margin-bottom: 15px; }
+	}
+
+	@media @mediaDesktop {
+        margin-top: 165px;
+		margin-left: 100px;
+		max-width: 480px;
+    }
+}
+
+.sva-img { 
+
+	img { width: 100%; }
+	
+	@media @mediaDesktop { 
+		max-width: 572px;
+		margin-top: 0;
+		padding-left: 0;
+		padding-right: 0;
+		position: absolute;
+		right: 0;
+		z-index: 2;
+	}
+}
+
+.sva_nav {
+	position: absolute;
+	z-index: 2;
+
+	@media @mediaDesktop { width: 100%; }
+}
+
+.svaCont {
+	border-top: solid 1px @colors[border];
+	margin-top: 1px;
+	overflow-x: hidden;
+	
+	.group-content {
+		@media @mediaDesktop { margin-left: auto; }
+	}
+
+	@media @mediaDesktop { overflow: visible; }
+}
+
+#pl_PlabelSVAHTML { 
+    
+    .oiSectionHeader {
+
+        &:after {
+            content: "";
+            background-image: url("@{imagePath}/ameba-detalhe-produto-1.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+
+            width: 50px;
+            height: 48px;
+            position: absolute;
+            top: 40px;
+            right: -25px;
+            
+            .transform(rotate(244deg));
+
+            @media @mediaDesktop { display: none; }
+        }
+
+        h1 { margin-right: 1em; }
+
+        .oiSectionHeader-Title {
+            @media @mediaDesktop { padding: 0; }
+        }
+
+        @media @mediaDesktop { 
+            padding-top: 80px;
+            
+            
+        }
+    }
+
+    .oi-section-text {
+		@media @mediaDesktop { text-align: center; }
+	}
+
+    @media @mediaDesktop { 
+        &:after {
+            content: "";
+            background-image: url("@{imagePath}/ameba-detalhe-produto-1.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+
+            width: 151px;
+            height: 131px;
+
+            position: absolute;
+            top: 293px;
+            left: -113px;
+            z-index: 1;
+
+            .transform(rotate(327deg));
+        }
+    }
+}
+
+#pl_listaSVAs { 
+	border-bottom: 1px solid @colors[border]; 
+
+	@media @mediaDesktop {
+		border-bottom: none;
+		padding-left: 36px;
+		padding-right: 0;
+	}
+}
+
+#sva_list-mobile { 
+    margin-left: 20px;
+	margin-right: 20px;
+
+    a {
+        &.btn {
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            padding: 0;
+            display: flex;
+            align-items: center;
+
+            &:after {
+                content: "";
+                background-image: url("@{imagePath}/icon-seta-expandir-preto.png");
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+
+                height: 8px;
+                width: 12px;
+                margin-right: 0;
+                margin-left: auto;
+                
+                .transition(0.5s);
+            }
+
+            &[aria-expanded="true"] {
+
+                &:after {
+                    background-image: url("@{imagePath}/icon-seta-expandir-laranja.png");
+                    
+                    .transform(rotate(-180deg));
+                }
+            }
+        }
+    }
+    
+    .card-header, .card { border: none; }
+
+    .card-header {
+        height: 70px;
+	    padding: 15px 0;
+        background: none;
+    
+        img {
+	        width: 32px;
+            height: 32px;
+        }
+
+        h3 {
+            margin: 0 0 0 13px;
+            font-size: 18px;
+            font-weight: normal;
+            display: inline-block;
+        }
+    }
+
+    .card {
+        border-top: 1px solid @colors[border];
+        border-radius: 0;
+    }
+
+    .card-body { 
+        padding: 0 0 1em 0; 
+
+        ul, .sva-download, .sva-stores { margin: 0; }
+        
+        li, .sva-download p { font-size: 14px; }
+
+        .sva-stores, .sva-download p { display: block; }
+
+        p {
+            font-family: simplon_bpregular;
+            font-size: 16px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+
+            line-height: 1.5;
+            letter-spacing: normal;
+            color: @colors[title];
+            margin-top: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            color: @colors[light];
+        }
+
+        li {
+            padding-left: 2em;
+            margin-bottom: 1em;
+            
+            position: relative;
+
+            &:before {
+                content: "";
+                background-image: url("@{imagePath}/icon-cleck.png");
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+
+                height: 9px;
+                width: 12px;
+                position: absolute;
+                left: 0;
+                top: 4px;
+            }
+        }
+
+        .sva-download { 
+            p { margin-bottom: 15px; }
+
+            a{
+                text-decoration: underline;
+	            text-decoration-color: @colors[light];
+	            color: unset;
+            }
+        }
+
+        .sva-stores { 
+            a { margin-right: 10px; }
+        }
+    }
+
+    @media @mediaDesktop { display: none; }
+}
+
+.imgDeskLatFirst, .imgDeskLatSecond { 
+	display: none !important; 
+
+	@media @mediaDesktop{ display: inline-block !important; }
+}
+
+@media @mediaDesktop {
+	.nav-item .nav-link {
+		padding: 0;
+		margin-right: 40px;
+	}
+
+	.subtitApps { 
+		.oi-desc-textBig {
+			margin: 0;
+			display: inline-block;
+			margin-left: 24px;
+		}
+	}
+
+	.card-body { padding-left: 0; }
+
+	.storeFirst { margin-right: 15px; }
+
+	.imgDeskFirst, .imgDeskLatFirst, .imgDeskLatSecond {
+		position: absolute;
+		padding: 0;
+	}
+
+	.imgDeskFirst {
+		z-index: 1;
+		top: 239px;
+		right: 294px;
+	}
+
+	.imgDeskLatFirst {
+		right: 190px;
+		top: 65px;
+	}
+
+	.imgDeskLatSecond {
+		right: 0px;
+		top: 31px;
+		z-index: 2;
+	}
+}
