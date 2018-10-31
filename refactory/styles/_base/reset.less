@@ -1,0 +1,87 @@
+// Reset struture
+html, body {
+    &:extend(.fullHeight);
+    overflow: hidden;
+}
+  
+body {
+    -webkit-font-smoothing: antialiased;
+    background: #FFF;
+}
+
+*:focus { outline: none !important; }
+
+#main-content, #config-section {
+    display: block !important;
+    &:extend(.fullHeight);
+}
+
+#main-content, .grid { padding: 0 !important; }
+  
+#bm-popup { left: 50%; }
+  
+div {
+    &.body-inner {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        max-width: 100%;
+        top: 0;
+        left: 0;
+
+        &:extend(.absolute);
+        &:extend(.fullHeight);
+    }
+}
+ 
+.row.clearfix, 
+.group-full-width .group-content {
+    margin: 0;
+}
+
+.configuration-form,
+.tab-content  { margin: 0 !important; }
+
+.attribute-inner, 
+.tab-content { padding: 0; }
+
+.configuration-form { &:extend(.fullHeight); }
+  
+.group-full-width .group-content {
+    max-width: 100%;
+    &:extend(.fullwidth);
+}  
+  
+.tab-content {
+    &:extend(.fullwidth);
+    &:extend(.fullHeight);
+}
+  
+.model-config div.group-inner { border: none !important; }
+  
+#sticky-actions { z-index: 4 !important; }
+  
+.grid:not(.scrollable-content) .column { display: block; }
+  
+.scrollable-content { 
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    display: inline-block;
+    -webkit-overflow-scrolling: touch !important;
+
+    &:extend(.fullHeight);
+    
+    &, > .group-content { &:extend(.fullwidth); }
+
+    .column {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    > .group-content {
+        max-width: 100%;
+        margin: 0;
+    }
+}

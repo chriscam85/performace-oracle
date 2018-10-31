@@ -9,9 +9,11 @@
     shadow: rgba(2, 2, 2, .15);
     shadowText: rgba(248, 86, 44, 0.15);
     destak: #ffe93d;
+    newDestak: #ffd700;
     variantDestak: #e7ad21;
     defaultDestak: gold;
     dark: #222;
+    whiteMedDark: #f0f0f0;
     gray: #f5f5f5;
     focus: #fe6b03;
     variantFocus: #e33465;
@@ -20,6 +22,7 @@
 
 @fonts: {
     regular: simplon_bpregular;
+    oiheadline: simplon_oiheadline;
 };
 
 @sizes: {
@@ -32,30 +35,5 @@
 @mediaDesktop: ~"(min-width: 768px)";
 @mediaDesktopFull: ~"(min-width: 1024px)";
 
-// CSS 3 Prefixos
-.transition (@transition) {
-	-webkit-transition: @transition;  
-	-moz-transition:    @transition;
-	-ms-transition:     @transition; 
-	-o-transition:      @transition;  
-	transition:      @transition;  
-}
-
-.transform(@string){
-	-webkit-transform: @string;
-	-moz-transform: 	 @string;
-	-ms-transform: 		 @string;
-	-o-transform: 		 @string;
-	transform: 		 @string;
-}
-
-.user-select(@val) {
-    -webkit-user-select:    @val;
-    -moz-user-select:       @val;
-    -ms-user-select:        @val;
-    user-select:            @val;
-}
-
-.radius { border-radius: @radius; }
-.relative { position: relative; }
-.absolute { position: absolute; }
+@import "mixins";
+@import "extends";

@@ -1,0 +1,49 @@
+@import "variables";
+
+// Extends
+.radius { border-radius: @radius; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fullHeight { height: 100%; }
+.fullwidth { width: 100%; }
+
+// Cores
+.oi-color-normal { color: @colors[title]; }
+.oi-color-feature { color: @colors[focus]; }
+.oi-color-light { color: @colors[light]; }
+.oi-color-white { color: #fff; }
+.oi-color-whiteMedDark { color: @colors[whiteMedDark]; }
+.oi-color-whiteDark { color: @colors[light]; }
+.oi-color-border-feature { border-color: @colors[active]; }
+.oi-color-border-lighter { border-color: @colors[border]; }
+.oi-color-gradient { 
+    color: linear-gradient(289deg, @colors[focus], @colors[variantFocus]); 
+}
+.oi-color-background-gradient { 
+    background-image: linear-gradient(289deg, @colors[focus], @colors[variantFocus]); 
+}
+.oi-color-background-color-gradient { 
+    background-color: linear-gradient(289deg, @colors[focus], @colors[variantFocus]); 
+}
+.oi-color-button { 
+    color: linear-gradient(@colors[newDestak], @colors[newDestak]), 
+        linear-gradient(to top, @colors[variantDestak], @colors[newDestak]); 
+}
+.oi-color-background-button { 
+    background-image: linear-gradient(@colors[newDestak], 
+        @colors[newDestak]), linear-gradient(to top, @colors[variantDestak], 
+        @colors[newDestak]); 
+}
+
+// Fontes
+// .font
+// font-family: simplon_oiheadline;
+// font-size: 40px;
+// font-weight: normal;
+// font-style: normal;
+// font-stretch: normal;
+// line-height: 0.9;
+// letter-spacing: normal;
+// -webkit-background-clip: text;
+// background-clip: text;
+// -webkit-text-fill-color: transparent;

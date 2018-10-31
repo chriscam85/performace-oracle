@@ -1,0 +1,631 @@
+@import "_base/variables";
+@import "_base/reset";
+
+.oiSectionHeader {
+    padding-top: 35px;
+    padding-bottom: 35px;
+
+    .oiSectionHeader-Title, .oiSectionHeader-SubTitle { 
+        display: block;
+        margin: 0; 
+    }
+
+    .oiSectionHeader-Number {
+        display: inline-block;
+        font-weight: normal;
+        font-size: 40px;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+      
+    .oiSectionHeader-Title {
+        font-weight: normal;
+        font-size: 28px;
+    }
+      
+    .oiSectionHeader-SubTitle { margin-top: 12px; }
+}
+
+table.header-bordercolor, 
+table.commerce-bordercolor,
+h3#config-header,
+h3.group-header,
+.body-inner:after, 
+.model-config:before, 
+.model-config:after { display: none; }
+
+div#pricing-table-wrapper,
+div#recommendation-section,
+div#session-timeout-popup,
+div.model-config,
+#sticky-actions .grand-total-container,
+table.plain-button.button-update,
+table.plain-button.button-start-over  { display: none !important; }
+
+#sticky-actions {
+    &, 
+    div.bm-actionstrip,
+    .buttons { height: 100%; }
+
+    td {
+        &.button-middle {
+            background: white;
+            border: none;
+            height: 40px;
+            width: 120px;
+            border-radius: 5px;
+
+            &:hover {
+                background: white !important;
+                border: none !important;
+            }
+
+            a {
+                line-height: 40px;
+                text-shadow: none;
+
+                &:hover { color: black !important; }
+            }
+        }
+    }
+
+    .buttons {
+        height: 100%;
+        width: 100%;
+        padding: 0 !important;
+        display: flex;
+        align-items: center;
+    }
+
+    .floating {
+        .box-shadow(none) !important;
+        
+        top: 3px;
+        right: 0;
+        position: unset;
+    }
+
+    div {
+        &.bm-actionstrip {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: none !important;
+            overflow: unset;
+            display: flex;
+            vertical-align: middle;
+        }
+    }
+}
+  
+.bm-actionstrip { display: inline-block; }
+  
+div {
+    &#sticky-actions { padding: 0; }
+
+    &.overlay, &#loading-dialog { background-color: #FFF; }
+    
+    &#loading-dialog {
+        border: none;
+        box-shadow: 0 3px 15px 0 @colors[shadow];
+    }
+}
+  
+table.plain-button {
+    display: inline-table;
+    margin: 0 0 0 auto !important;
+    pointer-events: auto;
+}
+  
+.button-bar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 65px !important;
+    z-index: 5;
+    pointer-events: none;
+    width: 100%;
+}
+  
+
+  .oi-gradient-text {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 5px 8px rgba(248, 86, 44, 0.15);
+  }
+  
+  .oi-section-text-head-gradient {
+    font-family: simplon_oiheadline;
+    font-size: 40px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.9;
+    letter-spacing: normal;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .oiSectionHeader .oi-section-text-head {
+    font-family: simplon_oiheadline;
+    font-size: 32px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.07;
+    letter-spacing: normal;
+  }
+  
+  .priceReais {
+    font-family: simplon_oiheadline;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.07;
+    letter-spacing: normal;
+  }
+  
+  .priceInteger {
+    font-family: simplon_oiheadline;
+    font-size: 32px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.07;
+    letter-spacing: normal;
+  }
+  
+  .priceOfferBig {
+    font-family: simplon_oiheadline;
+    font-size: 48px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+  }
+  
+  .priceOfferSmall {
+    font-family: simplon_oiheadline;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+  }
+  
+  .priceDecimal {
+    font-family: simplon_oiheadline;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.07;
+    letter-spacing: normal;
+  }
+  
+  .priceMonth {
+    font-family: simplon_oiheadline;
+    font-size: 8px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.07;
+    letter-spacing: normal;
+  }
+  
+  .oi-section-text {
+    font-family: simplon_bpregular;
+    font-size: 28px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.07;
+    letter-spacing: normal;
+  }
+  
+  .txtDepen {
+    font-family: simplon_bpregular;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.14;
+    letter-spacing: normal;
+    font-size: 12px;
+  }
+  
+  .oi-sectionDesc-text {
+    font-family: simplon_bpregular;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+  }
+  
+  .oi-sectionDesc-textExBig {
+    font-family: simplon_bpregular;
+    font-size: 32px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+  }
+  
+  .oi-desc-textMed {
+    font-family: simplon_bpregular;
+    font-size: 20px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+  
+  .oi-desc-text {
+    font-family: simplon_bpregular;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+  
+  .oi-desc-textBig {
+    font-family: simplon_bpregular;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+  
+  .oi-sub-text {
+    font-family: simplon_bpregular;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+  
+  .oi-sub-text-sm {
+    font-family: simplon_bpregular;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+  
+  .oi-sub-text-small {
+    font-family: simplon_bpregular;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 20px;
+    letter-spacing: normal;
+  }
+  
+  .oi-sub-text-xs {
+    font-family: simplon_bpregular;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 20px;
+    letter-spacing: normal;
+  }
+  
+  .oi-sub-text-pc {
+    font-family: simplon_bpregular;
+    font-size: 12px;
+    text-align: center;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 12px;
+    letter-spacing: normal;
+    color: #909090;
+  }
+  
+  .oi-sub-text-med {
+    font-family: simplon_bpmedium;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+  
+  .oi-sub-text-big {
+    font-family: simplon_bpmedium;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 20px;
+    letter-spacing: normal;
+  }
+  
+  .oi-sub-text-ExBig {
+    font-family: simplon_bpmedium;
+    font-size: 20px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+  }
+  
+  .oi-item-big {
+    font-family: simplon_bp;
+    font-size: 28px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 30px;
+    letter-spacing: -0.9px;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .oi-item-med {
+    font-family: simplon_bp;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+  }
+  
+  .oiSectionHeader-enlace {
+    font-family: simplon_bpregular;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #222222;
+  }
+  
+  .oi-sub-text-legal {
+    font-family: simplon_bpregular;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 12px;
+    letter-spacing: normal;
+  }
+  
+  /* -----------------------------------------------
+  *  Fonts
+  *  -----------------------------------------------
+  */
+  /* simplon_bp */
+  @font-face {
+    font-family: 'simplon_bp';
+    src: url("../../image/oi_CSS/SimplonBP-Bold.woff.css") format('woff');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  /* simplon_bp */
+  @font-face {
+    font-family: 'simplon_bp';
+    src: url("../../image/oi_CSS/SimplonBP-BoldItalic.woff.css") format('woff');
+    font-weight: normal;
+    font-style: italic;
+  }
+  
+  /* simplon_bpmedium */
+  @font-face {
+    font-family: 'simplon_bpmedium';
+    src: url("../../image/oi_CSS/SimplonBP-Medium.woff.css") format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* simplon_bpmedium */
+  @font-face {
+    font-family: 'simplon_bpmedium';
+    src: url("../../image/oi_CSS/SimplonBP-MediumItalic.woff.css") format('woff');
+    font-weight: normal;
+    font-style: italic;
+  }
+  
+  /* simplon_bpregular */
+  @font-face {
+    font-family: 'simplon_bpregular';
+    src: url("../../image/oi_CSS/SimplonBP-Regular.woff.css") format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* simplon_bpregular */
+  @font-face {
+    font-family: 'simplon_bpregular';
+    src: url("../../image/oi_CSS/SimplonBP-RegularItalic.woff.css") format('woff');
+    font-weight: normal;
+    font-style: italic;
+  }
+  
+  /* simplon_oiheadline */
+  @font-face {
+    font-family: 'simplon_oiheadline';
+    src: url("../../image/oi_CSS/SimplonOi-Headline.woff.css") format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* ----- 768 ----- */
+  @media (min-width: 768px) {
+  
+    .oiSectionHeader .oi-section-text-head {
+      font-size: 48px;
+    }
+  
+    .oi-section-text-head {
+      font-size: 48px;
+    }
+  
+    .oi-sub-text-sm {
+      font-size: 16px;
+    }
+  
+    .oi-sub-text {
+      font-size: 20px;
+    }
+  
+    .oiSectionHeader .oiSectionHeader-Number {
+      font-size: 40px;
+      margin-bottom: 13px;
+    }
+  
+    .oiSectionHeader .oiSectionHeader-Title {
+      font-size: 24px;
+    }
+  
+    .oiSectionHeader .oiSectionHeader-SubTitle {
+      font-size: 16px;
+    }
+  
+    .oi-sectionDesc-text {
+      font-size: 16px;
+    }
+  
+    .oi-sub-text-med {
+      font-size: 16px;
+    }
+  
+    .oi-sub-text-small {
+      font-size: 14px;
+    }
+  
+    .oi-sub-text-xs {
+      font-size: 12px;
+    }
+  
+    .oi-item-big {
+      font-size: 48px;
+    }
+  
+    .oi-desc-text {
+      font-size: 20px;
+    }
+  
+    p.priceReais {
+      font-size: 16px;
+    }
+  
+    p.priceInteger {
+      font-size: 32px;
+    }
+  
+    p.priceDecimal {
+      font-size: 16px;
+    }
+  
+    p.priceMonth {
+      font-size: 8px;
+    }
+  }
+  
+  
+  /* ----- 992 ----- */
+  @media (min-width: 992px) {
+    .oiSectionHeader .oiSectionHeader-Number {
+      font-size: 48px;
+      margin-bottom: 13px;
+    }
+  
+    .oiSectionHeader .oiSectionHeader-Title {
+      font-size: 34px;
+    }
+  
+    .oiSectionHeader .oiSectionHeader-SubTitle {
+      font-size: 20px;
+    }
+  
+    p.priceReais {
+      font-size: 24px;
+    }
+  
+    p.priceInteger {
+      font-size: 48px;
+    }
+  
+    p.priceDecimal {
+      font-size: 24px;
+    }
+  
+    p.priceMonth {
+      font-size: 12px;
+    }
+  }
+  
+  .group-content {
+    margin: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  /* ----- 768 ----- */
+  @media (min-width: 768px) {
+    .group-content {
+      margin-left: 36px;
+      margin-right: 36px;
+    }
+  }
+  
+  /* ----- 1024 ----- */
+  @media (min-width: 1024px) {
+    .group-content {
+      margin-left: 44px;
+      margin-right: 44px;
+    }
+  }
+  
+  /* ----- 1366 ----- */
+  @media (min-width: 1366px) {
+    .group-content {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 1224px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .group-full-width-mobile .group-content{
+      max-width: 100%;
+      width: 100%;
+      margin: 0;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .group-full-width-md .group-content{
+      max-width: 100%;
+      width: 100%;
+      margin: 0;
+    }
+  }

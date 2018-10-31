@@ -2,831 +2,910 @@
 * Pos Pago Flow CSS
 * ================================================
 */
-
-
 /* -----------------------------------------------
 *  Layout elements
 *  -----------------------------------------------
 */
+.oiSectionHeader {
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+.oiSectionHeader .oiSectionHeader-Number {
+  display: inline-block;
+  font-weight: normal;
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.oiSectionHeader .oiSectionHeader-Title {
+  display: block;
+  font-weight: normal;
+  font-size: 28px;
+  margin: 0;
+}
+
+.oiSectionHeader .oiSectionHeader-SubTitle {
+  display: block;
+  margin: 0px;
+  margin-top: 12px;
+}
+
+/*
+#loading-mask {
+  display: none !important;
+}
+div#loading-mask.loading-mask-force-show {
+  display: block !important;
+}
+*/
+
+/* -----------------------------------------------
+*  Hide elements
+*  -----------------------------------------------
+*/
+/* Hide Menu Header */
+table.header-bordercolor {
+  display: none;
+}
+
+table.commerce-bordercolor {
+  display: none;
+}
+
+/* Hide Config Model Label */
+h3#config-header {
+  display: none;
+}
+
+/* Hide Collapsable Group Header */
+h3.group-header {
+  display: none;
+}
+
+/* Hide CPQ Cart */
+div#pricing-table-wrapper {
+  display: none !important;
+}
+
+div#recommendation-section {
+  display: none !important;
+}
+
+/* Hide CPQ Timeout popup */
+div#session-timeout-popup {
+  display: none !important;
+}
+
+.body-inner:after, .model-config:before, .model-config:after{
+  display: none;
+}
+
+div.model-config{
+  background-image: none !important;
+}
+
+/* -----------------------------------------------
+*  CPQ TOP BAR
+*  -----------------------------------------------
+*/
+#sticky-actions td.button-middle {
+  background: white;
+  border: none;
+  height: 40px;
+  width: 120px;
+  border-radius: 5px;
+}
+
+#sticky-actions td.button-middle a {
+  line-height: 40px;
+  text-shadow: none;
+}
+
+#sticky-actions td.button-middle:hover {
+  background: white !important;
+  border: none !important;
+}
+
+#sticky-actions td.button-middle:hover a {
+  color: black !important;
+}
+
+#sticky-actions .floating {
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  top: 3px;
+  right: 0px;
+  position: unset;
+}
+
+#sticky-actions div.bm-actionstrip {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  background: none !important;
+  overflow: unset;
+  display: flex;
+  vertical-align: middle;
+}
+
+#sticky-actions {
+  height: 100%;
+}
+
+.bm-actionstrip {
+  display: inline-block;
+}
+
+#sticky-actions .grand-total-container {
+  display: none !important;
+}
+
+div#sticky-actions {
+  padding: 0;
+}
+
+#sticky-actions .buttons {
+  height: 100%;
+  width: 100%;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+table.plain-button {
+  display: inline-table;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-right: 0 !important;
+  margin-left: auto !important;
+  pointer-events: auto;
+}
+
+.button-bar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin: 0px !important;
+  padding: 0px !important;
+  height: 65px !important;
+  z-index: 5;
+  pointer-events: none;
+  width: 100%;
+}
+
+table.plain-button.button-update {
+  display: none !important;
+}
+
+table.plain-button.button-start-over {
+  display: none !important;
+}
+
+/*================================================
+* General Adjustments CPQ
+* ================================================
+*/
+html {
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden !important;
+  height: 100%;
+}
 
 body {
-    height: auto !important;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch !important;
+  height: 100% !important;
+  overflow: hidden;
+  background: #FFFFFF !important;
+}
+
+div#main-content {
+  display: block !important;
+  height: 100%;
+}
+
+div#config-section {
+  display: block !important;
+  width: 100%;
+  height: 100%;
+}
+
+#bm-popup {
+  left: 50%;
+}
+
+div.body-inner {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  max-width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.grid {
+  padding: 0 !important;
+}
+
+.configuration-form {
+  margin: 0px !important;
+  height: 100%;
+}
+
+div#main-content {
+  padding: 0px !important;
+}
+
+.group-full-width .group-content {
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.row.clearfix {
+  margin: 0px;
+}
+
+.attribute-inner {
+  padding: 0px;
+}
+
+.tab-content {
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  padding: 0;
+}
+
+.model-config div.group-inner {
+  border: none !important;
+}
+
+#sticky-actions {
+  z-index: 4 !important;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+.scrollable-content {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.grid:not(.scrollable-content) .column {
+  display: block;
+}
+
+.scrollable-content .column {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.scrollable-content>.group-content {
+  max-width: 100%;
+  width: 100%;
+}
+
+.scrollable-content>.group-content {
+  margin: 0;
+}
+
+
+/*================================================
+* loading dialog CPQ
+* ================================================
+*/
+div.overlay {
+  background: white;
+}
+
+div#loading-dialog {
+  border: none;
+  background-color: #ffffff;
+  box-shadow: 0 3px 15px 0 rgba(2, 2, 2, 0.15);
+}
+
+/*================================================
+*  lazy load images 
+* ================================================
+*/
+/*
+@keyframes spinner {
+to {transform: rotate(360deg);}
+}
+
+.lazy-loading{
+position: relative;
+}
+
+.lazy-loading:before {
+content: '';
+box-sizing: border-box;
+position: absolute;
+top: 50%;
+left: 50%;
+width: 20px;
+height: 20px;
+margin-top: -10px;
+margin-left: -10px;
+border-radius: 50%;
+border: 2px solid #dbdbdb;
+border-top-color: #909090;
+animation: spinner .6s linear infinite;
+z-index: 999;
+}
+*/
+/* -----------------------------------------------
+*  oi colours
+*  -----------------------------------------------
+*/
+.oi-color-normal {
+  color: #222222;
+}
+
+.oi-color-feature {
+  color: #f8562c;
+}
+
+.oi-color-light {
+  color: #909090;
+}
+
+.oi-color-white {
+  color: #ffffff;
+}
+
+.oi-color-whiteMedDark {
+  color: #f0f0f0;
+}
+
+.oi-color-whiteDark {
+  color: #909090;
+}
+
+.oi-color-border-feature {
+  border-color: #f8562c;
+}
+
+.oi-color-border-lighter {
+  border-color: #dbdbdb;
+}
+
+.oi-color-gradient {
+  color: linear-gradient(289deg, #fe6b03, #e33465);
+}
+
+.oi-color-background-gradient {
+  background-image: linear-gradient(289deg, #fe6b03, #e33465);
+}
+
+.oi-color-background-color-gradient {
+  background-color: linear-gradient(289deg, #fe6b03, #e33465);
+}
+
+.oi-color-button {
+  color: linear-gradient(#ffd700, #ffd700), linear-gradient(to top, #e7ad21, #ffd700);
+}
+
+.oi-color-background-button {
+  background-image: linear-gradient(#ffd700, #ffd700), linear-gradient(to top, #e7ad21, #ffd700);
+}
+
+/*================================================
+* fonts
+* ================================================
+*/
+/* -----------------------------------------------
+*  oi fonts
+*  -----------------------------------------------
+*/
+.oi-gradient-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 3px 5px 8px rgba(248, 86, 44, 0.15);
+}
+
+.oi-section-text-head-gradient {
+  font-family: simplon_oiheadline;
+  font-size: 40px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.9;
+  letter-spacing: normal;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.oiSectionHeader .oi-section-text-head {
+  font-family: simplon_oiheadline;
+  font-size: 32px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.07;
+  letter-spacing: normal;
+}
+
+.priceReais {
+  font-family: simplon_oiheadline;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.07;
+  letter-spacing: normal;
+}
+
+.priceInteger {
+  font-family: simplon_oiheadline;
+  font-size: 32px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.07;
+  letter-spacing: normal;
+}
+
+.priceOfferBig {
+  font-family: simplon_oiheadline;
+  font-size: 48px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.priceOfferSmall {
+  font-family: simplon_oiheadline;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.priceDecimal {
+  font-family: simplon_oiheadline;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.07;
+  letter-spacing: normal;
+}
+
+.priceMonth {
+  font-family: simplon_oiheadline;
+  font-size: 8px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.07;
+  letter-spacing: normal;
+}
+
+.oi-section-text {
+  font-family: simplon_bpregular;
+  font-size: 28px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.07;
+  letter-spacing: normal;
+}
+
+.txtDepen {
+  font-family: simplon_bpregular;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  font-size: 12px;
+}
+
+.oi-sectionDesc-text {
+  font-family: simplon_bpregular;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+}
+
+.oi-sectionDesc-textExBig {
+  font-family: simplon_bpregular;
+  font-size: 32px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+}
+
+.oi-desc-textMed {
+  font-family: simplon_bpregular;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+.oi-desc-text {
+  font-family: simplon_bpregular;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+.oi-desc-textBig {
+  font-family: simplon_bpregular;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+.oi-sub-text {
+  font-family: simplon_bpregular;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+.oi-sub-text-sm {
+  font-family: simplon_bpregular;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+.oi-sub-text-small {
+  font-family: simplon_bpregular;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+.oi-sub-text-xs {
+  font-family: simplon_bpregular;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+.oi-sub-text-pc {
+  font-family: simplon_bpregular;
+  font-size: 12px;
+  text-align: center;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 12px;
+  letter-spacing: normal;
+  color: #909090;
+}
+
+.oi-sub-text-med {
+  font-family: simplon_bpmedium;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+.oi-sub-text-big {
+  font-family: simplon_bpmedium;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+.oi-sub-text-ExBig {
+  font-family: simplon_bpmedium;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+}
+
+.oi-item-big {
+  font-family: simplon_bp;
+  font-size: 28px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 30px;
+  letter-spacing: -0.9px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.oi-item-med {
+  font-family: simplon_bp;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+}
+
+.oiSectionHeader-enlace {
+  font-family: simplon_bpregular;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: right;
+  color: #222222;
+}
+
+.oi-sub-text-legal {
+  font-family: simplon_bpregular;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 12px;
+  letter-spacing: normal;
+}
+
+/* -----------------------------------------------
+*  Fonts
+*  -----------------------------------------------
+*/
+/* simplon_bp */
+@font-face {
+  font-family: 'simplon_bp';
+  src: url("../../image/oi_CSS/SimplonBP-Bold.woff.css") format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* simplon_bp */
+@font-face {
+  font-family: 'simplon_bp';
+  src: url("../../image/oi_CSS/SimplonBP-BoldItalic.woff.css") format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* simplon_bpmedium */
+@font-face {
+  font-family: 'simplon_bpmedium';
+  src: url("../../image/oi_CSS/SimplonBP-Medium.woff.css") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* simplon_bpmedium */
+@font-face {
+  font-family: 'simplon_bpmedium';
+  src: url("../../image/oi_CSS/SimplonBP-MediumItalic.woff.css") format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* simplon_bpregular */
+@font-face {
+  font-family: 'simplon_bpregular';
+  src: url("../../image/oi_CSS/SimplonBP-Regular.woff.css") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* simplon_bpregular */
+@font-face {
+  font-family: 'simplon_bpregular';
+  src: url("../../image/oi_CSS/SimplonBP-RegularItalic.woff.css") format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* simplon_oiheadline */
+@font-face {
+  font-family: 'simplon_oiheadline';
+  src: url("../../image/oi_CSS/SimplonOi-Headline.woff.css") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ----- 768 ----- */
+@media (min-width: 768px) {
+
+  .oiSectionHeader .oi-section-text-head {
+    font-size: 48px;
   }
-  
-  html {
-    -webkit-font-smoothing: antialiased;
-    overflow: auto !important;
+
+  .oi-section-text-head {
+    font-size: 48px;
   }
-  
-  .oiSectionHeader {
-    padding-top: 35px;
-    padding-bottom: 35px;
+
+  .oi-sub-text-sm {
+    font-size: 16px;
   }
-  
+
+  .oi-sub-text {
+    font-size: 20px;
+  }
+
   .oiSectionHeader .oiSectionHeader-Number {
-    display: inline-block;
-    font-weight: normal;
     font-size: 40px;
-    margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 13px;
   }
-  
+
   .oiSectionHeader .oiSectionHeader-Title {
-    display: block;
-    font-weight: normal;
-    font-size: 28px;
+    font-size: 24px;
+  }
+
+  .oiSectionHeader .oiSectionHeader-SubTitle {
+    font-size: 16px;
+  }
+
+  .oi-sectionDesc-text {
+    font-size: 16px;
+  }
+
+  .oi-sub-text-med {
+    font-size: 16px;
+  }
+
+  .oi-sub-text-small {
+    font-size: 14px;
+  }
+
+  .oi-sub-text-xs {
+    font-size: 12px;
+  }
+
+  .oi-item-big {
+    font-size: 48px;
+  }
+
+  .oi-desc-text {
+    font-size: 20px;
+  }
+
+  p.priceReais {
+    font-size: 16px;
+  }
+
+  p.priceInteger {
+    font-size: 32px;
+  }
+
+  p.priceDecimal {
+    font-size: 16px;
+  }
+
+  p.priceMonth {
+    font-size: 8px;
+  }
+}
+
+
+/* ----- 992 ----- */
+@media (min-width: 992px) {
+  .oiSectionHeader .oiSectionHeader-Number {
+    font-size: 48px;
+    margin-bottom: 13px;
+  }
+
+  .oiSectionHeader .oiSectionHeader-Title {
+    font-size: 34px;
+  }
+
+  .oiSectionHeader .oiSectionHeader-SubTitle {
+    font-size: 20px;
+  }
+
+  p.priceReais {
+    font-size: 24px;
+  }
+
+  p.priceInteger {
+    font-size: 48px;
+  }
+
+  p.priceDecimal {
+    font-size: 24px;
+  }
+
+  p.priceMonth {
+    font-size: 12px;
+  }
+}
+
+.group-content {
+  margin: 0px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* ----- 768 ----- */
+@media (min-width: 768px) {
+  .group-content {
+    margin-left: 36px;
+    margin-right: 36px;
+  }
+}
+
+/* ----- 1024 ----- */
+@media (min-width: 1024px) {
+  .group-content {
+    margin-left: 44px;
+    margin-right: 44px;
+  }
+}
+
+/* ----- 1366 ----- */
+@media (min-width: 1366px) {
+  .group-content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1224px;
+  }
+}
+
+@media (max-width: 768px) {
+  .group-full-width-mobile .group-content{
+    max-width: 100%;
+    width: 100%;
     margin: 0;
   }
-  
-  .oiSectionHeader .oiSectionHeader-SubTitle {
-    display: block;
-    margin: 0px;
-    margin-top: 12px;
-  }
-  
-  #loading-mask {
-    display: none !important;
-  }
-  
-  div#loading-mask.loading-mask-force-show {
-    display: block !important;
-  }
-  
-  /* -----------------------------------------------
-  *  Hide elements
-  *  -----------------------------------------------
-  */
-  
-  /* Hide Menu Header */
-  
-  table.header-bordercolor {
-    display: none;
-  }
-  
-  table.commerce-bordercolor {
-    display: none;
-  }
-  
-  /* Hide Config Model Label */
-  
-  h3#config-header {
-    display: none;
-  }
-  
-  /* Hide Collapsable Group Header */
-  
-  h3.group-header {
-    display: none;
-  }
-  
-  /* Hide CPQ Cart */
-  
-  div#pricing-table-wrapper {
-    display: none !important;
-  }
-  
-  div#recommendation-section {
-    display: none !important;
-  }
-  
-  /* Hide CPQ Timeout popup */
-  
-  div#session-timeout-popup {
-    display: none !important;
-  }
-  
-  /* CPQ TOP BAR */
-  
-  #sticky-actions td.button-middle {
-    background: white;
-    border: none;
-    height: 40px;
-    width: 120px;
-    border-radius: 5px;
-  }
-  
-  #sticky-actions td.button-middle a {
-    line-height: 40px;
-    text-shadow: none;
-  }
-  
-  #sticky-actions td.button-middle:hover {
-    background: white !important;
-    border: none !important;
-  }
-  
-  #sticky-actions td.button-middle:hover a {
-    color: black !important;
-  }
-  
-  #sticky-actions .floating {
-    box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    top: 3px;
-    right: 0px;
-    position: unset;
-  }
-  
-  #sticky-actions div.bm-actionstrip {
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    background: none !important;
-    overflow: unset;
-    display: flex;
-    vertical-align: middle;
-  }
-  
-  #sticky-actions {
-    height: 100%;
-  }
-  
-  .bm-actionstrip {
-    display: inline-block;
-  }
-  
-  
-  #sticky-actions .grand-total-container {
-    display: none !important;
-    ;
-  }
-  
-  div#sticky-actions {
-    padding: 0;
-    padding-right: 20px;
-  }
-  
-  #sticky-actions .buttons {
-    height: 100%;
-    width: 100%;
-    padding: 0 !important;
-    display: flex;
-    align-items: center;
-  }
-  
-  table.plain-button {
-    display: inline-table;
-    margin-bottom: 0 !important;
-    margin-top: 0 !important;
-    margin-right: 0 !important;
-    margin-left: auto !important;
-    pointer-events: auto;
-  }
-  
-  .button-bar {
-    position: fixed;
-    right: 0;
-    top: 0;
-    margin: 0px !important;
-    padding: 0px !important;
-    height: 65px !important;
-    z-index: 5;
-    pointer-events: none;
-  }
-  
-  table.plain-button.button-update {
-    display: none !important;
-  }
-  
-  table.plain-button.button-start-over {
-    display: none !important;
-  }
-  
-  /*================================================
-  * General Adjustments CPQ
-  * ================================================
-  */
-  
-  body {
-    background: #FFFFFF !important;
-  }
-  
-  div#main-content {
-    display: block !important;
-  }
-  
-  div#config-section {
-    display: block !important;
-  }
-  
-  #bm-popup {
-    left: 50%;
-  }
-  
-  .body-inner {
-    overflow: hidden;
-  }
-  
-  .grid {
-    padding: 0 !important;
-  }
-  
-  .configuration-form {
-    margin: 0px !important;
-  }
-  
-  div#main-content {
-    padding: 0px !important;
-  }
-  
-  .group-content {
-    margin-top: 0;
-    margin-bottom: 0;
-    
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-  
-  // .group-full-width .group-content {
-  //   margin: 0px;
-  //   max-width: 100%;
-  // }
-  
-  div.body-inner {
-    padding-right: 0 !important;
-    padding-left: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .group-full-width-md .group-content{
     max-width: 100%;
-    padding-bottom: 90px;
-  }
-  
-  .row.clearfix {
-    margin: 0px;
-  }
-  
-  .attribute-inner {
-    padding: 0px;
-  }
-  
-  .tab-content {
     width: 100%;
-    margin: 0 !important;
-    padding: 0;
+    margin: 0;
   }
-  
-  .model-config div.group-inner {
-    border: none !important;
-  }
-  
-  #sticky-actions {
-    z-index: 4 !important;
-  }
-  
-  *:focus {
-    outline: none !important;
-  }
-  
-  
-  
-  /*================================================
-  * loading dialog CPQ
-  * ================================================
-  */
-  
-  div.overlay {
-    background: white;
-  }
-  
-  div#loading-dialog {
-    border: none;
-    background-color: #ffffff;
-    box-shadow: 0 3px 15px 0 rgba(2, 2, 2, 0.15);
-  }
-  
-  
-  /*================================================
-  *  lazy load images 
-  * ================================================
-  */
-  /*
-  @keyframes spinner {
-  to {transform: rotate(360deg);}
-  }
-  
-  .lazy-loading{
-  position: relative;
-  }
-  
-  .lazy-loading:before {
-  content: '';
-  box-sizing: border-box;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-  margin-left: -10px;
-  border-radius: 50%;
-  border: 2px solid #dbdbdb;
-  border-top-color: #909090;
-  animation: spinner .6s linear infinite;
-  z-index: 999;
-  }
-  */
-  
-  /* -----------------------------------------------
-  *  oi colours
-  *  -----------------------------------------------
-  */
-  
-  .oi-color-normal {
-    color: #222222;
-  }
-  
-  .oi-color-feature {
-    color: #f8562c;
-  }
-  
-  .oi-color-light {
-    color: #909090;
-  }
-  
-  .oi-color-border-feature {
-    border-color: #f8562c;
-  }
-  
-  .oi-color-border-lighter {
-    border-color: #dbdbdb;
-  }
-  
-  .oi-color-gradient {
-    color: linear-gradient(289deg, #fe6b03, #e33465);
-  }
-  
-  .oi-color-background-gradient {
-    background-image: linear-gradient(289deg, #fe6b03, #e33465);
-  }
-  
-  .oi-color-background-color-gradient {
-    background-color: linear-gradient(289deg, #fe6b03, #e33465);
-  }
-  
-  .oi-color-button {
-    color: linear-gradient(#ffd700, #ffd700), linear-gradient(to top, #e7ad21, #ffd700);
-  }
-  
-  .oi-color-background-button {
-    background-image: linear-gradient(#ffd700, #ffd700), linear-gradient(to top, #e7ad21, #ffd700);
-  }
-  
-  
-  /*================================================
-  * fonts
-  * ================================================
-  */
-  
-  /* -----------------------------------------------
-  *  oi fonts
-  *  -----------------------------------------------
-  */
-  
-  .oi-gradient-text {
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 3px 5px 8px rgba(248, 86, 44, 0.15);
-  }
-  
-  .oi-section-text-head-gradient {
-    font-family: simplon_oiheadline;
-    font-size: 40px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 0.9;
-    letter-spacing: normal;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .oiSectionHeader .oi-section-text-head {
-    font-family: simplon_oiheadline;
-    font-size: 32px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.07;
-    letter-spacing: normal;
-  }
-  
-  .priceReais {
-    font-family: simplon_oiheadline;
-    font-size: 16px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.07;
-    letter-spacing: normal;
-  }
-  
-  .priceInteger {
-    font-family: simplon_oiheadline;
-    font-size: 32px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.07;
-    letter-spacing: normal;
-  }
-  
-  .priceDecimal {
-    font-family: simplon_oiheadline;
-    font-size: 16px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.07;
-    letter-spacing: normal;
-  }
-  
-  .priceMonth {
-    font-family: simplon_oiheadline;
-    font-size: 8px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.07;
-    letter-spacing: normal;
-  }
-  
-  .oi-section-text {
-    font-family: simplon_bpregular;
-    font-size: 28px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.07;
-    letter-spacing: normal;
-  }
-  
-  .txtDepen{
-    font-family:simplon_bpregular;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.14;
-    letter-spacing: normal;
-    font-size: 12px
-  }
-  
-  .oi-sectionDesc-text {
-    font-family: simplon_bpregular;
-    font-size: 18px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.33;
-    letter-spacing: normal;
-  }
-  
-  .oi-desc-text {
-    font-family: simplon_bpregular;
-    font-size: 16px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.5;
-    letter-spacing: normal;
-  }
-  
-  .oi-desc-textBig {
-    font-family: simplon_bpregular;
-    font-size: 24px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.5;
-    letter-spacing: normal;
-  }
-  
-  .oi-sub-text {
-    font-family: simplon_bpregular;
-    font-size: 14px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.5;
-    letter-spacing: normal;
-  }
-  
-  .oi-sub-text-sm {
-    font-family: simplon_bpregular;
-    font-size: 14px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.5;
-    letter-spacing: normal;
-  }
-  
-  .oi-sub-text-small {
-    font-family: simplon_bpregular;
-    font-size: 12px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 20px;
-    letter-spacing: normal;
-  }
-  
-  .oi-sub-text-xs {
-    font-family: simplon_bpregular;
-    font-size: 11px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 20px;
-    letter-spacing: normal;
-  }
-  
-  .oi-sub-text-pc {
-    font-family: simplon_bpregular;
-    font-size: 12px;
-    text-align: center;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 12px;
-    letter-spacing: normal;
-    color: #909090;
-  }
-  
-  .oi-sub-text-med {
-    font-family: simplon_bpmedium;
-    font-size: 14px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.5;
-    letter-spacing: normal;
-  }
-  
-  .oi-sub-text-big {
-    font-family: simplon_bpmedium;
-    font-size: 16px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 20px;
-    letter-spacing: normal;
-  }
-  
-  .oi-item-big {
-    font-family: simplon_bp;
-    font-size: 28px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 30px;
-    letter-spacing: -0.9px;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .oi-item-med {
-    font-family: simplon_bp;
-    font-size: 24px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.33;
-    letter-spacing: normal;
-  }
-  
-  .oiSectionHeader-enlace {
-    font-family: simplon_bpregular;
-    font-size: 16px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: right;
-    color: #222222;
-  }
-  
-  // .oi-sub-text-legal {
-  //   font-family: simplon_bpregular;
-  //   font-size: 12px;
-  //   font-weight: normal;
-  //   font-style: normal;
-  //   font-stretch: normal;
-  //   line-height: 12px;
-  //   letter-spacing: normal;
-  // }
-  
-  /* -----------------------------------------------
-  *  Fonts
-  *  -----------------------------------------------
-  */
-  
-  
-  
-  /* simplon_bp */
-  @font-face {
-    font-family: 'simplon_bp';
-    src: url("../oi_CSS/SimplonBP-Bold.woff.css") format('woff');
-    font-weight: bold;
-    font-style: normal;
-  }
-  
-  /* simplon_bp */
-  @font-face {
-    font-family: 'simplon_bp';
-    src: url("../oi_CSS/SimplonBP-BoldItalic.woff.css") format('woff');
-    font-weight: normal;
-    font-style: italic;
-  }
-  
-  /* simplon_bpmedium */
-  @font-face {
-    font-family: 'simplon_bpmedium';
-    src: url("../oi_CSS/SimplonBP-Medium.woff.css") format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  /* simplon_bpmedium */
-  @font-face {
-    font-family: 'simplon_bpmedium';
-    src: url("../oi_CSS/SimplonBP-MediumItalic.woff.css") format('woff');
-    font-weight: normal;
-    font-style: italic;
-  }
-  
-  /* simplon_bpregular */
-  @font-face {
-    font-family: 'simplon_bpregular';
-    src: url("../oi_CSS/SimplonBP-Regular.woff.css") format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  /* simplon_bpregular */
-  @font-face {
-    font-family: 'simplon_bpregular';
-    src: url("/oi_CSS/SimplonBP-RegularItalic.woff.css") format('woff');
-    font-weight: normal;
-    font-style: italic;
-  }
-  
-  /* simplon_oiheadline */
-  @font-face {
-    font-family: 'simplon_oiheadline';
-    src: url("../oi_CSS/SimplonOi-Headline.woff.css") format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  /* ----- 768 ----- */
-  
-  @media (min-width: 768px) {
-    // .group-content {
-    //   margin-left: 36px;
-    //   margin-right: 36px;
-    // }
-  
-    .oiSectionHeader .oi-section-text-head {
-      font-size: 48px;
-    }
-  
-    .oi-section-text-head {
-      font-size: 48px;
-    }
-  
-    .oi-sub-text-sm {
-      font-size: 16px;
-    }
-  
-    .oi-sub-text {
-      font-size: 20px;
-    }
-  
-    .oiSectionHeader .oiSectionHeader-Number {
-      font-size: 40px;
-      margin-bottom: 13px;
-    }
-  
-    .oiSectionHeader .oiSectionHeader-Title {
-      font-size: 24px;
-    }
-  
-    .oiSectionHeader .oiSectionHeader-SubTitle {
-      font-size: 16px;
-    }
-  
-    .oi-sectionDesc-text {
-      font-size: 16px;
-    }
-  
-    .oi-sub-text-med {
-      font-size: 16px;
-    }
-  
-    .oi-sub-text-small {
-      font-size: 14px;
-    }
-  
-    .oi-sub-text-xs {
-      font-size: 12px;
-    }
-  
-    .oi-item-big {
-      font-size: 48px;
-    }
-  
-    .oi-desc-text {
-      font-size: 20px;
-    }
-  
-  
-    p.priceReais {
-      font-size: 16px;
-    }
-  
-    p.priceInteger {
-      font-size: 32px;
-    }
-  
-    p.priceDecimal {
-      font-size: 16px;
-    }
-  
-    p.priceMonth {
-      font-size: 8px;
-    }
-  
-  
-  }
-  
-  /* ----- 992 ----- */
-  @media (min-width: 992px) {
-    .oiSectionHeader .oiSectionHeader-Number {
-      font-size: 48px;
-      margin-bottom: 13px;
-    }
-  
-    .oiSectionHeader .oiSectionHeader-Title {
-      font-size: 34px;
-    }
-  
-    .oiSectionHeader .oiSectionHeader-SubTitle {
-      font-size: 20px;
-    }
-  
-    p.priceReais {
-      font-size: 24px;
-    }
-  
-    p.priceInteger {
-      font-size: 48px;
-    }
-  
-    p.priceDecimal {
-      font-size: 24px;
-    }
-  
-    p.priceMonth {
-      font-size: 12px;
-    }
-  }
-  
-  /* ----- 1024 ----- */
-  // @media (min-width: 1024px) {
-  //   .group-content {
-  //     margin-left: 44px;
-  //     margin-right: 44px;
-  //   }
-  // }
-  
-  /* ----- 1200 ----- */
-  // @media (min-width: 1200px) {
-  //   .group-content {
-  //     max-width: 1144px;
-  //     margin-left: 5.2%;
-  //     margin-right: auto;
-  //   }
-  // }
-  
-  /* ----- 1440 ----- */
-  // @media (min-width: 1440px) {
-  //   .group-content {
-  //     margin-left: 7.5%;
-  
-  //   }
-  // }
-  
-  /* ----- 1920 ----- */
-  @media (min-width: 1920px) {
-    // .group-content {
-    //   margin-left: 18.4%;
-  
-    // }
-  }
+}
