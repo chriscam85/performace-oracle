@@ -36,14 +36,28 @@
 }
 
 // Fontes
-// .font
-// font-family: simplon_oiheadline;
-// font-size: 40px;
-// font-weight: normal;
-// font-style: normal;
-// font-stretch: normal;
-// line-height: 0.9;
-// letter-spacing: normal;
-// -webkit-background-clip: text;
-// background-clip: text;
-// -webkit-text-fill-color: transparent;
+.text-clip {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.font-headline, .font-regular, .font-medium {
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    font-stretch: normal;
+}
+
+.font-headline { font-family: @fonts[headline]; }
+
+.font-regular {  font-family: @fonts[regular]; }
+
+.font-medium {  font-family: @fonts[medium]; }
+
+.font-bold {
+    font-family: @fonts[bold];
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+}
