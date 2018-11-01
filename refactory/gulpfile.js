@@ -16,7 +16,7 @@ gulp.task('styles', () => {
     gulp.src(PATH.input)
     .pipe( 
         less( {
-            paths: [ path.join(__dirname, 'less', 'includes') ]
+            paths: ['styles/_base', 'styles/_components', 'styles/_helpers']
         }).on('error', (erro) => {
             console.log('LESS, erro compilação: ' + erro.filename);
             console.log(erro.message);
@@ -36,7 +36,7 @@ gulp.task('map', () => {
     .pipe(sourcemaps.init())
     .pipe( 
         less( {
-            paths: [ path.join(__dirname, 'less', 'includes') ]
+            paths: ['styles/_base', 'styles/_components', 'styles/_helpers']
         }).on('error', (erro) => {
             console.log('LESS, erro compilação: ' + erro.filename);
             console.log(erro.message);
