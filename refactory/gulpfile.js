@@ -6,8 +6,8 @@ const gulp = require('gulp')
     , minifyCss = require('gulp-clean-css');
 
 const PATH = {
-    input: 'styles/**/*.less',
-    output: 'build'
+    input: './styles/**/*.less',
+    output: './build'
 }
 
 gulp.task('delete', () => del(PATH.output) );
